@@ -2,7 +2,6 @@ from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 
 
-
 def get_recipe(url):
 	hdr = {'User-Agent': 'Mozilla/5.0'}
 	req = Request(url, headers=hdr)
@@ -13,12 +12,10 @@ def get_recipe(url):
 def get_description(html):
 	description = html.find('div', {'class': 'submitter__description'})
 	description = description.text.strip()
-	print(description[1:len(description)-1])
 	return description[1:len(description)-1]
 
 def get_name(html):
-	name = html.find('h1', {'class': 'recipe-summary__h1'})
-	print(name.text.strip())
+	name = html.find('h1', {'class': 'recipe-summary__h1'}).text
 	return name
 
 def get_ingredients(html):
@@ -41,13 +38,34 @@ def get_directions(html):
 		directions.append(step.text)
 	return directions
 
+def get_nutrition(html):
+	nutrition_info = html.find('section', {'itemprop': 'nutrition'}).text
+	nutrition_info = [line.strip() for line in nutrition_info.split('\n')]
+	nutrition_facts_str = ''
+	for line in nutrition_info:
+		if line:
+			nutrition_facts_str += line + '\n'
+	return(nutrition_facts_str)
 
-#url = 'https://www.allrecipes.com/recipe/50054/portuguese-pork-with-red-peppers/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%208'
+url = 'https://www.allrecipes.com/recipe/50054/portuguese-pork-with-red-peppers/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%208'
 #url = 'https://www.allrecipes.com/recipe/236776/slow-cooker-sweet-and-sour-pot-roast/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2011'
-url = 'https://www.allrecipes.com/recipe/221987/honeymoon-eggs-benedict/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2014'
+#url = 'https://www.allrecipes.com/recipe/221987/honeymoon-eggs-benedict/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2014'
+
+print(url)
+print()
 recipe_html = get_recipe(url)
-description = get_description(recipe_html)
 name = get_name(recipe_html)
+print(name)
+print()
+description = get_description(recipe_html)
+print(description)
+print()
 ingredients = get_ingredients(recipe_html)
+print(ingredients)
+print()
 directions = get_directions(recipe_html)
 print(directions)
+print()
+nutrition_facts = get_nutrition(recipe_html)
+print(nutrition_facts)
+print()
