@@ -60,43 +60,25 @@ def get_cooktimes(html):
 		cooktimes.append((item.contents[1].text, item.contents[2].text.replace(' ', '')))
 	return cooktimes
 
+def create_recipe_data(url):
+	#TODO - Create parsers for ingredient measurements, cooking instructions, etc..
+	#		in separate functions and call them in this function
+
+	recipe = {}
+	recipe_html = get_recipe(url)
+	recipe['name'] = get_name(recipe_html)
+	recipe['description'] = get_description(recipe_html)
+	recipe['ingredients'] = get_ingredients(recipe_html)
+	recipe['directions'] = get_directions(recipe_html)
+	recipe['nutrition_facts'] = get_nutrition(recipe_html)
+	recipe['num_servings'] = get_num_servings(recipe_html)
+	recipe['num_calories'] = get_num_calories(recipe_html)
+	recipe['cooktimes'] = get_cooktimes(recipe_html)
+	
+	return(recipe)
 
 url = 'https://www.allrecipes.com/recipe/50054/portuguese-pork-with-red-peppers/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%208'
 #url = 'https://www.allrecipes.com/recipe/236776/slow-cooker-sweet-and-sour-pot-roast/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2011'
 #url = 'https://www.allrecipes.com/recipe/221987/honeymoon-eggs-benedict/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2014'
 
-print('URL:')
-print(url)
-print()
-recipe_html = get_recipe(url)
-name = get_name(recipe_html)
-print('Name of Recipe: ')
-print(name)
-print()
-description = get_description(recipe_html)
-print('Personal Description:')
-print(description)
-print()
-ingredients = get_ingredients(recipe_html)
-print('Ingredients:')
-print(ingredients)
-print()
-print('Directions:')
-directions = get_directions(recipe_html)
-print(directions)
-print()
-nutrition_facts = get_nutrition(recipe_html)
-print(nutrition_facts)
-print()
-num_servings = get_num_servings(recipe_html)
-print('Number of Servings:')
-print(num_servings)
-print()
-print('Number of Calories:')
-num_calories = get_num_calories(recipe_html)
-print(num_calories)
-print()
-cooktimes = get_cooktimes(recipe_html)
-print('Preparation and Cooking Times')
-print(cooktimes)
-print()
+print(create_recipe_data(url))
