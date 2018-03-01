@@ -23,17 +23,23 @@ def get_name(html):
 
 def get_ingredients(html):
 	#ingredients broken into 2 drop down lists from html
+	ingredients = []
 	ingredients_list_1 = html.find('ul', {'class': 'checklist dropdownwrapper list-ingredients-1'})
 	ingredients_list_2 = html.find('ul', {'class': 'checklist dropdownwrapper list-ingredients-2'})
 	ingredients_list_1 = ingredients_list_1.findAll('li', {'class': 'checkList__line'})
 	ingredients_list_2 = ingredients_list_2.findAll('li', {'class': 'checkList__line'})
-	ingredients = ingredients_list_1 + ingredients_list_2
-	print(len(ingredients))
+	list_of_ingredients = ingredients_list_1 + ingredients_list_2
+	for item in list_of_ingredients:
+		ingredients.append(str(item.contents[1].text).strip())
+	return ingredients[0:len(ingredients)-1]
 
-url = 'https://www.allrecipes.com/recipe/50054/portuguese-pork-with-red-peppers/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%208'
+
+
+#url = 'https://www.allrecipes.com/recipe/50054/portuguese-pork-with-red-peppers/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%208'
 #url = 'https://www.allrecipes.com/recipe/236776/slow-cooker-sweet-and-sour-pot-roast/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2011'
 url = 'https://www.allrecipes.com/recipe/221987/honeymoon-eggs-benedict/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2014'
 recipe_html = get_recipe(url)
 description = get_description(recipe_html)
 name = get_name(recipe_html)
-get_ingredients(recipe_html)
+ingredients = get_ingredients(recipe_html)
+print(ingredients)
