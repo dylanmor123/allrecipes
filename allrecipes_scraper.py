@@ -33,6 +33,13 @@ def get_ingredients(html):
 		ingredients.append(str(item.contents[1].text).strip())
 	return ingredients[0:len(ingredients)-1]
 
+def get_directions(html):
+	directions = []
+	directions_list = html.find('ol', {'class': 'list-numbers recipe-directions__list'})
+	directions_list = directions_list.findAll('li', {'class': 'step'})
+	for step in directions_list:
+		directions.append(step.text)
+	return directions
 
 
 #url = 'https://www.allrecipes.com/recipe/50054/portuguese-pork-with-red-peppers/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%208'
@@ -42,4 +49,5 @@ recipe_html = get_recipe(url)
 description = get_description(recipe_html)
 name = get_name(recipe_html)
 ingredients = get_ingredients(recipe_html)
-print(ingredients)
+directions = get_directions(recipe_html)
+print(directions)
