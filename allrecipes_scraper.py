@@ -47,25 +47,38 @@ def get_nutrition(html):
 			nutrition_facts_str += line + '\n'
 	return(nutrition_facts_str)
 
+def get_num_servings(html):
+	return html.find('meta', {'id': 'metaRecipeServings'})['content']
+
+def get_num_calories(html):
+	return html.find('span', {'class': 'calorie-count'}).contents[0].text
+
+def get_cooktimes(html):
+	cooktimes = []
+	cooking_info = html.findAll('li', {'class': 'prepTime__item'})
+	for item in cooking_info[1:len(cooking_info)]:
+		cooktimes.append((item.contents[1].text, item.contents[2].text.replace(' ', '')))
+	return cooktimes
+
+def create_recipe_data(url):
+	#TODO - Create parsers for ingredient measurements, cooking instructions, etc..
+	#		in separate functions and call them in this function
+
+	recipe = {}
+	recipe_html = get_recipe(url)
+	recipe['name'] = get_name(recipe_html)
+	recipe['description'] = get_description(recipe_html)
+	recipe['ingredients'] = get_ingredients(recipe_html)
+	recipe['directions'] = get_directions(recipe_html)
+	recipe['nutrition_facts'] = get_nutrition(recipe_html)
+	recipe['num_servings'] = get_num_servings(recipe_html)
+	recipe['num_calories'] = get_num_calories(recipe_html)
+	recipe['cooktimes'] = get_cooktimes(recipe_html)
+	
+	return(recipe)
+
 url = 'https://www.allrecipes.com/recipe/50054/portuguese-pork-with-red-peppers/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%208'
 #url = 'https://www.allrecipes.com/recipe/236776/slow-cooker-sweet-and-sour-pot-roast/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2011'
 #url = 'https://www.allrecipes.com/recipe/221987/honeymoon-eggs-benedict/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2014'
 
-print(url)
-print()
-recipe_html = get_recipe(url)
-name = get_name(recipe_html)
-print(name)
-print()
-description = get_description(recipe_html)
-print(description)
-print()
-ingredients = get_ingredients(recipe_html)
-print(ingredients)
-print()
-directions = get_directions(recipe_html)
-print(directions)
-print()
-nutrition_facts = get_nutrition(recipe_html)
-print(nutrition_facts)
-print()
+print(create_recipe_data(url))
