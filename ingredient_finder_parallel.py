@@ -4,7 +4,6 @@ import argparse
 from multiprocessing import Pool
 
 
-
 def getAllRecipeData(urls):
 	recipe_lists = []
 	for url in urls:
@@ -15,8 +14,9 @@ def getAllRecipeData(urls):
 	print(len(recipe_lists))
 	return(recipe_lists)
 
+
 def helper(pair):
-	#print(pair[0], pair[1])
+	# print(pair[0], pair[1])
 	try:
 		url = 'https://www.allrecipes.com/search/results/?wt=' + str(pair[1]) + '&sort=re&page=' + str(pair[0])
 		html = ars.get_recipe(url)
@@ -29,10 +29,9 @@ def helper(pair):
 
 
 def getIngredientsFromInput(cuisine, page_counter):
-	counter = 0
-	#total_urls = set()
+	# total_urls = set()
 	p = Pool(page_counter)
-	total_urls = p.map(helper, map(lambda num: [num, cuisine], list(range(1, page_counter+1))))
+	total_urls = p.map(helper, map(lambda num: [num, cuisine], list(range(1, page_counter + 1))))
 	print(len(total_urls))
 	url_list = [url for sublist in total_urls for url in sublist]
 	print(url_list)
@@ -45,7 +44,8 @@ def getIngredientsFromInput(cuisine, page_counter):
 		f.write("%s\n" % recipe)
 	f.close()
 	return recipe_lists
-	
+
+
 def get_urls(html):
 	url_set = set()
 	url_list_1 = html.find('section', {'id': 'grid'})
@@ -56,12 +56,14 @@ def get_urls(html):
 			continue
 	return url_set
 
+
 def main(cuisine_style, count):
-    getIngredientsFromInput(cuisine_style, count)
+	getIngredientsFromInput(cuisine_style, count)
+
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('cuisine_style', type=str) 
-    parser.add_argument('count', type=int)
-    args = parser.parse_args()
-    main(args.cuisine_style, args.count)
+	parser = argparse.ArgumentParser()
+	parser.add_argument('cuisine_style', type=str)
+	parser.add_argument('count', type=int)
+	args = parser.parse_args()
+	main(args.cuisine_style, args.count)
