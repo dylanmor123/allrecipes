@@ -2,15 +2,24 @@ import allrecipes_scraper as ars
 import time
 import argparse
 
+# def getAllIngredients(urls):
+# 	ingredient_lists = []
+# 	for url in urls:
+# 		html = ars.get_recipe(url)
+# 		ingredients = ars.get_ingredients(html)
+# 		ingredient_lists.append(ingredients)
+# 		time.sleep(1)
+# 	return(ingredient_lists)
+
 def getAllRecipeData(urls):
-	ingredient_lists = []
+	recipe_lists = []
 	for url in urls:
 		recipe = ars.create_recipe_data(url)
 		time.sleep(1)
-		ingredient_lists.append(recipe)
-	print(ingredient_lists)
-	print(len(ingredient_lists))
-	return(ingredient_lists)
+		recipe_lists.append(recipe)
+	print(recipe_lists)
+	print(len(recipe_lists))
+	return(recipe_lists)
 
 def getIngredientsFromInput(cuisine, page_counter):
 	counter = 0
@@ -26,10 +35,14 @@ def getIngredientsFromInput(cuisine, page_counter):
 			print("link is broken")
 			print(url)
 			return None
-	ingredient_lists = getAllRecipeData(total_urls)
-	print(ingredient_lists)
-	print("Number of recipes: ", len(ingredient_lists))
-	return ingredient_lists
+	recipe_lists = getAllRecipeData(total_urls)
+	print(recipe_lists)
+	print("Number of recipes: ", len(recipe_lists))
+	f = open("recipes.txt", "w+")
+	for recipe in recipe_lists:
+		f.write("%s\n" % recipe)
+	f.close()
+	return recipe_lists
 	
 def get_urls(html):
 	url_set = set()
