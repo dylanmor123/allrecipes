@@ -65,20 +65,55 @@ def create_recipe_data(url):
 	#		in separate functions and call them in this function
 
 	recipe = {}
-	recipe_html = get_recipe(url)
-	recipe['name'] = get_name(recipe_html)
-	recipe['description'] = get_description(recipe_html)
-	recipe['ingredients'] = get_ingredients(recipe_html)
-	recipe['directions'] = get_directions(recipe_html)
-	recipe['nutrition_facts'] = get_nutrition(recipe_html)
-	recipe['num_servings'] = get_num_servings(recipe_html)
-	recipe['num_calories'] = get_num_calories(recipe_html)
-	recipe['cooktimes'] = get_cooktimes(recipe_html)
+	try:
+		recipe_html = get_recipe(url)
+	except:
+		return None
+
+	try:
+		recipe['name'] = get_name(recipe_html)
+	except:
+		recipe['name'] = 'No info'
+
+	try:
+		recipe['description'] = get_description(recipe_html)
+	except:
+		recipe['description'] = 'No info'
+
+	try:
+		recipe['ingredients'] = get_ingredients(recipe_html)
+	except:
+		recipe['ingredients'] = 'No info'
+
+	try:	
+		recipe['directions'] = get_directions(recipe_html)
+	except:
+		recipe['directions'] = 'No info'
+
+	try:
+		recipe['nutrition_facts'] = get_nutrition(recipe_html)
+	except:
+		recipe['nutrition_facts'] = 'No info'
+
+	try:
+		recipe['num_servings'] = get_num_servings(recipe_html)
+	except:
+		recipe['num_servings'] = 'No info'
+
+	try:
+		recipe['num_calories'] = get_num_calories(recipe_html)
+	except:
+		recipe['num_calories'] = 'No info'
+
+	try:
+		recipe['cooktimes'] = get_cooktimes(recipe_html)
+	except:
+		recipe['cooktimes'] = 'No info'
 	
 	return(recipe)
 
-url = 'https://www.allrecipes.com/recipe/50054/portuguese-pork-with-red-peppers/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%208'
+#url = 'https://www.allrecipes.com/recipe/50054/portuguese-pork-with-red-peppers/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%208'
 #url = 'https://www.allrecipes.com/recipe/236776/slow-cooker-sweet-and-sour-pot-roast/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2011'
 #url = 'https://www.allrecipes.com/recipe/221987/honeymoon-eggs-benedict/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2014'
 
-print(create_recipe_data(url))
+#print(create_recipe_data(url))

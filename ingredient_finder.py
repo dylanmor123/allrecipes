@@ -1,15 +1,25 @@
-from allrecipes_scraper import get_ingredients, get_recipe
+import allrecipes_scraper as ars
 import time
 import argparse
 
-def getAllIngredients(urls):
-	ingredient_lists = []
+# def getAllIngredients(urls):
+# 	ingredient_lists = []
+# 	for url in urls:
+# 		html = ars.get_recipe(url)
+# 		ingredients = ars.get_ingredients(html)
+# 		ingredient_lists.append(ingredients)
+# 		time.sleep(1)
+# 	return(ingredient_lists)
+
+def getAllRecipeData(urls):
+	recipe_lists = []
 	for url in urls:
-		html = get_recipe(url)
-		ingredients = get_ingredients(html)
-		ingredient_lists.append(ingredients)
+		recipe = ars.create_recipe_data(url)
 		time.sleep(1)
-	return(ingredient_lists)
+		recipe_lists.append(recipe)
+	print(recipe_lists)
+	print(len(recipe_lists))
+	return(recipe_lists)
 
 def getIngredientsFromInput(cuisine, page_counter):
 	counter = 0
@@ -17,17 +27,22 @@ def getIngredientsFromInput(cuisine, page_counter):
 	while counter < page_counter+1:
 		try:
 			url = 'https://www.allrecipes.com/search/results/?wt=' + cuisine + '&sort=re&page=' + str(counter)
-			html = get_recipe(url)
+			html = ars.get_recipe(url)
 			urls = get_urls(html)
 			total_urls = total_urls|urls
 			counter += 1
 		except:
 			print("link is broken")
+			print(url)
 			return None
-	ingredient_lists = getAllIngredients(total_urls)
-	print(ingredient_lists)
-	print("Number of recipes: ", len(ingredient_lists))
-	return ingredient_lists
+	recipe_lists = getAllRecipeData(total_urls)
+	print(recipe_lists)
+	print("Number of recipes: ", len(recipe_lists))
+	f = open("recipes.txt", "w+")
+	for recipe in recipe_lists:
+		f.write("%s\n" % recipe)
+	f.close()
+	return recipe_lists
 	
 def get_urls(html):
 	url_set = set()
