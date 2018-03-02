@@ -1,43 +1,58 @@
-from collections import defaultdict
+import json
 
 # This is a data structure with representing our knowledge base.
 
-# NOTE 1: If you are adding new fields (e.g. name) make sure to
-#   update all the relevant entries and try to make the field name
-#   self explanatory.
+# NOTE: If you are adding new entries try to make the field name
+#   self explanatory. e.g.
 
-# NOTE 2: Make sure the code is not broken after modifications! 
-#   Make sure to check open and closing brackets
-
-KNOWLEDGE_BASE = defaultdict(lambda: None)
+KNOWLEDGE_BASE = {}
 
 # Adds information to the knowledge base (KB)
-def addToKB(tuple):
-    current_entry = KNOWLEDGE_BASE
+# Args - 
+#   tuple: list of string 
+#   kb_subtree (optional): a defaultdict that represents a KB tree  
+def addToKB(tuple, kb_subtree = KNOWLEDGE_BASE):
+    current_entry = kb_subtree
     for i in range(len(tuple)):
-        if current_entry[tuple[i]] is None:
-            current_entry[tuple[i]] = defaultdict(lambda: None)
+        if not tuple[i] in current_entry:
+            current_entry[tuple[i]] = {}
         current_entry = current_entry[tuple[i]]
 
-def isInKB(tuple):
-    current_entry = None
+# Verifies if tuple is in knowledge base (KB)
+# Args - 
+#   tuple: list of string
+#   kb_subtree (optional): a defaultdict that represents a KB tree
+# Returns -
+#   True if tuple is part of the KB.
+def isInKB(tuple, kb_subtree = KNOWLEDGE_BASE):
+    current_entry = kb_subtree
     for i in range(len(tuple)):
-        if KNOWLEDGE_BASE[tuple[i]] is None:
+        if not tuple[i] in current_entry:
             return False
-        current_entry = KNOWLEDGE_BASE[tuple[i]]
+        current_entry = current_entry[tuple[i]]
     return True
 
-def prettyPrintKBsubtree(subtree, level = 0):
-    if subtree is not None:
-        for key, value in subtree.items():
-            print(level * 2 * " ", end='')
-            if len(list(value.items())) == 0:
-                print("'" + key + "': {}")
-            else:
-                print("'" + key + "': {")
-                prettyPrintKBsubtree(value, level + 1)
-                print(level * 2 * " ", end='')
-                print("}")
+# Gets a subtree of the knowledge base associated with the tuple.
+# E.g. running getKBSubtree(["ingredients"]]) will return a defaultdict
+# where the list of keys are ingredients.
+# Args - 
+#   tuple: list of string
+#   kb_subtree (optional): a defaultdict that represents a KB tree
+# Returns -
+#   A defaultdict that is a subtree of the KB or None if not present.
+def getKBSubtree(tuple, kb_subtree = KNOWLEDGE_BASE):
+    current_entry = kb_subtree
+    for i in range(len(tuple)):
+        if not tuple[i] in current_entry:
+            return None
+        current_entry = current_entry[tuple[i]]
+    return current_entry
+
+# Adds information to the knowledge base (KB)
+# Args - 
+#   knowledge_subtre (optional): a defaultdict that represents a KB tree
+def prettyPrintKBsubtree(kb_subtree = KNOWLEDGE_BASE):
+    print(json.dumps(kb_subtree, sort_keys=True, indent=4))
 
 ####################################################################
 ### List of Ingredients
@@ -45,7 +60,7 @@ def prettyPrintKBsubtree(subtree, level = 0):
 addToKB(["ingredients", "milk"])
 addToKB(["ingredients", "meat"])
 addToKB(["ingredients", "chicken"])
-        
+
 ####################################################################
 ### List of Tools
 
@@ -190,5 +205,22 @@ addToKB(["transformations", "vegan", "milk", "oat milk"])
 
 ### Healthy transformations
 
-####################################################################
 ### End of KB
+####################################################################
+
+# Testing
+
+TESTING_KNOWLEDGE_BASE = True
+if TESTING_KNOWLEDGE_BASE:
+    print(isInKB(["ingredients", "milk"]))
+    print(isInKB(["ingredients", "xx"]))
+    print(isInKB(["cooking-methods", "baking"]))
+    print(isInKB(["cooking-methods", "baking", "dry"]))
+    print(isInKB(["cooking-methods", "baking", "wet"]))
+    print(isInKB(["cooking-methods", "baking", "wet"]))
+    print(isInKB(["cooking-methods", "baking", "wet"]))
+
+    prettyPrintKBsubtree(kb_subtree = getKBSubtree(["cooking-methods"]))
+
+    print("list of ingredients = ")
+    print(list(getKBSubtree(["ingredients"]).keys()))
