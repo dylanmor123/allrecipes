@@ -22,7 +22,7 @@ def getAllRecipeData(urls):
 	return(recipe_lists)
 
 def getIngredientsFromInput(cuisine, page_counter):
-	counter = 0
+	counter = 1
 	total_urls = set()
 	while counter < page_counter+1:
 		try:
@@ -38,7 +38,7 @@ def getIngredientsFromInput(cuisine, page_counter):
 	recipe_lists = getAllRecipeData(total_urls)
 	print(recipe_lists)
 	print("Number of recipes: ", len(recipe_lists))
-	f = open("recipes.txt", "w+")
+	f = open("{}_recipes.txt".format(cuisine), "w+")
 	for recipe in recipe_lists:
 		f.write("%s\n" % recipe)
 	f.close()
