@@ -1,11 +1,13 @@
 import json
+import re
 
 # This is a data structure with representing our knowledge base.
-
 # NOTE: If you are adding new entries try to make the field name
-#   self explanatory. e.g.
-
+#   self explanatory.
 KNOWLEDGE_BASE = {}
+
+# Set this to true if you are adding new data to the KB.
+TESTING_KNOWLEDGE_BASE = False
 
 # Adds information to the knowledge base (KB)
 # Args - 
@@ -22,15 +24,12 @@ def addToKB(tuple, kb_subtree = KNOWLEDGE_BASE):
 # Args - 
 #   tuple: list of string
 #   kb_subtree (optional): a defaultdict that represents a KB tree
+#   regex (optional): boolean value, if true will match the keys in the
+#       dictionary using regex.
 # Returns -
 #   True if tuple is part of the KB.
-def isInKB(tuple, kb_subtree = KNOWLEDGE_BASE):
-    current_entry = kb_subtree
-    for i in range(len(tuple)):
-        if not tuple[i] in current_entry:
-            return False
-        current_entry = current_entry[tuple[i]]
-    return True
+def isInKB(tuple, kb_subtree = KNOWLEDGE_BASE, regex = False):
+    return getKBSubtree(tuple, kb_subtree, regex) is not None
 
 # Gets a subtree of the knowledge base associated with the tuple.
 # E.g. running getKBSubtree(["ingredients"]]) will return a defaultdict
@@ -38,14 +37,26 @@ def isInKB(tuple, kb_subtree = KNOWLEDGE_BASE):
 # Args - 
 #   tuple: list of string
 #   kb_subtree (optional): a defaultdict that represents a KB tree
+#   regex (optional): boolean value, if true will match the keys in the
+#       dictionary using regex. If more than one key matches the regex,
+#       will return the first match.   
 # Returns -
-#   A defaultdict that is a subtree of the KB or None if not present.
-def getKBSubtree(tuple, kb_subtree = KNOWLEDGE_BASE):
+#   A dict that is a subtree of the KB or None if not present.
+def getKBSubtree(tuple, kb_subtree = KNOWLEDGE_BASE, regex=False):
     current_entry = kb_subtree
     for i in range(len(tuple)):
-        if not tuple[i] in current_entry:
-            return None
-        current_entry = current_entry[tuple[i]]
+        if regex:
+            for key in current_entry:
+                if re.match(tuple[i], key) is None:
+                    return None
+                # TODO(danilo): we should consider returning all the subtrees
+                # from here, or getting the most likely matching key.
+                current_entry = current_entry[key]
+                break
+        else:
+            if not tuple[i] in current_entry:
+                return None
+            current_entry = current_entry[tuple[i]]
     return current_entry
 
 # Adds information to the knowledge base (KB)
@@ -57,9 +68,377 @@ def prettyPrintKBsubtree(kb_subtree = KNOWLEDGE_BASE):
 ####################################################################
 ### List of Ingredients
         
-addToKB(["ingredients", "milk"])
-addToKB(["ingredients", "meat"])
-addToKB(["ingredients", "chicken"])
+addToKB(["ingredients", "Acacia"])
+addToKB(["ingredients", "Agar"])
+addToKB(["ingredients", "Ajinomoto"])
+addToKB(["ingredients", "All Purpose Flour"])
+addToKB(["ingredients", "Allspice"])
+addToKB(["ingredients", "Almond Milk"])
+addToKB(["ingredients", "Almonds"])
+addToKB(["ingredients", "Alum"])
+addToKB(["ingredients", "Amaranth"])
+addToKB(["ingredients", "Anchovies"])
+addToKB(["ingredients", "Aniseed"])
+addToKB(["ingredients", "Apples"])
+addToKB(["ingredients", "Apricots"])
+addToKB(["ingredients", "Arborio Rice"])
+addToKB(["ingredients", "Arrowroot"])
+addToKB(["ingredients", "Artichoke"])
+addToKB(["ingredients", "Asafoetida"])
+addToKB(["ingredients", "Ash Gourd"])
+addToKB(["ingredients", "Asparagus"])
+addToKB(["ingredients", "Avocado"])
+addToKB(["ingredients", "Baby Corn"])
+addToKB(["ingredients", "Bacon"])
+addToKB(["ingredients", "Baking Powder"])
+addToKB(["ingredients", "Baking Soda"])
+addToKB(["ingredients", "Balsamic Vinegar"])
+addToKB(["ingredients", "Bamboo Shoot"])
+addToKB(["ingredients", "Banana"])
+addToKB(["ingredients", "Barfi"])
+addToKB(["ingredients", "Barley"])
+addToKB(["ingredients", "Barnyard Millet"])
+addToKB(["ingredients", "Basil"])
+addToKB(["ingredients", "Basmati Rice"])
+addToKB(["ingredients", "Bay Leaf"])
+addToKB(["ingredients", "Bean Sprouts"])
+addToKB(["ingredients", "Beef"])
+addToKB(["ingredients", "Beer"])
+addToKB(["ingredients", "Beetroot"])
+addToKB(["ingredients", "Bell Pepper"])
+addToKB(["ingredients", "Bengal Gram (Split)"])
+addToKB(["ingredients", "Bitter Gourd"])
+addToKB(["ingredients", "Black Beans"])
+addToKB(["ingredients", "Black Cardamom"])
+addToKB(["ingredients", "Black Cumin"])
+addToKB(["ingredients", "Black Gram"])
+addToKB(["ingredients", "Black Pepper"])
+addToKB(["ingredients", "Black-eyed Beans"])
+addToKB(["ingredients", "Blanched Almonds"])
+addToKB(["ingredients", "Blue Cheese"])
+addToKB(["ingredients", "Blueberries"])
+addToKB(["ingredients", "Bok Choy"])
+addToKB(["ingredients", "Bottle Gourd"])
+addToKB(["ingredients", "Bread"])
+addToKB(["ingredients", "Breadcrumbs"])
+addToKB(["ingredients", "Brie Cheese"])
+addToKB(["ingredients", "Broad Beans"])
+addToKB(["ingredients", "Broccoli"])
+addToKB(["ingredients", "Brown Rice"])
+addToKB(["ingredients", "Brown Sauce"])
+addToKB(["ingredients", "Brown Sugar"])
+addToKB(["ingredients", "Buckwheat"])
+addToKB(["ingredients", "Butter"])
+addToKB(["ingredients", "Buttermilk"])
+addToKB(["ingredients", "Cabbage"])
+addToKB(["ingredients", "Cajun Spices"])
+addToKB(["ingredients", "Cane Sugar"])
+addToKB(["ingredients", "Canola Oil"])
+addToKB(["ingredients", "Cape Gooseberry"])
+addToKB(["ingredients", "Capers"])
+addToKB(["ingredients", "Capsicum"])
+addToKB(["ingredients", "Caramel"])
+addToKB(["ingredients", "Caraway Seeds"])
+addToKB(["ingredients", "Carom Seeds"])
+addToKB(["ingredients", "Carrot"])
+addToKB(["ingredients", "Cashew Nuts"])
+addToKB(["ingredients", "Castor Sugar"])
+addToKB(["ingredients", "Cat fish"])
+addToKB(["ingredients", "Cauliflower"])
+addToKB(["ingredients", "Cayenne"])
+addToKB(["ingredients", "Celery"])
+addToKB(["ingredients", "Cheddar Cheese"])
+addToKB(["ingredients", "Cherry"])
+addToKB(["ingredients", "Cherry Tomatoes"])
+addToKB(["ingredients", "Chia Seeds"])
+addToKB(["ingredients", "Chicken"])
+addToKB(["ingredients", "Chicken Liver"])
+addToKB(["ingredients", "Chicken Stock"])
+addToKB(["ingredients", "Chickpeas"])
+addToKB(["ingredients", "Chironji"])
+addToKB(["ingredients", "Chives"])
+addToKB(["ingredients", "Chocolate"])
+addToKB(["ingredients", "Chocolate Chips"])
+addToKB(["ingredients", "Chops"])
+addToKB(["ingredients", "Cinnamon"])
+addToKB(["ingredients", "Clams"])
+addToKB(["ingredients", "Clarified Butter"])
+addToKB(["ingredients", "Cloves"])
+addToKB(["ingredients", "Cluster Beans"])
+addToKB(["ingredients", "Cocoa"])
+addToKB(["ingredients", "Coconut"])
+addToKB(["ingredients", "Coconut Milk"])
+addToKB(["ingredients", "Coconut Oil"])
+addToKB(["ingredients", "Coconut Water"])
+addToKB(["ingredients", "Cod"])
+addToKB(["ingredients", "Coffee"])
+addToKB(["ingredients", "Cognac"])
+addToKB(["ingredients", "Colocasia"])
+addToKB(["ingredients", "Condensed Milk"])
+addToKB(["ingredients", "Cooking Apples"])
+addToKB(["ingredients", "Coriander Leaves"])
+addToKB(["ingredients", "Coriander Powder"])
+addToKB(["ingredients", "Coriander Seeds"])
+addToKB(["ingredients", "Corn"])
+addToKB(["ingredients", "Cornflour"])
+addToKB(["ingredients", "Cornmeal"])
+addToKB(["ingredients", "Cottage Cheese"])
+addToKB(["ingredients", "Couscous"])
+addToKB(["ingredients", "Crab"])
+addToKB(["ingredients", "Cranberry"])
+addToKB(["ingredients", "Cranberry Sauce"])
+addToKB(["ingredients", "Cream"])
+addToKB(["ingredients", "Cream Cheese"])
+addToKB(["ingredients", "Cucumber"])
+addToKB(["ingredients", "Cumin Seeds"])
+addToKB(["ingredients", "Currant"])
+addToKB(["ingredients", "Curry Leaves"])
+addToKB(["ingredients", "Custard Apple"])
+addToKB(["ingredients", "Cuttle fish"])
+addToKB(["ingredients", "Dates"])
+addToKB(["ingredients", "Desiccated Coconut"])
+addToKB(["ingredients", "Dill"])
+addToKB(["ingredients", "Dried Fenugreek Leaves"])
+addToKB(["ingredients", "Dried Fruit"])
+addToKB(["ingredients", "Drumstick"])
+addToKB(["ingredients", "Dry Ginger Powder"])
+addToKB(["ingredients", "Egg"])
+addToKB(["ingredients", "Eggplant"])
+addToKB(["ingredients", "Fennel"])
+addToKB(["ingredients", "Fenugreek"])
+addToKB(["ingredients", "Fenugreek Seeds"])
+addToKB(["ingredients", "Feta Cheese"])
+addToKB(["ingredients", "Figs"])
+addToKB(["ingredients", "Finger Millet"])
+addToKB(["ingredients", "Fish"])
+addToKB(["ingredients", "Fish Fillet"])
+addToKB(["ingredients", "Fish Sauce"])
+addToKB(["ingredients", "Fish Stock"])
+addToKB(["ingredients", "Five Spice Powder"])
+addToKB(["ingredients", "Flat Noodles"])
+addToKB(["ingredients", "Flounder"])
+addToKB(["ingredients", "Flour"])
+addToKB(["ingredients", "Free Range Chicken"])
+addToKB(["ingredients", "French Beans"])
+addToKB(["ingredients", "Galangal"])
+addToKB(["ingredients", "Garlic"])
+addToKB(["ingredients", "Gelatin"])
+addToKB(["ingredients", "Gherkins"])
+addToKB(["ingredients", "Ginger"])
+addToKB(["ingredients", "Glycerine"])
+addToKB(["ingredients", "Gold Leaves"])
+addToKB(["ingredients", "Golden Syrup"])
+addToKB(["ingredients", "Gouda Cheese"])
+addToKB(["ingredients", "Gram flour"])
+addToKB(["ingredients", "Grapefruit"])
+addToKB(["ingredients", "Grapes"])
+addToKB(["ingredients", "Grass Fed Chicken"])
+addToKB(["ingredients", "Green Cardamom"])
+addToKB(["ingredients", "Green Chillies"])
+addToKB(["ingredients", "Green Gram"])
+addToKB(["ingredients", "Green Peas"])
+addToKB(["ingredients", "Gruyere Cheese"])
+addToKB(["ingredients", "Guava"])
+addToKB(["ingredients", "Guchchi"])
+addToKB(["ingredients", "Haddock"])
+addToKB(["ingredients", "Ham"])
+addToKB(["ingredients", "Hazelnut"])
+addToKB(["ingredients", "Herbs"])
+addToKB(["ingredients", "Hilsa"])
+addToKB(["ingredients", "Hoisin Sauce"])
+addToKB(["ingredients", "Honey"])
+addToKB(["ingredients", "Horseradish"])
+addToKB(["ingredients", "Hung Curd"])
+addToKB(["ingredients", "Husked Black Gram"])
+addToKB(["ingredients", "Husked Green Gram"])
+addToKB(["ingredients", "Icing Sugar"])
+addToKB(["ingredients", "Indian Gooseberry"])
+addToKB(["ingredients", "IngredientsFruits"])
+addToKB(["ingredients", "Jackfruit"])
+addToKB(["ingredients", "Jaggery"])
+addToKB(["ingredients", "Jalapeno"])
+addToKB(["ingredients", "Jamun"])
+addToKB(["ingredients", "Jelly"])
+addToKB(["ingredients", "Jowar"])
+addToKB(["ingredients", "Jus"])
+addToKB(["ingredients", "Kaffir Lime"])
+addToKB(["ingredients", "Kashmiri Mirch"])
+addToKB(["ingredients", "Keema"])
+addToKB(["ingredients", "Khoya"])
+addToKB(["ingredients", "Kidney Beans"])
+addToKB(["ingredients", "Kidney Meat"])
+addToKB(["ingredients", "Kiwi"])
+addToKB(["ingredients", "Lady Finger"])
+addToKB(["ingredients", "Lamb Meat"])
+addToKB(["ingredients", "Leek"])
+addToKB(["ingredients", "Lemon"])
+addToKB(["ingredients", "Lemon Juice"])
+addToKB(["ingredients", "Lemon Rind"])
+addToKB(["ingredients", "Lemongrass"])
+addToKB(["ingredients", "Lettuce"])
+addToKB(["ingredients", "Lotus Seeds"])
+addToKB(["ingredients", "Lotus Stem"])
+addToKB(["ingredients", "Lychee"])
+addToKB(["ingredients", "Mace"])
+addToKB(["ingredients", "Mackerel"])
+addToKB(["ingredients", "Malt Vinegar"])
+addToKB(["ingredients", "Mango"])
+addToKB(["ingredients", "Margarine"])
+addToKB(["ingredients", "Marjoram"])
+addToKB(["ingredients", "Marzipan"])
+addToKB(["ingredients", "Mascarpone Cheese"])
+addToKB(["ingredients", "Mayonnaise"])
+addToKB(["ingredients", "Meat Stock"])
+addToKB(["ingredients", "Melon Seeds"])
+addToKB(["ingredients", "Meringue"])
+addToKB(["ingredients", "Milk"])
+addToKB(["ingredients", "Mint Leaves"])
+addToKB(["ingredients", "Mozzarella Cheese"])
+addToKB(["ingredients", "Muesli"])
+addToKB(["ingredients", "Mulberry"])
+addToKB(["ingredients", "Mullet"])
+addToKB(["ingredients", "Mushroom"])
+addToKB(["ingredients", "Mussels"])
+addToKB(["ingredients", "Mustard Leaves"])
+addToKB(["ingredients", "Mustard Oil"])
+addToKB(["ingredients", "Mustard Powder"])
+addToKB(["ingredients", "Mustard Seeds"])
+addToKB(["ingredients", "Mutton"])
+addToKB(["ingredients", "Mutton Liver"])
+addToKB(["ingredients", "Nasturtium"])
+addToKB(["ingredients", "Nutmeg"])
+addToKB(["ingredients", "Oats"])
+addToKB(["ingredients", "Olive Oil"])
+addToKB(["ingredients", "Olives"])
+addToKB(["ingredients", "Onion"])
+addToKB(["ingredients", "Onion Seeds"])
+addToKB(["ingredients", "Orange"])
+addToKB(["ingredients", "Orange Rind"])
+addToKB(["ingredients", "Oregano"])
+addToKB(["ingredients", "Organic Chicken"])
+addToKB(["ingredients", "Oyster Sauce"])
+addToKB(["ingredients", "Paan"])
+addToKB(["ingredients", "Papad"])
+addToKB(["ingredients", "Papaya"])
+addToKB(["ingredients", "Paprika"])
+addToKB(["ingredients", "Parmesan Cheese"])
+addToKB(["ingredients", "Parsley"])
+addToKB(["ingredients", "Partridge"])
+addToKB(["ingredients", "Pasta"])
+addToKB(["ingredients", "Peach"])
+addToKB(["ingredients", "Peanuts"])
+addToKB(["ingredients", "Pear"])
+addToKB(["ingredients", "Pearl Millet"])
+addToKB(["ingredients", "Pearl spot"])
+addToKB(["ingredients", "Perch"])
+addToKB(["ingredients", "Petha"])
+addToKB(["ingredients", "Pigeon Pea"])
+addToKB(["ingredients", "Pigweed"])
+addToKB(["ingredients", "Pimiento"])
+addToKB(["ingredients", "Pine Nuts"])
+addToKB(["ingredients", "Pineapple"])
+addToKB(["ingredients", "Pistachio"])
+addToKB(["ingredients", "Plantain"])
+addToKB(["ingredients", "Plum"])
+addToKB(["ingredients", "Polenta"])
+addToKB(["ingredients", "Pomegranate"])
+addToKB(["ingredients", "Pomfret"])
+addToKB(["ingredients", "Poppy Seeds"])
+addToKB(["ingredients", "Pork"])
+addToKB(["ingredients", "Potatoes"])
+addToKB(["ingredients", "Prawns"])
+addToKB(["ingredients", "Pressed Rice"])
+addToKB(["ingredients", "Provolone Cheese"])
+addToKB(["ingredients", "Puffed Rice"])
+addToKB(["ingredients", "Pumpkin"])
+addToKB(["ingredients", "Quail"])
+addToKB(["ingredients", "Quinoa"])
+addToKB(["ingredients", "Radish"])
+addToKB(["ingredients", "Raisins"])
+addToKB(["ingredients", "Raw Mango Powder"])
+addToKB(["ingredients", "Red Chilli"])
+addToKB(["ingredients", "Red Wine"])
+addToKB(["ingredients", "Red Wine Vinegar"])
+addToKB(["ingredients", "Rice"])
+addToKB(["ingredients", "Rice Flour"])
+addToKB(["ingredients", "Rice Noodles"])
+addToKB(["ingredients", "Rice Vinegar"])
+addToKB(["ingredients", "Ricotta Cheese"])
+addToKB(["ingredients", "Ridge Gourd"])
+addToKB(["ingredients", "Rock Salt"])
+addToKB(["ingredients", "Rocket Leaves"])
+addToKB(["ingredients", "Rose Water"])
+addToKB(["ingredients", "Rosemary"])
+addToKB(["ingredients", "Round Gourd"])
+addToKB(["ingredients", "Roux"])
+addToKB(["ingredients", "Rum"])
+addToKB(["ingredients", "Saffron"])
+addToKB(["ingredients", "Sage"])
+addToKB(["ingredients", "Sake"])
+addToKB(["ingredients", "Salmon"])
+addToKB(["ingredients", "Salt"])
+addToKB(["ingredients", "Sardines"])
+addToKB(["ingredients", "Screw Pine"])
+addToKB(["ingredients", "Sea Salt"])
+addToKB(["ingredients", "Semolina"])
+addToKB(["ingredients", "Sesame Oil"])
+addToKB(["ingredients", "Sesame Seeds"])
+addToKB(["ingredients", "Sev"])
+addToKB(["ingredients", "Shallots"])
+addToKB(["ingredients", "Sharbat"])
+addToKB(["ingredients", "Shark"])
+addToKB(["ingredients", "Shellfish"])
+addToKB(["ingredients", "Shiitake Mushroom"])
+addToKB(["ingredients", "Shrimp"])
+addToKB(["ingredients", "Skinned Chicken"])
+addToKB(["ingredients", "Snake Beans"])
+addToKB(["ingredients", "Sorrel Leaves"])
+addToKB(["ingredients", "Soy Milk"])
+addToKB(["ingredients", "Soya Sauce"])
+addToKB(["ingredients", "Spinach"])
+addToKB(["ingredients", "Spring Onion"])
+addToKB(["ingredients", "Squids"])
+addToKB(["ingredients", "Star Anise"])
+addToKB(["ingredients", "Strawberry"])
+addToKB(["ingredients", "Sugar"])
+addToKB(["ingredients", "Sugar Candy"])
+addToKB(["ingredients", "Sultana"])
+addToKB(["ingredients", "Sunflower Seeds"])
+addToKB(["ingredients", "Sweet Potatoes"])
+addToKB(["ingredients", "Tamarind"])
+addToKB(["ingredients", "Tapioca"])
+addToKB(["ingredients", "Tartaric Acid"])
+addToKB(["ingredients", "Tea"])
+addToKB(["ingredients", "Thyme"])
+addToKB(["ingredients", "Tofu"])
+addToKB(["ingredients", "Tomato"])
+addToKB(["ingredients", "Tomato Puree"])
+addToKB(["ingredients", "Tortilla"])
+addToKB(["ingredients", "Tulsi"])
+addToKB(["ingredients", "Tuna Fish"])
+addToKB(["ingredients", "Turkey"])
+addToKB(["ingredients", "Turmeric"])
+addToKB(["ingredients", "Turnip"])
+addToKB(["ingredients", "Vanilla Essence"])
+addToKB(["ingredients", "Vegetable Oil"])
+addToKB(["ingredients", "Vermicelli"])
+addToKB(["ingredients", "Vetiver"])
+addToKB(["ingredients", "Vinaigrette"])
+addToKB(["ingredients", "Vinegar"])
+addToKB(["ingredients", "Walnuts"])
+addToKB(["ingredients", "Water Chestnut"])
+addToKB(["ingredients", "Water Chestnut flour"])
+addToKB(["ingredients", "Watermelon"])
+addToKB(["ingredients", "White Pepper"])
+addToKB(["ingredients", "White Wine"])
+addToKB(["ingredients", "Whole Bengal Gram"])
+addToKB(["ingredients", "Whole Brown Lentils"])
+addToKB(["ingredients", "Whole Wheat Flour"])
+addToKB(["ingredients", "Yam"])
+addToKB(["ingredients", "Yeast"])
+addToKB(["ingredients", "Yellow Chillies"])
+addToKB(["ingredients", "Yogurt"])
+addToKB(["ingredients", "Zucchini"])
 
 ####################################################################
 ### List of Tools
@@ -196,21 +575,68 @@ addToKB(["cooking-methods", "thermal cooking", "wet"])
 addToKB(["cooking-methods", "caramelizing", "wet"])
 
 ####################################################################
-### List of Transformations
+### List of substitutes
         
-### Vegan transformations
-addToKB(["transformations", "vegan", "milk", "soy milk"])
-addToKB(["transformations", "vegan", "milk", "rice milk"])
-addToKB(["transformations", "vegan", "milk", "oat milk"])
+### Vegan substitutes
+addToKB(["substitutes", "vegan", "meat", "veggie deli slice"])
+addToKB(["substitutes", "vegan", "burger", "veggie burger"])
+addToKB(["substitutes", "vegan", "meatball", "veggie meatball"])
+addToKB(["substitutes", "vegan", "bacon", "veggie bacon"])
+addToKB(["substitutes", "vegan", "chicken", "soy chicken patties"])
+addToKB(["substitutes", "vegan", "chicken nuggets", "soy chicken nuggets"])
+addToKB(["substitutes", "vegan", "jerky", "veggie jerky"])
 
-### Healthy transformations
+addToKB(["substitutes", "vegan", "milk", "soy milk"])
+addToKB(["substitutes", "vegan", "milk", "rice milk"])
+addToKB(["substitutes", "vegan", "milk", "oat milk"])
+
+addToKB(["substitutes", "vegan", "ice cream", "soy ice cream"])
+addToKB(["substitutes", "vegan", "ice cream", "rice ice cream"])
+
+addToKB(["substitutes", "vegan", "cheese", "tofu"])
+addToKB(["substitutes", "vegan", "cheese", "crumbled tofu"])
+addToKB(["substitutes", "vegan", "cheese", "soaked raw nuts"])
+addToKB(["substitutes", "vegan", "parmesan cheese", "vegan parmesan cheese"])
+addToKB(["substitutes", "vegan", "scrambled eggs", "tofu scramble"])
+
+addToKB(["substitutes", "vegan", "baked eggs", "applesauce"])
+addToKB(["substitutes", "vegan", "baked eggs", "pureed soft tofu"])
+addToKB(["substitutes", "vegan", "baked eggs", "flax egg"])
+addToKB(["substitutes", "vegan", "baked eggs", "mashed bananas"])
+
+addToKB(["substitutes", "vegan", "binding eggs", "soy flour"])
+addToKB(["substitutes", "vegan", "binding eggs", "bread crumbs"])
+addToKB(["substitutes", "vegan", "binding eggs", "rolled oats"])
+
+addToKB(["substitutes", "vegan", "chicken broth", "vegetable broth"])
+addToKB(["substitutes", "vegan", "chicken stock", "vegetable broth"])
+addToKB(["substitutes", "vegan", "beef broth", "vegetable broth"])
+addToKB(["substitutes", "vegan", "beef stock", "vegetable broth"])
+
+addToKB(["substitutes", "vegan", "butter", "margarine"])
+
+addToKB(["substitutes", "vegan", "yogurt", "soy yogurt"])
+addToKB(["substitutes", "vegan", "yogurt", "coconut yogurt"])
+addToKB(["substitutes", "vegan", "yogurt", "almond yogurt"])
+
+addToKB(["substitutes", "vegan", "sour cream", "vegan sour cream"])
+
+addToKB(["substitutes", "vegan", "mayonnaise", "vegan mayonnaise"])
+
+addToKB(["substitutes", "vegan", "gelatin", "agar flakes"])
+
+addToKB(["substitutes", "vegan", "honey", "liquid sweetener"])
+
+addToKB(["substitutes", "vegan", "chocolate", "non-dairy chocolate chips"])
+addToKB(["substitutes", "vegan", "chocolate", "non-dairy cocoa powders"])
+
+### Healthy substitutes
 
 ### End of KB
 ####################################################################
 
 # Testing
 
-TESTING_KNOWLEDGE_BASE = True
 if TESTING_KNOWLEDGE_BASE:
     print(isInKB(["ingredients", "milk"]))
     print(isInKB(["ingredients", "xx"]))
