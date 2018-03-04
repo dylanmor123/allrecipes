@@ -22,7 +22,7 @@ def getAllRecipeData(urls):
 	return(recipe_lists)
 
 def getIngredientsFromInput(cuisine, page_counter):
-	counter = 0
+	counter = 1
 	total_urls = set()
 	while counter < page_counter+1:
 		try:
@@ -30,6 +30,7 @@ def getIngredientsFromInput(cuisine, page_counter):
 			html = ars.get_recipe(url)
 			urls = get_urls(html)
 			total_urls = total_urls|urls
+			time.sleep(1)
 			counter += 1
 		except:
 			print("link is broken")
@@ -38,7 +39,7 @@ def getIngredientsFromInput(cuisine, page_counter):
 	recipe_lists = getAllRecipeData(total_urls)
 	print(recipe_lists)
 	print("Number of recipes: ", len(recipe_lists))
-	f = open("recipes.txt", "w+")
+	f = open("{}_recipes.txt".format(cuisine), "w+")
 	for recipe in recipe_lists:
 		f.write("%s\n" % recipe)
 	f.close()
@@ -49,6 +50,7 @@ def get_urls(html):
 	url_list_1 = html.find('section', {'id': 'grid'})
 	for link in url_list_1.findAll('a', href=True):
 		if '/recipe/' in link['href'] and 'https://www.allrecipes.com' in link['href']:
+			link['href'] = "https://translate.google.com/translate?sl=en&tl=es&js=y&prev=_t&hl=en&ie=UTF-8&u=https%3A%2F%2F" + link['href']
 			url_set.add(link['href'])
 		else:
 			continue
