@@ -6,7 +6,8 @@ import re
 #   self explanatory.
 KNOWLEDGE_BASE = {}
 
-# Set this to true if you are adding new data to the KB.
+# Set this to true if you are adding new data to the KB and want to
+# run tests.
 TESTING_KNOWLEDGE_BASE = False
 
 # Adds information to the knowledge base (KB)
@@ -46,13 +47,16 @@ def getKBSubtree(tuple, kb_subtree = KNOWLEDGE_BASE, regex=False):
     current_entry = kb_subtree
     for i in range(len(tuple)):
         if regex:
-            for key in current_entry:
-                if re.match(tuple[i], key) is None:
-                    return None
-                # TODO(danilo): we should consider returning all the subtrees
-                # from here, or getting the most likely matching key.
-                current_entry = current_entry[key]
-                break
+            matched_any_key = False
+            for key in current_entry.keys():
+                if re.match(tuple[i], key) is not None:
+                    # TODO(danilo): we should consider returning all the subtrees
+                    # from here, or getting the most likely matching key.
+                    current_entry = current_entry[key]
+                    matched_any_key = True
+                    break
+            if not matched_any_key:
+                return None
         else:
             if not tuple[i] in current_entry:
                 return None
@@ -645,6 +649,10 @@ if TESTING_KNOWLEDGE_BASE:
     print(isInKB(["cooking-methods", "baking", "wet"]))
     print(isInKB(["cooking-methods", "baking", "wet"]))
     print(isInKB(["cooking-methods", "baking", "wet"]))
+    print(isInKB(["cooking-methods", "bak.*", "dry"], regex=True))
+    print(isInKB(["cooking-methods", "baking", "d.*"], regex=True))
+    print(isInKB(["cooking-methods", ".*", "wet"], regex=True))
+    print(isInKB([".*"], regex=True))
 
     prettyPrintKBsubtree(kb_subtree = getKBSubtree(["cooking-methods"]))
 

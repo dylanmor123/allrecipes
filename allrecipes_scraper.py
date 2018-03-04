@@ -1,6 +1,9 @@
+from __future__ import absolute_import	
+
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 from veggie_transformation import to_veggie_recipe
+from recipe_parser import parse_ingredients
 
 def get_recipe(url):
 	hdr = {'User-Agent': 'Mozilla/5.0'}
@@ -28,7 +31,7 @@ def get_ingredients(html):
 	list_of_ingredients = ingredients_list_1 + ingredients_list_2
 	for item in list_of_ingredients:
 		ingredients.append(str(item.contents[1].text).strip())
-	return ingredients[0:len(ingredients)-1]
+	return parse_ingredients(ingredients[0:len(ingredients)-1])
 
 def get_directions(html):
 	directions = []
@@ -61,7 +64,7 @@ def get_cooktimes(html):
 	return cooktimes
 
 def create_recipe_data(url):
-	#TODO - Create parsers for ingredient measurements, cooking instructions, etc..
+	# TODO - Create parsers for ingredient measurements, cooking instructions, etc..
 	#		in separate functions and call them in this function
 
 	recipe = {}
@@ -122,4 +125,4 @@ print(recipe)
 
 print("\n==========\n")
 
-print(to_veggie_recipe(recipe))
+to_veggie_recipe(recipe)

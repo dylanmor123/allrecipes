@@ -75,9 +75,9 @@ def parse_ingredients(list_of_ingredients):
 
 
 
-recipes = load_recipes('chinese_recipes.txt')
-for recipe in recipes:
-	ingredients = parse_ingredients(recipe['ingredients'])
-	for ingredient in ingredients:
-		print(ingredient)
-	print()
+# recipes = load_recipes('chinese_recipes.txt')
+# for recipe in recipes:
+# 	ingredients = parse_ingredients(recipe['ingredients'])
+# 	for ingredient in ingredients:
+# 		print(ingredient)
+# 	print()
