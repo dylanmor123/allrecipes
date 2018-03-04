@@ -34,10 +34,12 @@ def getIngredientsFromInput(cuisine, page_counter):
 	total_urls = p.map(helper, map(lambda num: [num, cuisine], list(range(1, page_counter + 1))))
 	print(len(total_urls))
 	url_list = [url for sublist in total_urls for url in sublist]
-	print(url_list)
+	#print(url_list)
 
-	recipe_lists = getAllRecipeData(url_list)
-	print(recipe_lists)
+	p2 = Pool(len(url_list))
+	recipe_lists = p2.map(ars.create_recipe_data, url_list)
+
+	#print(recipe_lists)
 	print("Number of recipes: ", len(recipe_lists))
 	f = open("{}_recipes.txt".format(cuisine), "w+")
 	for recipe in recipe_lists:
