@@ -69,7 +69,13 @@ def parse_ingredients(list_of_ingredients):
 				preparation = ingredient.split(' - ')[1].lower().strip()
 				ingredient = ingredient.split(' - ')[0].lower().strip()
 
-		parsed_ingredients.append((quantity, unit, preparation, ingredient))
+		parsed_ingredients.append({
+				"name": ingredient,
+				"quantity": quantity,
+				"measurement": unit,
+				"preparation": preparation,
+			}
+		)
 
 	return parsed_ingredients
 
