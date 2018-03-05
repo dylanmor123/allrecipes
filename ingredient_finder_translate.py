@@ -18,7 +18,8 @@ def getAllRecipeData(urls):
 def helper(pair):
 	# print(pair[0], pair[1])
 	try:
-		url = 'https://www.allrecipes.com/search/results/?wt=' + str(pair[1]) + '&sort=re&page=' + str(pair[0])
+		url = "https://translate.google.com/translate?sl=en&tl=es&js=y&prev=_t&hl=en&ie=UTF-8&u=https%3A%2F%2F" + 'https://www.allrecipes.com/search/results/?wt=' + str(pair[1]) + '&sort=re&page=' + str(pair[0])
+		time.sleep(2)
 		html = ars.get_recipe(url)
 		urls = get_urls(html)
 		return urls

@@ -14,6 +14,7 @@ import argparse
 def getAllRecipeData(urls):
 	recipe_lists = []
 	for url in urls:
+		print(url)
 		recipe = ars.create_recipe_data(url)
 		time.sleep(1)
 		recipe_lists.append(recipe)
@@ -50,7 +51,6 @@ def get_urls(html):
 	url_list_1 = html.find('section', {'id': 'grid'})
 	for link in url_list_1.findAll('a', href=True):
 		if '/recipe/' in link['href'] and 'https://www.allrecipes.com' in link['href']:
-			link['href'] = "https://translate.google.com/translate?sl=en&tl=es&js=y&prev=_t&hl=en&ie=UTF-8&u=https%3A%2F%2F" + link['href']
 			url_set.add(link['href'])
 		else:
 			continue
