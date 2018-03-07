@@ -31,7 +31,7 @@ def getIngredientsFromInput(cuisine, page_counter):
 			html = ars.get_recipe(url)
 			urls = get_urls(html)
 			total_urls = total_urls|urls
-			time.sleep(1)
+			time.sleep(2)
 			counter += 1
 		except:
 			print("link is broken")
