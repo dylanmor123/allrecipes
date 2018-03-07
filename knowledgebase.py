@@ -601,6 +601,9 @@ addToKB(["substitutes", "vegan", "cheese", "tofu"])
 addToKB(["substitutes", "vegan", "cheese", "crumbled tofu"])
 addToKB(["substitutes", "vegan", "cheese", "soaked raw nuts"])
 addToKB(["substitutes", "vegan", "parmesan cheese", "vegan parmesan cheese"])
+
+addToKB(["substitutes", "vegan", "eggs", "tofu"])
+
 addToKB(["substitutes", "vegan", "scrambled eggs", "tofu scramble"])
 
 addToKB(["substitutes", "vegan", "baked eggs", "applesauce"])

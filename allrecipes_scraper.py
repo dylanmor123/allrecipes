@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 from veggie_transformation import to_veggie_recipe
 from recipe_parser import parse_ingredients
+import json
 
 def get_recipe(url):
 	hdr = {'User-Agent': 'Mozilla/5.0'}
@@ -125,4 +126,4 @@ print(recipe)
 
 print("\n==========\n")
 
-to_veggie_recipe(recipe)
+print(to_veggie_recipe(recipe))
