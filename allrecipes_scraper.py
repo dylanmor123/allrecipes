@@ -118,6 +118,6 @@ url = 'https://www.allrecipes.com/recipe/50054/portuguese-pork-with-red-peppers/
 #url = 'https://www.allrecipes.com/recipe/236776/slow-cooker-sweet-and-sour-pot-roast/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2011'
 #url = 'https://www.allrecipes.com/recipe/221987/honeymoon-eggs-benedict/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2014'
 
-recipe = create_recipe_data(url)
-print(recipe)
+# recipe = create_recipe_data(url)
+# print(recipe)
 
