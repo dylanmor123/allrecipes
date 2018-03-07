@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 from veggie_transformation import to_veggie_recipe
 from recipe_parser import parse_ingredients
-import json
+import pprint
 
 def get_recipe(url):
 	hdr = {'User-Agent': 'Mozilla/5.0'}
@@ -122,8 +122,10 @@ url = 'https://www.allrecipes.com/recipe/221987/honeymoon-eggs-benedict/?interna
 
 recipe = create_recipe_data(url) 
 
-print(recipe)
+pp = pprint.PrettyPrinter(indent=4)
+
+pp.pprint(recipe)
 
 print("\n==========\n")
 
-print(to_veggie_recipe(recipe))
+pp.pprint(to_veggie_recipe(recipe))

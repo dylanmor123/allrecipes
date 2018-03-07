@@ -550,7 +550,7 @@ addToKB(["tools", "zester"])
 ####################################################################
 ### List of cooking methods
 
-### Dry methods
+### Dry methods - don't require much water
 addToKB(["cooking-methods", "baking", "dry"])
 addToKB(["cooking-methods", "shirring", "dry"])
 addToKB(["cooking-methods", "broiling", "dry"])
@@ -561,7 +561,7 @@ addToKB(["cooking-methods", "stir-frying", "dry"])
 addToKB(["cooking-methods", "deglazing", "dry"])
 addToKB(["cooking-methods", "grilling", "dry"])
 
-### Wet methods
+### Wet methods - requires water
 addToKB(["cooking-methods", "bain-marie", "wet"])
 addToKB(["cooking-methods", "basting", "wet"])
 addToKB(["cooking-methods", "blanching", "wet"])
@@ -602,18 +602,18 @@ addToKB(["substitutes", "vegan", "cheese", "crumbled tofu"])
 addToKB(["substitutes", "vegan", "cheese", "soaked raw nuts"])
 addToKB(["substitutes", "vegan", "parmesan cheese", "vegan parmesan cheese"])
 
-addToKB(["substitutes", "vegan", "eggs", "tofu"])
+addToKB(["substitutes", "vegan", "egg", "tofu"])
 
-addToKB(["substitutes", "vegan", "scrambled eggs", "tofu scramble"])
+addToKB(["substitutes", "vegan", "scrambled egg", "tofu scramble"])
 
-addToKB(["substitutes", "vegan", "baked eggs", "applesauce"])
-addToKB(["substitutes", "vegan", "baked eggs", "pureed soft tofu"])
-addToKB(["substitutes", "vegan", "baked eggs", "flax egg"])
-addToKB(["substitutes", "vegan", "baked eggs", "mashed bananas"])
+addToKB(["substitutes", "vegan", "baked egg", "applesauce"])
+addToKB(["substitutes", "vegan", "baked egg", "pureed soft tofu"])
+addToKB(["substitutes", "vegan", "baked egg", "flax egg"])
+addToKB(["substitutes", "vegan", "baked egg", "mashed bananas"])
 
-addToKB(["substitutes", "vegan", "binding eggs", "soy flour"])
-addToKB(["substitutes", "vegan", "binding eggs", "bread crumbs"])
-addToKB(["substitutes", "vegan", "binding eggs", "rolled oats"])
+addToKB(["substitutes", "vegan", "binding egg", "soy flour"])
+addToKB(["substitutes", "vegan", "binding egg", "bread crumbs"])
+addToKB(["substitutes", "vegan", "binding egg", "rolled oats"])
 
 addToKB(["substitutes", "vegan", "chicken broth", "vegetable broth"])
 addToKB(["substitutes", "vegan", "chicken stock", "vegetable broth"])
@@ -636,6 +636,8 @@ addToKB(["substitutes", "vegan", "honey", "liquid sweetener"])
 
 addToKB(["substitutes", "vegan", "chocolate", "non-dairy chocolate chips"])
 addToKB(["substitutes", "vegan", "chocolate", "non-dairy cocoa powders"])
+
+addToKB(["substitutes", "vegan", "hollandaise sauce", "vegan hollandaise sauce"])
 
 ### Healthy substitutes
 
