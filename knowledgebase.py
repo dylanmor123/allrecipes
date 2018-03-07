@@ -647,8 +647,6 @@ addToKB(["substitutes", "vegan", "hollandaise sauce", "vegan hollandaise sauce"]
 
 # Testing
 
-prettyPrintKBsubtree(KNOWLEDGE_BASE)
-
 if TESTING_KNOWLEDGE_BASE:
     print(isInKB(["ingredients", "milk"]))
     print(isInKB(["ingredients", "xx"]))
