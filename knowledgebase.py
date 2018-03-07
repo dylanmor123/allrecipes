@@ -135,6 +135,7 @@ addToKB(["ingredients", "artichoke", "category", "vegetables"])
 addToKB(["ingredients", "colocasia", "category", "vegetables"])
 addToKB(["ingredients", "potatoes", "category", "vegetables"])
 addToKB(["ingredients", "ginger", "category", "vegetables"])
+
 addToKB(["ingredients", "coriander powder", "category", "spicies"])
 addToKB(["ingredients", "chives", "category", "spicies"])
 addToKB(["ingredients", "galangal", "category", "spicies"])
@@ -189,6 +190,7 @@ addToKB(["ingredients", "allspice", "category", "spicies"])
 addToKB(["ingredients", "carom seeds", "category", "spicies"])
 addToKB(["ingredients", "parsley", "category", "spicies"])
 addToKB(["ingredients", "acacia", "category", "spicies"])
+
 addToKB(["ingredients", "amaranth", "category", "cereals and pulses"])
 addToKB(["ingredients", "flour", "category", "cereals and pulses"])
 addToKB(["ingredients", "muesli", "category", "cereals and pulses"])
@@ -228,6 +230,7 @@ addToKB(["ingredients", "pearl millet", "category", "cereals and pulses"])
 addToKB(["ingredients", "whole wheat flour", "category", "cereals and pulses"])
 addToKB(["ingredients", "pigeon pea", "category", "cereals and pulses"])
 addToKB(["ingredients", "bean sprouts", "category", "cereals and pulses"])
+
 addToKB(["ingredients", "beef", "category", "meat"])
 addToKB(["ingredients", "grass fed chicken", "category", "meat"])
 addToKB(["ingredients", "free range chicken", "category", "meat"])
@@ -250,6 +253,7 @@ addToKB(["ingredients", "lamb meat", "category", "meat"])
 addToKB(["ingredients", "quail", "category", "meat"])
 addToKB(["ingredients", "mutton", "category", "meat"])
 addToKB(["ingredients", "bacon", "category", "meat"])
+
 addToKB(["ingredients", "gruyere cheese", "category", "dairy products"])
 addToKB(["ingredients", "gouda cheese", "category", "dairy products"])
 addToKB(["ingredients", "feta cheese", "category", "dairy products"])
@@ -272,6 +276,7 @@ addToKB(["ingredients", "condensed milk", "category", "dairy products"])
 addToKB(["ingredients", "clarified butter", "category", "dairy products"])
 addToKB(["ingredients", "buttermilk", "category", "dairy products"])
 addToKB(["ingredients", "butter", "category", "dairy products"])
+
 addToKB(["ingredients", "cranberry", "category", "fruits"])
 addToKB(["ingredients", "kiwi", "category", "fruits"])
 addToKB(["ingredients", "blueberries", "category", "fruits"])
@@ -315,6 +320,7 @@ addToKB(["ingredients", "pomegranate", "category", "fruits"])
 addToKB(["ingredients", "pineapple", "category", "fruits"])
 addToKB(["ingredients", "guava", "category", "fruits"])
 addToKB(["ingredients", "plum", "category", "fruits"])
+
 addToKB(["ingredients", "shrimp", "category", "seafood"])
 addToKB(["ingredients", "tuna fish", "category", "seafood"])
 addToKB(["ingredients", "shellfish", "category", "seafood"])
@@ -340,6 +346,8 @@ addToKB(["ingredients", "clams", "category", "seafood"])
 addToKB(["ingredients", "cat fish", "category", "seafood"])
 addToKB(["ingredients", "mackerel", "category", "seafood"])
 addToKB(["ingredients", "anchovies", "category", "seafood"])
+addToKB(["ingredients", "halibut", "category", "seafood"])
+
 addToKB(["ingredients", "brown sugar", "category", "sugar and sugar products"])
 addToKB(["ingredients", "sugar candy", "category", "sugar and sugar products"])
 addToKB(["ingredients", "icing sugar", "category", "sugar and sugar products"])
@@ -350,6 +358,7 @@ addToKB(["ingredients", "sugar", "category", "sugar and sugar products"])
 addToKB(["ingredients", "castor sugar", "category", "sugar and sugar products"])
 addToKB(["ingredients", "caramel", "category", "sugar and sugar products"])
 addToKB(["ingredients", "cane sugar", "category", "sugar and sugar products"])
+
 addToKB(["ingredients", "canola oil", "category", "nuts and oilseeds"])
 addToKB(["ingredients", "chia seeds", "category", "nuts and oilseeds"])
 addToKB(["ingredients", "hazelnut", "category", "nuts and oilseeds"])
@@ -368,6 +377,7 @@ addToKB(["ingredients", "cashew nuts", "category", "nuts and oilseeds"])
 addToKB(["ingredients", "blanched almonds", "category", "nuts and oilseeds"])
 addToKB(["ingredients", "almonds", "category", "nuts and oilseeds"])
 addToKB(["ingredients", "walnuts", "category", "nuts and oilseeds"])
+
 addToKB(["ingredients", "almond milk", "category", "other ingredients"])
 addToKB(["ingredients", "red wine vinegar", "category", "other ingredients"])
 addToKB(["ingredients", "red wine", "category", "other ingredients"])
@@ -580,20 +590,43 @@ addToKB(["cooking-methods", "caramelizing", "wet"])
 
 ####################################################################
 ### List of substitutes
-        
+## *NOTE* Try to put the most general cases last, example: put "beef stock" before "beef".
+
+
+### Vegan substitutes - Should not be changed:
+addToKB(["substitutes", "vegan", "peanut butter", "peanut butter"])
+addToKB(["substitutes", "vegan", "eggplant", "eggplant"])
+
 ### Vegan substitutes
+addToKB(["substitutes", "vegan", "chicken broth", "vegetable broth"])
+addToKB(["substitutes", "vegan", "chicken stock", "vegetable broth"])
+addToKB(["substitutes", "vegan", "beef broth", "vegetable broth"])
+addToKB(["substitutes", "vegan", "beef stock", "vegetable broth"])
+addToKB(["substitutes", "vegan", "beef broth", "vegetable broth"])
+addToKB(["substitutes", "vegan", "pork stock", "vegetable broth"])
+
+addToKB(["substitutes", "vegan", "groud meat", "textured soy protein"])
+addToKB(["substitutes", "vegan", "groud beef", "textured soy protein"])
 addToKB(["substitutes", "vegan", "meat", "veggie deli slice"])
+addToKB(["substitutes", "vegan", "beef", "veggie deli slice"])
+addToKB(["substitutes", "vegan", "steak", "portobello mushrooms"])
 addToKB(["substitutes", "vegan", "burger", "veggie burger"])
 addToKB(["substitutes", "vegan", "meatball", "veggie meatball"])
 addToKB(["substitutes", "vegan", "bacon", "veggie bacon"])
+addToKB(["substitutes", "vegan", "turkey", "soy turkey patties"])
 addToKB(["substitutes", "vegan", "chicken", "soy chicken patties"])
 addToKB(["substitutes", "vegan", "chicken nuggets", "soy chicken nuggets"])
 addToKB(["substitutes", "vegan", "jerky", "veggie jerky"])
 addToKB(["substitutes", "vegan", "pork", "tempeh"])
+addToKB(["substitutes", "vegan", "groud pork", "textured soy protein"])
 
+addToKB(["substitutes", "vegan", "fish", "tempeh"])
+addToKB(["substitutes", "vegan", "shrimp", "tofu"])
+addToKB(["substitutes", "vegan", "prawns", "tofu"])
+
+addToKB(["substitutes", "vegan", "milk powder", "almond milk powder"])
 addToKB(["substitutes", "vegan", "milk", "soy milk"])
 addToKB(["substitutes", "vegan", "milk", "rice milk"])
-addToKB(["substitutes", "vegan", "milk", "oat milk"])
 
 addToKB(["substitutes", "vegan", "ice cream", "soy ice cream"])
 addToKB(["substitutes", "vegan", "ice cream", "rice ice cream"])
@@ -616,16 +649,14 @@ addToKB(["substitutes", "vegan", "binding egg", "soy flour"])
 addToKB(["substitutes", "vegan", "binding egg", "bread crumbs"])
 addToKB(["substitutes", "vegan", "binding egg", "rolled oats"])
 
-addToKB(["substitutes", "vegan", "chicken broth", "vegetable broth"])
-addToKB(["substitutes", "vegan", "chicken stock", "vegetable broth"])
-addToKB(["substitutes", "vegan", "beef broth", "vegetable broth"])
-addToKB(["substitutes", "vegan", "beef stock", "vegetable broth"])
-
 addToKB(["substitutes", "vegan", "butter", "margarine"])
 
 addToKB(["substitutes", "vegan", "yogurt", "soy yogurt"])
 addToKB(["substitutes", "vegan", "yogurt", "coconut yogurt"])
 addToKB(["substitutes", "vegan", "yogurt", "almond yogurt"])
+
+addToKB(["substitutes", "vegan", "instant puddings", "dairy free instant pudding"])
+addToKB(["substitutes", "vegan", "pudding", "dairy free pudding"])
 
 addToKB(["substitutes", "vegan", "sour cream", "vegan sour cream"])
 
