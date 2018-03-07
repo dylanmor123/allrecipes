@@ -2,9 +2,7 @@ from __future__ import absolute_import
 
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
-from veggie_transformation import to_veggie_recipe
 from recipe_parser import parse_ingredients
-import pprint
 
 def get_recipe(url):
 	hdr = {'User-Agent': 'Mozilla/5.0'}
@@ -116,16 +114,10 @@ def create_recipe_data(url):
 	
 	return(recipe)
 
-#url = 'https://www.allrecipes.com/recipe/50054/portuguese-pork-with-red-peppers/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%208'
+url = 'https://www.allrecipes.com/recipe/50054/portuguese-pork-with-red-peppers/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%208'
 #url = 'https://www.allrecipes.com/recipe/236776/slow-cooker-sweet-and-sour-pot-roast/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2011'
-url = 'https://www.allrecipes.com/recipe/221987/honeymoon-eggs-benedict/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2014'
+#url = 'https://www.allrecipes.com/recipe/221987/honeymoon-eggs-benedict/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2014'
 
-recipe = create_recipe_data(url) 
+recipe = create_recipe_data(url)
+print(recipe)
 
-pp = pprint.PrettyPrinter(indent=4)
-
-pp.pprint(recipe)
-
-print("\n==========\n")
-
-pp.pprint(to_veggie_recipe(recipe))
