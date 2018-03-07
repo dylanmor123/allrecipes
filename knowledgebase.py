@@ -645,8 +645,45 @@ addToKB(["substitutes", "toChinese", "garlic", "bees"])
 addToKB(["substitutes", "toChinese", "olive oil", "bees oil"])
 addToKB(["substitutes", "toChinese", "spaghetti", "bee-ghetti"])
 
-### Healthy substitutes
 
+{'flour': 'gluten-free flour', 'couscous': 'quinoa', 'bread crumbs': 
+'ground flaxseeds', 'tortilla': 'corn tortilla', 'pita': 'large collard leaf',
+'sugar': 'unsweetened applesauce', 'white sugar': 'unsweetened applesauce', 
+'peanut butter': 'natural peanut butter',
+'butter': 'unsweetened butter', 'milk': 'almond milk', 'cream': 'coconut milk',
+'soy sauce': 'low-sodium soy sauce', 'rice': 'brown rice', 'white rice': 'brown rice',
+'bread': 'whole-wheat bread', 'white bread': 'whole-wheat bread', 'sour cream': 'greek yogurt', 
+'mayonnaise': 'greek yogurt with hint of herbs and lemon juice', 'ground beef': 'ground turkey',
+'ground pork': 'ground turkey',
+'bacon': 'lean prosciutto', 'cream cheese': 'fat-free cream cheese', 'lettuce': 'arugula',
+'penne pasta': 'brown rice pasta', 'syrup': 'applesauce', 'ketchup': 'sun-dried tomato hummus'}
+### Healthy substitutes
+addToKB(["substitutes", "healthy", "flour", "gluten-free flour"])
+addToKB(["substitutes", "healthy", "couscous", "quinoa"])
+addToKB(["substitutes", "healthy", "bread crumbs", "ground flaxseeds"])
+addToKB(["substitutes", "healthy", "tortilla", "corn tortilla"])
+addToKB(["substitutes", "healthy", "pita", "Boiled large collard leaf"])
+addToKB(["substitutes", "healthy", "sugar", "unsweetened applesauce"])
+addToKB(["substitutes", "healthy", "white sugar", "unsweetened applesauce"])
+addToKB(["substitutes", "healthy", "peanut butter", "natural peanut butter"])
+addToKB(["substitutes", "healthy", "butter", "unsweetened butter"])
+addToKB(["substitutes", "healthy", "milk", "almond milk"])
+addToKB(["substitutes", "healthy", "cream", "coconut milk"])
+addToKB(["substitutes", "healthy", "soy sauce", "low-sodium soy sauce"])
+addToKB(["substitutes", "healthy", "rice", "brown rice"])
+addToKB(["substitutes", "healthy", "white rice", "brown rice"])
+addToKB(["substitutes", "healthy", "bread", "whole-wheat bread"])
+addToKB(["substitutes", "healthy", "white bread", "whole-wheat bread"])
+addToKB(["substitutes", "healthy", "sour cream", "greek yogurt"])
+addToKB(["substitutes", "healthy", "mayonnaise", "greek yogurt with hint of herbs and lemon juice"])
+addToKB(["substitutes", "healthy", "ground beef", "ground turkey"])
+addToKB(["substitutes", "healthy", "ground pork", "ground turkey"])
+addToKB(["substitutes", "healthy", "bacon", "lean prosciutto"])
+addToKB(["substitutes", "healthy", "cream cheese", "fat-free cream cheese"])
+addToKB(["substitutes", "healthy", "lettuce", "arugula"])
+addToKB(["substitutes", "healthy", "penne pasta", "brown rice pasta"])
+addToKB(["substitutes", "healthy", "syrup", "applesauce"])
+addToKB(["substitutes", "healthy", "ketchup", "sun-dried tomato hummus"])
 ### End of KB
 ####################################################################
 
