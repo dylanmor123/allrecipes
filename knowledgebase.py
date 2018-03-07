@@ -640,6 +640,11 @@ addToKB(["substitutes", "vegan", "chocolate", "non-dairy cocoa powders"])
 
 addToKB(["substitutes", "vegan", "hollandaise sauce", "vegan hollandaise sauce"])
 
+### Chinese Style substitutes
+addToKB(["substitutes", "toChinese", "garlic", "bees"])
+addToKB(["substitutes", "toChinese", "olive oil", "bees oil"])
+addToKB(["substitutes", "toChinese", "spaghetti", "bee-ghetti"])
+
 ### Healthy substitutes
 
 ### End of KB
