@@ -9,9 +9,7 @@ import re
 # 1 cup of butter = 1725 mg
 # unsalted butter instead of normal butter
 
-r2 = {'name': 'Vegan Totchos', 'description': 'When you love tots and you love nachos and you need a vegan recipe for totchos! Optional toppings include fresh or canned green chiles or jalapenos, sliced green onions, fresh cilantro, and/or hot sauce.', 'ingredients': [('', '', '', 'olive oil cooking spray'), ('1 (12 ounce)', 'package', '', "vegan beef crumbles (such as trader joe's beef-less ground beef®)"), ('1', 'cup', 'or to taste', 'mild green salsa'), ('1 (6 ounce)', 'can', 'drained', 'black olives'), ('1 (32 ounce)', 'package', 'frozen ', 'bite-size potato nuggets (such as tater tots®)'), ('1 (8 ounce)', 'package', 'shredded ', 'vegan cheese (such as daiya®)'), ('1', 'cup', '', 'vegan sour cream (such as tofutti®) (optional)')], 'directions': ['Preheat oven to 425 degrees F (220 degrees C).', 'Spray a skillet with cooking spray and add vegan crumbles. Cook and stir over medium heat until heated through and uniformly broken up, about 5 minutes. Stir in salsa and black olives. Remove from heat and cover to keep warm.', 'Spread taters on a baking sheet in a single layer.', 'Bake in the preheated oven for 10 minutes. Turn taters over; bake until crispy, about 10 minutes more.', 'Transfer taters to a shallow, oven-safe serving dish. Spread crumbles-salsa mixture evenly on top. Sprinkle vegan cheese on top.', "Set oven rack about 6 inches from the heat source and preheat the oven's broiler.", 'Place baking dish in the oven. Broil, watching closely to prevent burning, until vegan cheese is melted, about 3 minutes.', 'Top with dollops of vegan sour cream.'], 'nutrition_facts': 'Nutrition Facts\nPer Serving:\n382 calories;\n21.9 g fat;\n37.1 g carbohydrates;\n11.6 g protein;\n0 mg cholesterol;\n1283 mg sodium.\nPowered by the ESHA Research Database © 2018, ESHA Research, Inc. All Rights Reserved\n', 'num_servings': '10', 'num_calories': '382', 'cooktimes': [('Prep', '10m'), ('Cook', '28m'), ('Ready In', '38m')]}
-r3 = {'name': 'Honeymoon Eggs Benedict', 'description': 'This is more or less the eggs Benedict dish my husband and I had on our honeymoon at a little mom-and-pop bed and breakfast. Eight years later, I still think this is great for breakfast!', 'ingredients': [('12', '', 'fresh ', 'asparagus spears'), ('4', '', '', 'eggs'), ('1', 'teaspoon', '', 'distilled white vinegar'), ('1', 'teaspoon', '', 'salt'), ('2', '', 'split', 'large croissants'), ('4', 'slices', '', 'canadian-style bacon'), ('1', 'cup', 'grated ', 'asiago cheese'), ('1/2', 'cup', '', 'prepared hollandaise sauce'), ('4', 'tablespoons', '', 'butter')], 'directions': ['Place a steamer insert into a saucepan and fill with water to just below the bottom of the steamer. Cover pan and bring the water to a boil. Add asparagus, cover, and steam until just tender, 2 to 6 minutes depending on thickness.', 'Fill a large saucepan with 2 to 3 inches of water and bring to a boil. Reduce the heat to medium-low, pour in the vinegar, and keep the water at a gentle simmer. Stir in salt until dissolved. Crack an egg into a small bowl and gently slip the egg into the simmering water, holding the bowl just above the surface of the water. Repeat with the remaining eggs. Poach the eggs until the whites are firm and the yolks have thickened but are not hard, 3 to 5  minutes. Remove the eggs from the water with a slotted spoon, drain on plate lined with kitchen towels to remove excess water, then place onto a warm plate.', "Preheat the oven's broiler and set the oven rack about 6 inches from the heat source.", 'Arrange croissant halves on a baking sheet. Top each with 1 poached egg, 1 slice Canadian bacon, 3 spears asparagus, and 1/4 cup Asiago cheese.', 'Broil in preheated oven until cheese is melted and beginning to crisp, 2 to 3 minutes.', 'Heat hollandaise sauce in a saucepan over medium heat until bubbly and hot, about 5 minutes. Serve sauce poured over baked croissants.'], 'nutrition_facts': 'Nutrition Facts\nPer Serving:\n859 calories;\n60 g fat;\n36.5 g carbohydrates;\n44.5 g protein;\n625 mg cholesterol;\n3302 mg sodium.\nPowered by the ESHA Research Database © 2018, ESHA Research, Inc. All Rights Reserved\n', 'num_servings': '2', 'num_calories': '859', 'cooktimes': [('Prep', '10m'), ('Cook', '20m'), ('Ready In', '30m')]}
-
+r3 = {'name': 'Fall 5-Spice Soup', 'description': 'I am a soup fanatic, and found that Chinese 5-spice, made up of anise, fennel, cloves, cinnamon, and white or Szechwan pepper was a great way to jazz-up common fall vegetables.', 'ingredients': [{'name': 'vegetable broth', 'quantity': '6', 'measurement': 'cups', 'preparation': ''}, {'name': 'vegetable oil', 'quantity': '1', 'measurement': 'tablespoon', 'preparation': ''}, {'name': 'onion', 'quantity': '1/2', 'measurement': '', 'preparation': 'chopped'}, {'name': 'celery', 'quantity': '2', 'measurement': 'stalks', 'preparation': 'chopped'}, {'name': 'chinese 5-spice powder', 'quantity': '1 1/2', 'measurement': 'teaspoons', 'preparation': ''}, {'name': 'sweet potatoes', 'quantity': '4', 'measurement': '', 'preparation': 'chopped'}, {'name': 'apples', 'quantity': '2', 'measurement': '', 'preparation': 'peeled'}, {'name': 'salt', 'quantity': '1 1/2', 'measurement': 'teaspoons', 'preparation': ''}], 'directions': ['Pour vegetable broth into a pot and bring to a boil.', 'Heat oil in a skillet over medium heat; cook and stir onion and celery in hot oil until tender, 5 to 10 minutes. Add Chinese 5-spice powder to onion mixture, stir to coat, and cook until fragrant, about 1 minute.', 'Mix sweet potatoes, apples, salt, and onion mixture into broth; cook until sweet potatoes are tender, 20 to 25 minutes. Cool soup for at least 5 minutes.', 'Pour soup into a blender no more than half full. Cover and hold lid down; pulse a few times before leaving on to blend. Puree in batches until smooth.'], 'nutrition_facts': 'Nutrition Facts\nPer Serving:\n324 calories;\n4.6 g fat;\n66.7 g carbohydrates;\n5.7 g protein;\n0 mg cholesterol;\n1705 mg sodium.\nPowered by the ESHA Research Database © 2018, ESHA Research, Inc. All Rights Reserved\n', 'num_servings': '4', 'num_calories': '324', 'cooktimes': [('Prep', '20m'), ('Cook', '25m'), ('Ready In', '50m')]}
 
 salt_sodium = {'teaspoon': 2325, 'teaspoons': 2325, 'pinch': 400, 'pinches': 400}
 #butter_sodim = {'stick': 862.5, 'sticks': 862.5, 'cup': 1725, 'cups': 1725, 'pound': 3450, 'pounds': 3450, 'tablespoon': 101, 'tablespoons': 101}
@@ -33,6 +31,7 @@ def getSodiumfromNutritions(recipe):
 	sod_amount = wordList[wordList.index('sodium') - 2]
 	return int(sod_amount)
 
+
 def checkSodiumLevel(amount):
 	if amount > 140:
 		return True
@@ -41,38 +40,95 @@ def checkSodiumLevel(amount):
 
 
 def to_healthy_recipe(recipe):
+	print(recipe)
+	
 	healthy_subtree = getKBSubtree(["substitutes", "healthy"])
-	print(healthy_subtree)
-
 	Sodium_nutri = getSodiumfromNutritions(recipe)
 	servings = int(recipe['num_servings'])
+	sodium_int = 0
 	for index,ingredient in enumerate(recipe['ingredients']):
+		#If sodium level is not considered low sodium,
+		#half the amount of salt if present in ingredients
 		if checkSodiumLevel(Sodium_nutri) is True:
-			if 'salt' in ingredient and any(x in salt_sodium.keys() for x in ingredient):
-				ingredient = list(ingredient)
+			if 'salt' in ingredient['name'] or 'kosher salt' in ingredient['name'] or 'sea salt' in ingredient['name'] and ingredient['measurement'] in salt_sodium.keys():
+				measurements = ingredient['quantity'].split() 
+				for i in range(len(measurements)):
+					if measurements[i] == '1/2':
+						measurements[i] = 0.5
+						sodium_int += measurements[i]
+					elif measurements[i] == '1/4':
+						measurements[i] = 0.25
+						sodium_int += measurements[i]						
+					try:
+						measurements[i] = int(measurements[i])
+						sodium_int += measurements[i]
+					except:
+						continue
+				sodium_int = sodium_int / 2
+				ingredient["quantity"] = str(sodium_int)
+				print(ingredient["quantity"])
+				#ngredient = list(ingredient)
 				#sodium = int(ingredient[0])*salt_sodium[ingredient[1]]
-				reduced_quantity = int(ingredient[0]) / 2
-				ingredient[0] = str(reduced_quantity)
-				ingredient = tuple(ingredient)
-				print(ingredient['quantity'])
+				#ingredient['quantity'] = int(ingredient['quantity'])
+				#print(ingredient['quantity'])
+				#reduced_quantity = int(ingredient[0]) / 2
+				#ingredient[0] = str(reduced_quantity)
+				#ingredient = tuple(ingredient)
 				#reduced_sodium = sodium / 2 
 				#ingredient['quantity'] = reduced_quantity
-		#for non_healthy, substitute in healthy_subtree.items():
-			# print("non_healthy: ", non_healthy)
-			# print("substitute: ", substitute)
-			# substitute = list(substitute.keys())[0]
-			# print("substitute = list ... : ", substitute)
-		#TODO Update Nutrition for original_sod_perserving - reduced_per_seving
+
+		for non_healthy, substitute in healthy_subtree.items():
+			substitute = list(substitute.keys())[0]
+			if non_healthy in ingredient['name']:
+				print("substitutes for ", ingredient["name"], " -> ", substitute)
+				ingredient["name"] = substitute
+				break
+	for idx, direction in enumerate(recipe["directions"]):
+		for non_healthy, substitute in healthy_subtree.items():
+			substitute = list(substitute.keys())[0]
+
+			direction = direction.replace(non_healthy, substitute)
+
+			if non_healthy in direction:
+				print(idx)
+				print(non_healthy, " -> ", substitute )
+				print()
+
+		recipe["directions"][idx] = direction
+	print(recipe)
+	return recipe
+		# print("substitute = list ... : ", substitute)
 		# if ingredient['name'] in replacement:
 		# 	ingredient['name'] = replacement[ingredient['name']]
-	return recipe
 
-			# if 'butter' in ingredient:
-			# 	ingredient['name'] = 'unsalted butter'
-			# 	#recipe['ingredients'][index][-1] = 'unsalted butter'
-
-
-
+		# if 'butter' in ingredient:
+		# 	ingredient['name'] = 'unsalted butter'
+		# 	recipe['ingredients'][index][-1] = 'unsalted butter'
 to_healthy_recipe(r3)
 
+# def main():
+# 	healthy_subtree = getKBSubtree(["substitutes", "healthy"])
 
+# 	content = ""
+# 	with open("chinese_recipes.txt", mode="r", encoding="utf-8") as f:
+# 	    content = f.readlines()
+
+# 	ingredients = set()
+# 	for line in content:
+# 		recipe = eval(line)
+# 		recipe["ingredients"] = parse_ingredients(recipe["ingredients"])
+
+
+# 		for x in recipe["ingredients"]:
+# 			ingredients.add(x["name"])
+
+# 	for x in ingredients:
+# 		print(x)
+# 		for non_healthy, substitute in healthy_subtree.items():
+# 			substitute = list(substitute.keys())[0]
+# 			if non_healthy in x:
+# 				print("##### substitutes for ", x, " -> ", substitute)
+# 				print()	
+
+# if __name__ == "__main__":
+# 	main()
