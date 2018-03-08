@@ -295,7 +295,7 @@ addToKB(["ingredients", "mulberry", "category", "fruits"])
 addToKB(["ingredients", "lychee", "category", "fruits"])
 addToKB(["ingredients", "lemon juice", "category", "fruits"])
 addToKB(["ingredients", "lemon rind", "category", "fruits"])
-addToKB(["ingredients", "ingredientsfruits", "category", "fruits"])
+addToKB(["ingredients", "fruits", "category", "fruits"])
 addToKB(["ingredients", "lemon", "category", "fruits"])
 addToKB(["ingredients", "raisins", "category", "fruits"])
 addToKB(["ingredients", "jamun", "category", "fruits"])
@@ -561,6 +561,8 @@ addToKB(["tools", "zester"])
 ### List of cooking methods
 
 ### Dry methods - don't require much water
+addToKB(["cooking-methods", "dry roasting", "dry"])
+
 addToKB(["cooking-methods", "baking", "dry"])
 addToKB(["cooking-methods", "shirring", "dry"])
 addToKB(["cooking-methods", "broiling", "dry"])
@@ -672,10 +674,14 @@ addToKB(["substitutes", "vegan", "chocolate", "non-dairy cocoa powders"])
 addToKB(["substitutes", "vegan", "hollandaise sauce", "vegan hollandaise sauce"])
 
 ### Chinese Style substitutes
-addToKB(["substitutes", "toChinese", "garlic", "bees"])
-addToKB(["substitutes", "toChinese", "olive oil", "bees oil"])
-addToKB(["substitutes", "toChinese", "spaghetti", "bee-ghetti"])
-
+addToKB(["substitutes", "toChinese", "olive oil", "peanut oil"])
+addToKB(["substitutes", "toChinese", "spaghetti", "lo mein"])
+addToKB(["substitutes", "toChinese", "vinegar", "black vinegar"])
+addToKB(["substitutes", "toChinese", "red pepper flakes", "dried chili pepper"])
+addToKB(["substitutes", "toChinese", "italian parsley", "cilantro"])
+addToKB(["substitutes", "toChinese", "parmigiano-reggiano cheese", "fermented bean curd"])
+addToKB(["substitutes", "toChinese", "penne", "lo mein"])
+addToKB(["substitutes", "toChinese", "mushrooms", "shiitake mushrooms"])
 
 # {'flour': 'gluten-free flour', 'couscous': 'quinoa', 'bread crumbs': 
 # 'ground flaxseeds', 'tortilla': 'corn tortilla', 'pita': 'large collard leaf',
