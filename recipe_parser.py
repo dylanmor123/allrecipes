@@ -1,5 +1,19 @@
 import re 
 
+
+def quantity_str_to_float(quantity_str):
+	total = 0
+	all_nums = re.findall("([0-9]+(/[0-9]+)?)", quantity_str)
+	for num in all_nums:
+		num = num[0]
+		if "/" in num:
+			x, y = num.split("/")
+			total += float(x) / float(y)
+		else:
+			total += float(num)
+
+	return total
+
 def load_recipes(file):
 	dicts_from_file = []
 	with open(file, encoding="utf8") as inf:

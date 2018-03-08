@@ -593,7 +593,7 @@ addToKB(["cooking-methods", "caramelizing", "wet"])
 ## *NOTE* Try to put the most general cases last, example: put "beef stock" before "beef".
 
 
-### Vegan substitutes - Should not be changed:
+### Vegan substitutes - Should not be changed (could be confused with an igredient that must be changed)
 addToKB(["substitutes", "vegan", "peanut butter", "peanut butter"])
 addToKB(["substitutes", "vegan", "eggplant", "eggplant"])
 
@@ -620,10 +620,12 @@ addToKB(["substitutes", "vegan", "chicken nuggets", "soy chicken nuggets"])
 addToKB(["substitutes", "vegan", "jerky", "veggie jerky"])
 addToKB(["substitutes", "vegan", "pork", "tempeh"])
 
-addToKB(["substitutes", "vegan", "fish", "tempeh"])
+# TODO: deal with all kinds of seafood.
+addToKB(["substitutes", "vegan", "fish", "tempeh"]) 
 addToKB(["substitutes", "vegan", "shrimp", "tofu"])
-addToKB(["substitutes", "vegan", "prawns", "tofu"])
+addToKB(["substitutes", "vegan", "prawn", "tofu"])
 
+# TODO: deal with all kinds of dairy food.
 addToKB(["substitutes", "vegan", "milk powder", "almond milk powder"])
 addToKB(["substitutes", "vegan", "milk", "soy milk"])
 addToKB(["substitutes", "vegan", "milk", "rice milk"])
@@ -631,12 +633,22 @@ addToKB(["substitutes", "vegan", "milk", "rice milk"])
 addToKB(["substitutes", "vegan", "ice cream", "soy ice cream"])
 addToKB(["substitutes", "vegan", "ice cream", "rice ice cream"])
 
+# TODO: deal with all kinds of cheese.
 addToKB(["substitutes", "vegan", "cheese", "tofu"])
 addToKB(["substitutes", "vegan", "cheese", "crumbled tofu"])
 addToKB(["substitutes", "vegan", "cheese", "soaked raw nuts"])
 addToKB(["substitutes", "vegan", "parmesan cheese", "vegan parmesan cheese"])
 
-addToKB(["substitutes", "vegan", "egg", "tofu"])
+addToKB(["substitutes", "vegan", "butter", "margarine"])
+
+addToKB(["substitutes", "vegan", "yogurt", "soy yogurt"])
+addToKB(["substitutes", "vegan", "yogurt", "coconut yogurt"])
+addToKB(["substitutes", "vegan", "yogurt", "almond yogurt"])
+
+# eggs are a special case for ingredient mesurement and quantity and preparation.
+addToKB(["substitutes", "vegan", "egg", "tofu", "measurement_change", "oz"])
+addToKB(["substitutes", "vegan", "egg", "tofu", "quantity_change", "1.4"])
+addToKB(["substitutes", "vegan", "egg", "tofu", "preparation_change", ""])
 
 addToKB(["substitutes", "vegan", "scrambled egg", "tofu scramble"])
 
@@ -648,12 +660,6 @@ addToKB(["substitutes", "vegan", "baked egg", "mashed bananas"])
 addToKB(["substitutes", "vegan", "binding egg", "soy flour"])
 addToKB(["substitutes", "vegan", "binding egg", "bread crumbs"])
 addToKB(["substitutes", "vegan", "binding egg", "rolled oats"])
-
-addToKB(["substitutes", "vegan", "butter", "margarine"])
-
-addToKB(["substitutes", "vegan", "yogurt", "soy yogurt"])
-addToKB(["substitutes", "vegan", "yogurt", "coconut yogurt"])
-addToKB(["substitutes", "vegan", "yogurt", "almond yogurt"])
 
 addToKB(["substitutes", "vegan", "instant puddings", "dairy free instant pudding"])
 addToKB(["substitutes", "vegan", "pudding", "dairy free pudding"])
@@ -670,6 +676,19 @@ addToKB(["substitutes", "vegan", "chocolate", "non-dairy chocolate chips"])
 addToKB(["substitutes", "vegan", "chocolate", "non-dairy cocoa powders"])
 
 addToKB(["substitutes", "vegan", "hollandaise sauce", "vegan hollandaise sauce"])
+
+addToKB(["substitutes", "vegan", "bread", "wheat tortilla"])
+addToKB(["substitutes", "vegan", "toast", "wheat tortilla"])
+addToKB(["substitutes", "vegan", "bagel", "wheat tortilla"])
+addToKB(["substitutes", "vegan", "baguette", "wheat tortilla"])
+addToKB(["substitutes", "vegan", "biscuit", "wheat tortilla"])
+addToKB(["substitutes", "vegan", "brioche bun", "wheat tortilla"])
+addToKB(["substitutes", "vegan", "brioche", "wheat tortilla"])
+addToKB(["substitutes", "vegan", "ciabatta", "wheat tortilla"])
+addToKB(["substitutes", "vegan", "naan", "wheat tortilla"])
+
+addToKB(["substitutes", "vegan", "pancake", "vegan pancake"])
+addToKB(["substitutes", "vegan", "cracker", "whole wheat cracker"])
 
 ### Chinese Style substitutes
 addToKB(["substitutes", "toChinese", "garlic", "bees"])
@@ -708,7 +727,7 @@ addToKB(["substitutes", "healthy", "bread", "whole-wheat bread"])
 addToKB(["substitutes", "healthy", "white bread", "whole-wheat bread"])
 addToKB(["substitutes", "healthy", "flour", "gluten-free flour"])
 addToKB(["substitutes", "healthy", "couscous", "quinoa"])
-addToKB(["substitutes", "healthy", "bread crumbs", "ground flaxseeds"])
+addToKB(["substitutes", "healthy", "bread crumb", "ground flaxseed"])
 addToKB(["substitutes", "healthy", "tortilla", "corn tortilla"])
 addToKB(["substitutes", "healthy", "pita", "Boiled large collard leaf"])
 addToKB(["substitutes", "healthy", "penne pasta", "brown rice pasta"])
