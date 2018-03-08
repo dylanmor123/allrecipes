@@ -609,6 +609,7 @@ addToKB(["substitutes", "vegan", "pork stock", "vegetable broth"])
 
 addToKB(["substitutes", "vegan", "groud meat", "textured soy protein"])
 addToKB(["substitutes", "vegan", "groud beef", "textured soy protein"])
+addToKB(["substitutes", "vegan", "groud pork", "textured soy protein"])
 addToKB(["substitutes", "vegan", "meat", "veggie deli slice"])
 addToKB(["substitutes", "vegan", "beef", "veggie deli slice"])
 addToKB(["substitutes", "vegan", "steak", "portobello mushrooms"])
@@ -620,7 +621,6 @@ addToKB(["substitutes", "vegan", "chicken", "soy chicken patties"])
 addToKB(["substitutes", "vegan", "chicken nuggets", "soy chicken nuggets"])
 addToKB(["substitutes", "vegan", "jerky", "veggie jerky"])
 addToKB(["substitutes", "vegan", "pork", "tempeh"])
-addToKB(["substitutes", "vegan", "groud pork", "textured soy protein"])
 
 addToKB(["substitutes", "vegan", "fish", "tempeh"])
 addToKB(["substitutes", "vegan", "shrimp", "tofu"])
@@ -720,15 +720,12 @@ addToKB(["substitutes", "healthy", "pita", "Boiled large collard leaf"])
 addToKB(["substitutes", "healthy", "penne pasta", "brown rice pasta"])
 
 
-
 addToKB(["substitutes", "healthy", "ground beef", "ground turkey"])
 addToKB(["substitutes", "healthy", "ground pork", "ground turkey"])
 addToKB(["substitutes", "healthy", "bacon", "lean prosciutto"])
 addToKB(["substitutes", "healthy", "canadian-style bacon", "lean prosciutto"])
 addToKB(["substitutes", "healthy", "sausage", "turkey sausage"])
 addToKB(["substitutes", "healthy", "chorizo sausage", "turkey sausage"])
-addToKB(["substitutes", "healthy", "eggs", "egg whites"])
-addToKB(["substitutes", "healthy", "egg", "egg white"])
 
 
 addToKB(["substitutes", "healthy", "monterey jack", "reduced-calorie cheese"])
