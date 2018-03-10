@@ -49,13 +49,15 @@ def get_main_cooking_method(parsed_cooking_methods, recipe):
 		return ''
 
 
-subtree = getKBSubtree(['cooking-methods'])
-cooking_methods = ' '.join(list(subtree.keys()))
-recipes = load_recipes('vegan_recipes.txt')
 
-for recipe in recipes:
-	try:
-		parsed_methods = parse_cooking_methods(recipe['directions'], recipe['cooktimes'], cooking_methods)
-		get_main_cooking_method(parsed_methods, recipe)
-	except:
-		print("missing either directions or cooktimes for this recipe")
+if __name__ == "__main__":
+	subtree = getKBSubtree(['cooking-methods'])
+	cooking_methods = ' '.join(list(subtree.keys()))
+	recipes = load_recipes('vegan_recipes.txt')
+
+	for recipe in recipes:
+		try:
+			parsed_methods = parse_cooking_methods(recipe['directions'], recipe['cooktimes'], cooking_methods)
+			get_main_cooking_method(parsed_methods, recipe)
+		except:
+			print("missing either directions or cooktimes for this recipe")

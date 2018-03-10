@@ -6,10 +6,6 @@ import re
 #   self explanatory.
 KNOWLEDGE_BASE = {}
 
-# Set this to true if you are adding new data to the KB and want to
-# run tests.
-TESTING_KNOWLEDGE_BASE = False
-
 # Adds information to the knowledge base (KB)
 # Args - 
 #   tuple: list of string 
@@ -705,9 +701,9 @@ addToKB(["substitutes", "vegan", "beef stock", "vegetable broth"])
 addToKB(["substitutes", "vegan", "beef broth", "vegetable broth"])
 addToKB(["substitutes", "vegan", "pork stock", "vegetable broth"])
 
-addToKB(["substitutes", "vegan", "groud meat", "textured soy protein"])
-addToKB(["substitutes", "vegan", "groud beef", "textured soy protein"])
-addToKB(["substitutes", "vegan", "groud pork", "textured soy protein"])
+addToKB(["substitutes", "vegan", "ground meat", "textured soy protein"])
+addToKB(["substitutes", "vegan", "ground beef", "textured soy protein"])
+addToKB(["substitutes", "vegan", "ground pork", "textured soy protein"])
 addToKB(["substitutes", "vegan", "meat", "veggie deli slice"])
 addToKB(["substitutes", "vegan", "beef", "veggie deli slice"])
 addToKB(["substitutes", "vegan", "steak", "portobello mushrooms"])
@@ -715,13 +711,16 @@ addToKB(["substitutes", "vegan", "burger", "veggie burger"])
 addToKB(["substitutes", "vegan", "meatball", "veggie meatball"])
 addToKB(["substitutes", "vegan", "bacon", "veggie bacon"])
 addToKB(["substitutes", "vegan", "turkey", "soy turkey patties"])
+addToKB(["substitutes", "vegan", "chicken breast", "soy chicken patties"])
+addToKB(["substitutes", "vegan", "chicken leg", "soy chicken patties"])
+addToKB(["substitutes", "vegan", "chicken thigh", "soy chicken patties"])
 addToKB(["substitutes", "vegan", "chicken", "soy chicken patties"])
 addToKB(["substitutes", "vegan", "chicken nuggets", "soy chicken nuggets"])
 addToKB(["substitutes", "vegan", "jerky", "veggie jerky"])
 addToKB(["substitutes", "vegan", "pork", "tempeh"])
 
 # TODO: deal with all kinds of seafood.
-addToKB(["substitutes", "vegan", "fish", "tempeh"]) 
+addToKB(["substitutes", "vegan", "fish", "tempeh"])
 addToKB(["substitutes", "vegan", "shrimp", "tofu"])
 addToKB(["substitutes", "vegan", "prawn", "tofu"])
 
@@ -734,12 +733,14 @@ addToKB(["substitutes", "vegan", "ice cream", "soy ice cream"])
 addToKB(["substitutes", "vegan", "ice cream", "rice ice cream"])
 
 # TODO: deal with all kinds of cheese.
-addToKB(["substitutes", "vegan", "cheese", "tofu"])
+addToKB(["substitutes", "vegan", "mozzarella cheese", "tofu"])
+addToKB(["substitutes", "vegan", "mozzarella", "tofu"])
+addToKB(["substitutes", "vegan", "parmesan cheese", "vegan parmesan cheese"])
 addToKB(["substitutes", "vegan", "cheese", "crumbled tofu"])
 addToKB(["substitutes", "vegan", "cheese", "soaked raw nuts"])
-addToKB(["substitutes", "vegan", "parmesan cheese", "vegan parmesan cheese"])
+addToKB(["substitutes", "vegan", "cheese", "tofu"])
 
-addToKB(["substitutes", "vegan", "butter", "margarine"])
+addToKB(["substitutes", "vegan", "butter", "vegan margarine"])
 
 addToKB(["substitutes", "vegan", "yogurt", "soy yogurt"])
 addToKB(["substitutes", "vegan", "yogurt", "coconut yogurt"])
@@ -748,21 +749,17 @@ addToKB(["substitutes", "vegan", "yogurt", "almond yogurt"])
 addToKB(["substitutes", "vegan", "scrambled egg", "tofu scramble"])
 
 # eggs are a special case for ingredient mesurement and quantity and preparation.
-addToKB(["substitutes", "vegan", "egg", "tofu", "measurement_change", "oz"])
+addToKB(["substitutes", "vegan", "egg", "tofu", "measurement_change", "ounces"])
 addToKB(["substitutes", "vegan", "egg", "tofu", "quantity_change", "1.4"])
 addToKB(["substitutes", "vegan", "egg", "tofu", "preparation_change", ""])
-
-
-# this will only change to if the main cooking method is as specified.
-addToKB(["substitutes", "vegan", "egg", "applesauce", "main-cooking-methods", "bake"])
+addToKB(["substitutes", "vegan", "egg", "tofu", "if-main-cooking-method", "bake", "applesauce"])
+addToKB(["substitutes", "vegan", "egg", "tofu", "if-preparation", "beaten", "pureed soft tofu"])
 
 # addToKB(["substitutes", "vegan", "baked egg", "pureed soft tofu"])
 # addToKB(["substitutes", "vegan", "baked egg", "flax egg"])
 # addToKB(["substitutes", "vegan", "baked egg", "mashed bananas"])
 
-addToKB(["substitutes", "vegan", "egg", "soy flour", "from_preparation", "beaten"])
-addToKB(["substitutes", "vegan", "beaten egg", "soy flour"])
-
+# addToKB(["substitutes", "vegan", "binding egg", "soy flour"])
 # addToKB(["substitutes", "vegan", "binding egg", "bread crumbs"])
 # addToKB(["substitutes", "vegan", "binding egg", "rolled oats"])
 
@@ -795,6 +792,8 @@ addToKB(["substitutes", "vegan", "naan", "wheat tortilla"])
 addToKB(["substitutes", "vegan", "pancake", "vegan pancake"])
 addToKB(["substitutes", "vegan", "cracker", "whole wheat cracker"])
 
+####################################################################
+
 ### Chinese Style substitutes
 addToKB(["substitutes", "toChinese", "olive oil", "peanut oil"])
 addToKB(["substitutes", "toChinese", "spaghetti", "lo mein"])
@@ -804,6 +803,8 @@ addToKB(["substitutes", "toChinese", "italian parsley", "cilantro"])
 addToKB(["substitutes", "toChinese", "parmigiano-reggiano cheese", "fermented bean curd"])
 addToKB(["substitutes", "toChinese", "penne", "lo mein"])
 addToKB(["substitutes", "toChinese", "mushrooms", "shiitake mushrooms"])
+
+####################################################################
 
 # {'flour': 'gluten-free flour', 'couscous': 'quinoa', 'bread crumbs': 
 # 'ground flaxseeds', 'tortilla': 'corn tortilla', 'pita': 'large collard leaf',
@@ -875,7 +876,7 @@ addToKB(["substitutes", "healthy", "lettuce", "arugula"])
 
 # Testing
 
-if TESTING_KNOWLEDGE_BASE:
+if __name__ == "__main__":
     print(isInKB(["ingredients", "milk"]))
     print(isInKB(["ingredients", "xx"]))
     print(isInKB(["cooking-methods", "baking"]))
