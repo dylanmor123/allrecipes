@@ -78,7 +78,7 @@ def test_ingredient_substitute():
 		for kb_igredient in ingredients_subtree.keys():
 			kb_igredient_re = re.compile(re.escape(kb_igredient), re.IGNORECASE)
 			if kb_igredient_re.search(x) is not None:
-				print(" -> ", kb_igredient, end='') 
+				print(" -> ", kb_igredient, end='')
 		print()
 		for non_veg, substitute in vegan_subtree.items():
 			substitute = list(substitute.keys())[0]
@@ -88,6 +88,8 @@ def test_ingredient_substitute():
 
 
 def main():
+	# test_ingredient_substitute()
+
 	url = 'https://www.allrecipes.com/recipe/221987/honeymoon-eggs-benedict/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2014'
 	recipe = create_recipe_data(url)
 	print("ingredients = ", recipe["ingredients"])
