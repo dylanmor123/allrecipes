@@ -9,7 +9,7 @@ Dried Shiitake Mushrooms
 Dried Chili Peppers
 Sichuan Peppercorn
 Fermented Bean Paste
-Star Anus
+Star Anaise
 Five spice powder
 
 Hoisin Sauce
@@ -28,6 +28,7 @@ double boiling
 from knowledgebase import *
 from allrecipes_scraper import create_recipe_data as make_object
 import pprint
+import webbrowser
 
 mylist = ['https://www.allrecipes.com/recipe/222000/spaghetti-aglio-e-olio/?internalSource=hub%20recipe&referringContentType=search%20results&clickId=cardslot%203',
           'https://www.allrecipes.com/recipe/258817/chicken-pasta-with-artichoke-hearts/?internalSource=rotd&referringContentType=home%20page&clickId=cardslot%201']
@@ -71,13 +72,21 @@ def toChinese(recipe):
 def list_ingredients():
 	acc = ""
 	CH_subtree = getKBSubtree(["ingredients"])
+	print("# on ingredients:", len(list(CH_subtree.keys())))
 	# pp.pprint(CH_subtree)
-	for key in list(CH_subtree.keys())[0:5]:
+	for key in list(CH_subtree.keys())[:]:
 		print(key)
+
+		url = "https://www.google.com.tr/search?q={}".format(key)
+		webbrowser.open(url)
+
 		tags = input("List Categories: ").split()
+
+		if "exit" in tags:
+			break
+
 		for tag in tags:
 			acc += "addToKB([\"ingredients\", \"{}\", \"{}\"])\n".format(key, tag)
-	# print("# on ingredients:", len(list(CH_subtree.keys())))
 	print(acc)
 
 
