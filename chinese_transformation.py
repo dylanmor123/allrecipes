@@ -74,7 +74,7 @@ def list_ingredients():
 	CH_subtree = getKBSubtree(["ingredients"])
 	print("# on ingredients:", len(list(CH_subtree.keys())))
 	# pp.pprint(CH_subtree)
-	for key in list(CH_subtree.keys())[:]:
+	for key in list(CH_subtree.keys())[300:349]:
 		print(key)
 
 		url = "https://www.google.com.tr/search?q={}".format(key)
