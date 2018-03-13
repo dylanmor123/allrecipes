@@ -99,12 +99,13 @@ def transform(recipe, style="chinese"):
 
 	return recipe
 
+
 def list_ingredients():
 	acc = ""
 	CH_subtree = getKBSubtree(["ingredients"])
 	print("# on ingredients:", len(list(CH_subtree.keys())))
 	# pp.pprint(CH_subtree)
-	for key in list(CH_subtree.keys())[156:]:
+	for key in list(CH_subtree.keys())[:]:
 		print(key)
 
 		url = "https://www.google.com.tr/search?q={}".format(key)
