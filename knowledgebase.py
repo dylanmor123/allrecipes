@@ -68,6 +68,7 @@ def prettyPrintKBsubtree(kb_subtree = KNOWLEDGE_BASE):
 ####################################################################
 ### List of Ingredients
         
+addToKB(["ingredients", "green onions", "category", "vegetables"])
 addToKB(["ingredients", "bok choy", "category", "vegetables"])
 addToKB(["ingredients", "snake beans", "category", "vegetables"])
 addToKB(["ingredients", "sorrel leaves", "category", "vegetables"])
@@ -283,6 +284,8 @@ addToKB(["ingredients", "pastrami", "category", "meat"])
 addToKB(["ingredients", "meatball", "category", "meat"])
 addToKB(["ingredients", "meat", "category", "meat"])
 
+addToKB(["ingredients", "heavy whipping cream", "category", "dairy products"])
+addToKB(["ingredients", "whip cream", "category", "dairy products"])
 addToKB(["ingredients", "gruyere cheese", "category", "dairy products"])
 addToKB(["ingredients", "gouda cheese", "category", "dairy products"])
 addToKB(["ingredients", "feta cheese", "category", "dairy products"])
@@ -650,6 +653,9 @@ addToKB(["tools", "twine"])
 addToKB(["tools", "whisk"])
 addToKB(["tools", "wooden spoon"])
 addToKB(["tools", "zester"])
+addToKB(["tools", "skillet"])
+addToKB(["tools", "microwave"])
+addToKB(["wok", "microwave"])
 
 ####################################################################
 ### List of cooking methods
@@ -686,10 +692,12 @@ addToKB(["cooking-methods", "caramelize", "wet"])
 
 ####################################################################
 ### List of substitutes
-## *NOTE* Try to put the most general cases last, example: put "beef stock" before "beef".
 
+####################################################################
+### To Vegan
 
-### Vegan substitutes - Should not be changed (could be confused with an igredient that must be changed)
+### Vegan substitutes that should not be changed (could be confused with an igredient that must be changed)
+
 addToKB(["substitutes", "vegan", "peanut butter", "peanut butter"])
 addToKB(["substitutes", "vegan", "eggplant", "eggplant"])
 
@@ -755,14 +763,6 @@ addToKB(["substitutes", "vegan", "egg", "tofu", "preparation_change", ""])
 addToKB(["substitutes", "vegan", "egg", "tofu", "if-main-cooking-method", "bake", "applesauce"])
 addToKB(["substitutes", "vegan", "egg", "tofu", "if-preparation", "beaten", "pureed soft tofu"])
 
-# addToKB(["substitutes", "vegan", "baked egg", "pureed soft tofu"])
-# addToKB(["substitutes", "vegan", "baked egg", "flax egg"])
-# addToKB(["substitutes", "vegan", "baked egg", "mashed bananas"])
-
-# addToKB(["substitutes", "vegan", "binding egg", "soy flour"])
-# addToKB(["substitutes", "vegan", "binding egg", "bread crumbs"])
-# addToKB(["substitutes", "vegan", "binding egg", "rolled oats"])
-
 addToKB(["substitutes", "vegan", "instant puddings", "dairy free instant pudding"])
 addToKB(["substitutes", "vegan", "pudding", "dairy free pudding"])
 
@@ -793,8 +793,19 @@ addToKB(["substitutes", "vegan", "pancake", "vegan pancake"])
 addToKB(["substitutes", "vegan", "cracker", "whole wheat cracker"])
 
 ####################################################################
+### from Vegan
 
+# those are for the inverse tranformation.
+addToKB(["substitutes", "from_vegan", "pureed soft tofu", "beaten egg"])
+addToKB(["substitutes", "from_vegan", "flax egg", "egg"])
+addToKB(["substitutes", "from_vegan", "mashed bananas", "beaten egg"])
+addToKB(["substitutes", "from_vegan", "soy flour", "egg"])
+addToKB(["substitutes", "from_vegan", "bread crumbs", "egg"])
+addToKB(["substitutes", "from_vegan", "rolled oats", "egg"])
+
+####################################################################
 ### Chinese Style substitutes
+
 addToKB(["substitutes", "toChinese", "olive oil", "peanut oil"])
 addToKB(["substitutes", "toChinese", "spaghetti", "lo mein"])
 addToKB(["substitutes", "toChinese", "vinegar", "black vinegar"])
@@ -805,6 +816,7 @@ addToKB(["substitutes", "toChinese", "penne", "lo mein"])
 addToKB(["substitutes", "toChinese", "mushrooms", "shiitake mushrooms"])
 
 ####################################################################
+### Healthy
 
 # {'flour': 'gluten-free flour', 'couscous': 'quinoa', 'bread crumbs': 
 # 'ground flaxseeds', 'tortilla': 'corn tortilla', 'pita': 'large collard leaf',
@@ -875,7 +887,6 @@ addToKB(["substitutes", "healthy", "lettuce", "arugula"])
 ####################################################################
 
 # Testing
-
 if __name__ == "__main__":
     print(isInKB(["ingredients", "milk"]))
     print(isInKB(["ingredients", "xx"]))
