@@ -29,7 +29,7 @@ def isInKB(tuple, kb_subtree = KNOWLEDGE_BASE, regex = False):
     return getKBSubtree(tuple, kb_subtree, regex) is not None
 
 # Gets a subtree of the knowledge base associated with the tuple.
-# E.g. running getKBSubtree(["ingredients"]]) will return a defaultdict
+# E.g. running getKBSubtree(["ingredients"]]) will return a dict
 # where the list of keys are ingredients.
 # Args - 
 #   tuple: list of string
@@ -39,6 +39,7 @@ def isInKB(tuple, kb_subtree = KNOWLEDGE_BASE, regex = False):
 #       will return the first match.   
 # Returns -
 #   A dict that is a subtree of the KB or None if not present.
+#   Might return a list of dicts if regex is True.
 def getKBSubtree(tuple, kb_subtree = KNOWLEDGE_BASE, regex=False):
     current_entry = kb_subtree
     for i in range(len(tuple)):
@@ -46,8 +47,6 @@ def getKBSubtree(tuple, kb_subtree = KNOWLEDGE_BASE, regex=False):
             matched_any_key = False
             for key in current_entry.keys():
                 if re.match(tuple[i], key) is not None:
-                    # TODO(danilo): we should consider returning all the subtrees
-                    # from here, or getting the most likely matching key.
                     current_entry = current_entry[key]
                     matched_any_key = True
                     break
@@ -58,6 +57,28 @@ def getKBSubtree(tuple, kb_subtree = KNOWLEDGE_BASE, regex=False):
                 return None
             current_entry = current_entry[tuple[i]]
     return current_entry
+
+# Gets a subtree of the knowledge base associated with the tuple,
+# removing any nodes that don't match regex.
+# Args - 
+#   tuple: list of string
+#   kb_subtree (optional): a defaultdict that represents a KB tree
+# Returns -
+#   returns the dicts, pruning nodes that are not part of regex.
+def getKBPrunedByRegex(tuple, kb_subtree = KNOWLEDGE_BASE):
+    # base case
+    if (len(tuple) == 0):
+        return {}
+
+    # continue search        
+    return_dict = {}
+    for key in kb_subtree.keys():
+            if re.match(tuple[0], key) is not None:
+                key_subtree = getKBPrunedByRegex(tuple = tuple[1:], kb_subtree = kb_subtree[key])
+                if len(key_subtree) > 0 or len(tuple[1:]) == 0:
+                    return_dict[key] = key_subtree
+
+    return return_dict
 
 # Adds information to the knowledge base (KB)
 # Args - 
@@ -1524,19 +1545,21 @@ addToKB(["substitutes", "healthy", "lettuce", "arugula"])
 
 # Testing
 if __name__ == "__main__":
-    print(isInKB(["ingredients", "milk"]))
-    print(isInKB(["ingredients", "xx"]))
-    print(isInKB(["cooking-methods", "baking"]))
-    print(isInKB(["cooking-methods", "baking", "dry"]))
-    print(isInKB(["cooking-methods", "baking", "wet"]))
-    print(isInKB(["cooking-methods", "baking", "wet"]))
-    print(isInKB(["cooking-methods", "baking", "wet"]))
-    print(isInKB(["cooking-methods", "bak.*", "dry"], regex=True))
-    print(isInKB(["cooking-methods", "baking", "d.*"], regex=True))
-    print(isInKB(["cooking-methods", ".*", "wet"], regex=True))
-    print(isInKB([".*"], regex=True))
+    # print(isInKB(["ingredients", "milk"]))
+    # print(isInKB(["ingredients", "xx"]))
+    # print(isInKB(["cooking-methods", "baking"]))
+    # print(isInKB(["cooking-methods", "baking", "dry"]))
+    # print(isInKB(["cooking-methods", "baking", "wet"]))
+    # print(isInKB(["cooking-methods", "baking", "wet"]))
+    # print(isInKB(["cooking-methods", "baking", "wet"]))
+    # print(isInKB(["cooking-methods", "bak.*", "dry"], regex=True))
+    # print(isInKB(["cooking-methods", "baking", "d.*"], regex=True))
+    # print(isInKB(["cooking-methods", ".*", "wet"], regex=True))
+    # print(isInKB([".*"], regex=True))
 
-    prettyPrintKBsubtree(kb_subtree = getKBSubtree(["cooking-methods"]))
+    # prettyPrintKBsubtree(kb_subtree = getKBSubtree(["cooking-methods"]))
 
-    print("list of ingredients = ")
-    print(list(getKBSubtree(["ingredients"]).keys()))
+    # print("list of ingredients = ")
+    # print(list(getKBSubtree(["ingredients"]).keys()))
+
+    print(getKBPrunedByRegex(["ingredients", ".*", "chinese"]))
