@@ -29,7 +29,7 @@ def isInKB(tuple, kb_subtree = KNOWLEDGE_BASE, regex = False):
     return getKBSubtree(tuple, kb_subtree, regex) is not None
 
 # Gets a subtree of the knowledge base associated with the tuple.
-# E.g. running getKBSubtree(["ingredients"]]) will return a defaultdict
+# E.g. running getKBSubtree(["ingredients"]]) will return a dict
 # where the list of keys are ingredients.
 # Args - 
 #   tuple: list of string
@@ -39,6 +39,7 @@ def isInKB(tuple, kb_subtree = KNOWLEDGE_BASE, regex = False):
 #       will return the first match.   
 # Returns -
 #   A dict that is a subtree of the KB or None if not present.
+#   Might return a list of dicts if regex is True.
 def getKBSubtree(tuple, kb_subtree = KNOWLEDGE_BASE, regex=False):
     current_entry = kb_subtree
     for i in range(len(tuple)):
@@ -46,8 +47,6 @@ def getKBSubtree(tuple, kb_subtree = KNOWLEDGE_BASE, regex=False):
             matched_any_key = False
             for key in current_entry.keys():
                 if re.match(tuple[i], key) is not None:
-                    # TODO(danilo): we should consider returning all the subtrees
-                    # from here, or getting the most likely matching key.
                     current_entry = current_entry[key]
                     matched_any_key = True
                     break
@@ -58,6 +57,28 @@ def getKBSubtree(tuple, kb_subtree = KNOWLEDGE_BASE, regex=False):
                 return None
             current_entry = current_entry[tuple[i]]
     return current_entry
+
+# Gets a subtree of the knowledge base associated with the tuple,
+# removing any nodes that don't match regex.
+# Args - 
+#   tuple: list of string
+#   kb_subtree (optional): a defaultdict that represents a KB tree
+# Returns -
+#   returns the dicts, pruning nodes that are not part of regex.
+def getKBPrunedByRegex(tuple, kb_subtree = KNOWLEDGE_BASE):
+    # base case
+    if (len(tuple) == 0):
+        return {}
+
+    # continue search        
+    return_dict = {}
+    for key in kb_subtree.keys():
+            if re.match(tuple[0], key) is not None:
+                key_subtree = getKBPrunedByRegex(tuple = tuple[1:], kb_subtree = kb_subtree[key])
+                if len(key_subtree) > 0 or len(tuple[1:]) == 0:
+                    return_dict[key] = key_subtree
+
+    return return_dict
 
 # Adds information to the knowledge base (KB)
 # Args - 
@@ -1073,6 +1094,9 @@ addToKB(["tools", "twine"])
 addToKB(["tools", "whisk"])
 addToKB(["tools", "wooden spoon"])
 addToKB(["tools", "zester"])
+addToKB(["tools", "skillet"])
+addToKB(["tools", "microwave"])
+addToKB(["wok", "microwave"])
 
 ####################################################################
 ### List of cooking methods
@@ -1387,10 +1411,12 @@ addToKB(["cooking-actions", "rinse"])
 
 ####################################################################
 ### List of substitutes
-## *NOTE* Try to put the most general cases last, example: put "beef stock" before "beef".
 
+####################################################################
+### To Vegan
 
-### Vegan substitutes - Should not be changed (could be confused with an igredient that must be changed)
+### Vegan substitutes that should not be changed (could be confused with an igredient that must be changed)
+
 addToKB(["substitutes", "vegan", "peanut butter", "peanut butter"])
 addToKB(["substitutes", "vegan", "eggplant", "eggplant"])
 
@@ -1407,7 +1433,7 @@ addToKB(["substitutes", "vegan", "ground beef", "textured soy protein"])
 addToKB(["substitutes", "vegan", "ground pork", "textured soy protein"])
 addToKB(["substitutes", "vegan", "meat", "veggie deli slice"])
 addToKB(["substitutes", "vegan", "beef", "veggie deli slice"])
-addToKB(["substitutes", "vegan", "steak", "portobello mushrooms"])
+addToKB(["substitutes", "vegan", "steak", "portobello mushroom"])
 addToKB(["substitutes", "vegan", "burger", "veggie burger"])
 addToKB(["substitutes", "vegan", "meatball", "veggie meatball"])
 addToKB(["substitutes", "vegan", "bacon", "veggie bacon"])
@@ -1456,14 +1482,6 @@ addToKB(["substitutes", "vegan", "egg", "tofu", "preparation_change", ""])
 addToKB(["substitutes", "vegan", "egg", "tofu", "if-main-cooking-method", "bake", "applesauce"])
 addToKB(["substitutes", "vegan", "egg", "tofu", "if-preparation", "beaten", "pureed soft tofu"])
 
-# addToKB(["substitutes", "vegan", "baked egg", "pureed soft tofu"])
-# addToKB(["substitutes", "vegan", "baked egg", "flax egg"])
-# addToKB(["substitutes", "vegan", "baked egg", "mashed bananas"])
-
-# addToKB(["substitutes", "vegan", "binding egg", "soy flour"])
-# addToKB(["substitutes", "vegan", "binding egg", "bread crumbs"])
-# addToKB(["substitutes", "vegan", "binding egg", "rolled oats"])
-
 addToKB(["substitutes", "vegan", "instant puddings", "dairy free instant pudding"])
 addToKB(["substitutes", "vegan", "pudding", "dairy free pudding"])
 
@@ -1494,8 +1512,55 @@ addToKB(["substitutes", "vegan", "pancake", "vegan pancake"])
 addToKB(["substitutes", "vegan", "cracker", "whole wheat cracker"])
 
 ####################################################################
+### from Vegan
 
+# those are for the inverse tranformation.
+addToKB(["substitutes", "from_vegan", "vegetable broth", "beef broth"])
+addToKB(["substitutes", "from_vegan", "textured soy protein", "ground meat"])
+addToKB(["substitutes", "from_vegan", "portobello mushroom", "steak"])
+
+addToKB(["substitutes", "from_vegan", "vegetable oil", "butter"])
+addToKB(["substitutes", "from_vegan", "canola oil", "butter"])
+addToKB(["substitutes", "from_vegan", "olive oil", "butter"])
+addToKB(["substitutes", "from_vegan", "peanut oil", "butter"])
+addToKB(["substitutes", "from_vegan", "coconut oil", "butter"])
+addToKB(["substitutes", "from_vegan", "corn oil", "butter"])
+addToKB(["substitutes", "from_vegan", "sunflower oil", "butter"])
+addToKB(["substitutes", "from_vegan", "safflower oil", "butter"])
+addToKB(["substitutes", "from_vegan", "almond oil,", "butter"])
+
+addToKB(["substitutes", "from_vegan", "almond milk", "milk"])
+addToKB(["substitutes", "from_vegan", "coconut milk", "milk"])
+addToKB(["substitutes", "from_vegan", "soy milk", "milk"])
+addToKB(["substitutes", "from_vegan", "cashew milk", "milk"])
+addToKB(["substitutes", "from_vegan", "rice milk", "milk"])
+addToKB(["substitutes", "from_vegan", "oat milk", "milk"])
+
+addToKB(["substitutes", "from_vegan", "eggplant", "chicken"])
+addToKB(["substitutes", "from_vegan", "soy chicken patties", "chicken"])
+addToKB(["substitutes", "from_vegan", "soy chicken nuggets", "chicken nuggets"])
+addToKB(["substitutes", "from_vegan", "veggie jerky", "jerky"])
+
+addToKB(["substitutes", "from_vegan", "tempeh", "pork"])
+
+addToKB(["substitutes", "from_vegan", "soy ice cream", "ice cream"])
+addToKB(["substitutes", "from_vegan", "rice ice cream", "ice cream"])
+
+addToKB(["substitutes", "from_vegan", "crumbled tofu", "cheese"])
+addToKB(["substitutes", "from_vegan", "soaked raw nuts", "cheese"])
+
+addToKB(["substitutes", "from_vegan", "agar flakes", "gelatin"])
+addToKB(["substitutes", "from_vegan", "liquid sweetener", "honey"])
+addToKB(["substitutes", "from_vegan", "soy yogurt", "yogurt"])
+addToKB(["substitutes", "from_vegan", "coconut yogurt", "yogurt"])
+addToKB(["substitutes", "from_vegan", "almond yogurt", "yogurt"])
+
+addToKB(["substitutes", "from_vegan", "pureed soft tofu", "beaten egg"])
+addToKB(["substitutes", "from_vegan", "mashed bananas", "beaten egg"])
+
+####################################################################
 ### Chinese Style substitutes
+
 addToKB(["substitutes", "toChinese", "olive oil", "peanut oil"])
 addToKB(["substitutes", "toChinese", "spaghetti", "lo mein"])
 addToKB(["substitutes", "toChinese", "vinegar", "black vinegar"])
@@ -1506,6 +1571,7 @@ addToKB(["substitutes", "toChinese", "penne", "lo mein"])
 addToKB(["substitutes", "toChinese", "mushrooms", "shiitake mushrooms"])
 
 ####################################################################
+### Healthy
 
 # {'flour': 'gluten-free flour', 'couscous': 'quinoa', 'bread crumbs': 
 # 'ground flaxseeds', 'tortilla': 'corn tortilla', 'pita': 'large collard leaf',
@@ -1576,21 +1642,22 @@ addToKB(["substitutes", "healthy", "lettuce", "arugula"])
 ####################################################################
 
 # Testing
-
 if __name__ == "__main__":
-    print(isInKB(["ingredients", "milk"]))
-    print(isInKB(["ingredients", "xx"]))
-    print(isInKB(["cooking-methods", "baking"]))
-    print(isInKB(["cooking-methods", "baking", "dry"]))
-    print(isInKB(["cooking-methods", "baking", "wet"]))
-    print(isInKB(["cooking-methods", "baking", "wet"]))
-    print(isInKB(["cooking-methods", "baking", "wet"]))
-    print(isInKB(["cooking-methods", "bak.*", "dry"], regex=True))
-    print(isInKB(["cooking-methods", "baking", "d.*"], regex=True))
-    print(isInKB(["cooking-methods", ".*", "wet"], regex=True))
-    print(isInKB([".*"], regex=True))
+    # print(isInKB(["ingredients", "milk"]))
+    # print(isInKB(["ingredients", "xx"]))
+    # print(isInKB(["cooking-methods", "baking"]))
+    # print(isInKB(["cooking-methods", "baking", "dry"]))
+    # print(isInKB(["cooking-methods", "baking", "wet"]))
+    # print(isInKB(["cooking-methods", "baking", "wet"]))
+    # print(isInKB(["cooking-methods", "baking", "wet"]))
+    # print(isInKB(["cooking-methods", "bak.*", "dry"], regex=True))
+    # print(isInKB(["cooking-methods", "baking", "d.*"], regex=True))
+    # print(isInKB(["cooking-methods", ".*", "wet"], regex=True))
+    # print(isInKB([".*"], regex=True))
 
-    prettyPrintKBsubtree(kb_subtree = getKBSubtree(["cooking-methods"]))
+    # prettyPrintKBsubtree(kb_subtree = getKBSubtree(["cooking-methods"]))
 
-    print("list of ingredients = ")
-    print(list(getKBSubtree(["ingredients"]).keys()))
+    # print("list of ingredients = ")
+    # print(list(getKBSubtree(["ingredients"]).keys()))
+
+    print(getKBPrunedByRegex(["ingredients", ".*", "chinese"]))

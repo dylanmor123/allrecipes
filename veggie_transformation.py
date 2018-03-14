@@ -1,6 +1,7 @@
 from knowledgebase import *
 from random import *
 import re
+from collections import defaultdict
 
 from recipe_parser import parse_ingredients, quantity_str_to_float
 from allrecipes_scraper import create_recipe_data
@@ -12,7 +13,24 @@ def best_substitute_ingredient(recipe, substitute_subtree):
 		return substitute_for_cooking_method
 	return substitute_subtree
 
-def to_veggie_recipe(recipe):
+def from_veggie_to_non_veggie_recipe(recipe):
+	# TODO: remove 
+	remove_list = ["non-dairy ", "vegan ", "dairy-free ", "dairy free ", "whole wheat "]
+	for remove_word in remove_list:
+		for ingredient in recipe["ingredients"]:
+			if remove_word in ingredient["name"]:
+				print("remove ", remove_word, " from ingredient", ingredient["name"])
+			ingredient["name"] = ingredient["name"].replace(remove_word, "")
+
+		for idx, direction in enumerate(recipe["directions"]):
+			if remove_word in direction:
+				print("remove ", remove_word, " from direction ", idx)
+			recipe["directions"][idx] = recipe["directions"][idx].replace(remove_word, "")
+
+	# apply the same transformation as to veggie, but with inverse list of substitutions.
+	return to_veggie_recipe(recipe, getKBSubtree(["substitutes", "from_vegan"]))
+
+def to_veggie_recipe(recipe, vegan_subtree = getKBSubtree(["substitutes", "vegan"])):
 	#TODO: get more ingredients that are non-vegan. consider that ingredients are are complex: e.g. croissant
 	#TODO: change the quantity and measurement of the ingredient when necessary. e.g. 4 eggs -> 292g tofu
 	#TODO: sometimes remove the steps that are associated with the ingredient: 
@@ -22,16 +40,27 @@ def to_veggie_recipe(recipe):
 	#TODO: get best substitute based on the role of the ingredient. Not just the first match.
 	#TODO: sometimes the ingredient is referenced differently. e.g. in ingredients "mascarpone cheese"
 	# 	   gets replaces by "crumbled tofu", but it is not replaced in the directions because only says "mascarpone".
+	#TODO: for chicken parmesan eggplant is a better substitute than tofu according to TA.
+	#TODO: make sure we change the cooking method / verb associated with ingredients in the direction.
 
-	vegan_subtree = getKBSubtree(["substitutes", "vegan"])
+	ingredients_remove_words = defaultdict(lambda: [])
 
 	for ingredient in recipe["ingredients"]:
 		for non_veg, substitute_subtree in vegan_subtree.items():
+
 			substitute_subtree = best_substitute_ingredient(recipe, substitute_subtree)
 			substitute = list(substitute_subtree.keys())[0]
 			non_veg_re = re.compile(re.escape(non_veg), re.IGNORECASE)
 
 			if non_veg_re.search(ingredient["name"]) is not None:
+
+				# Update the list of words we might want to remove from directios.
+				for remove_word in ingredient["name"].split():
+						remove_word = remove_word.lower()
+						matched_list = [remove_word for word in non_veg.split() if word in remove_word]
+						if len(matched_list) == 0:
+							ingredients_remove_words[non_veg].append(remove_word)
+
 				# TODO: get best substitute based on the role of the ingredient. Not just the first match.			
 				print("substitutes for ", ingredient["name"], " -> ", substitute)
 				ingredient["name"] = substitute
@@ -52,28 +81,40 @@ def to_veggie_recipe(recipe):
 
 				break
 
+	print("ingredients_remove_words -> ", dict(ingredients_remove_words))
+
 	for idx, direction in enumerate(recipe["directions"]):
+		new_sentences = [] 
+		for sentence in direction.split("."):
+			substitutes = []
+			for non_veg, substitute_subtree in vegan_subtree.items():
+				substitute_subtree = best_substitute_ingredient(recipe, substitute_subtree)
+				substitute = list(substitute_subtree.keys())[0]
+				non_veg_re = re.compile(re.escape(non_veg), re.IGNORECASE)
 
-		substitutes = []
-		for non_veg, substitute_subtree in vegan_subtree.items():
-			substitute_subtree = best_substitute_ingredient(recipe, substitute_subtree)
-			substitute = list(substitute_subtree.keys())[0]
-			non_veg_re = re.compile(re.escape(non_veg), re.IGNORECASE)
+				if len(non_veg_re.findall(sentence)):
+					print("direction", idx, ": ", end="")
+					print(non_veg, " -> ", substitute)
 
-			if len(non_veg_re.findall(direction)):
-				print("direction", idx, ": ", end="")
-				print(non_veg, " -> ", substitute )
+					# remove the words found in the ingredients that are too specific.
+					# for example, if ingredient is "monterey jack cheese" and non_veg is "cheese", 
+					# will remove "monterey" and "cheese" from sentence.
+					for remove_word in ingredients_remove_words[non_veg]:
+						sentence = re.compile(re.escape(remove_word), re.IGNORECASE).sub("", sentence)	
 
-				# use temp_substitute to avoid further substitution in this word. 
-				# otherwise "vegan parmesan cheese" wouold become "vegan parmesan tofu"
-				temp_substitute = str(randint(10000000000, 90000000000))
-				substitutes.append((temp_substitute, substitute))
-				direction = non_veg_re.sub(temp_substitute, direction)
+					# use temp_substitute to avoid further substitution in this word. 
+					# otherwise the folowing tranformation could happen: 
+					# 	"parmesan cheese" -> "vegan parmesan cheese" -> "vegan parmesan tofu"
+					temp_substitute = str(randint(10000000000, 90000000000))
+					substitutes.append((temp_substitute, substitute))
+					sentence = non_veg_re.sub(temp_substitute, sentence)
 
-		for temp_substitute, substitute in substitutes:
-			direction = direction.replace(temp_substitute, substitute)
+			for temp_substitute, substitute in substitutes:
+				sentence = sentence.replace(temp_substitute, substitute)
 
-		recipe["directions"][idx] = direction
+			new_sentences.append(sentence)			
+
+		recipe["directions"][idx] = ".".join(new_sentences)
 
 	return recipe
 
@@ -110,7 +151,7 @@ def test_ingredient_substitute():
 def main():
 	# test_ingredient_substitute()
 
-	url = 'https://www.allrecipes.com/recipe/7565/too-much-chocolate-cake/?internalSource=hub%20recipe&referringContentType=search%20results&clickId=cardslot%202'
+	url = 'https://www.allrecipes.com/recipe/233146/vegan-banana-muffins/?internalSource=hub%20recipe&referringContentType=search%20results&clickId=cardslot%2020'
 	recipe = create_recipe_data(url)
 
 	subtree = getKBSubtree(['cooking-methods'])
@@ -124,7 +165,7 @@ def main():
 	print("directions = ", recipe["directions"])
 
 	print("\n=======================")
-	recipe = to_veggie_recipe(recipe)
+	recipe = from_veggie_to_non_veggie_recipe(recipe)
 	print("=======================\n")
 
 	print("ingredients = ", recipe["ingredients"])
