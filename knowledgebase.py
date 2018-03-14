@@ -1314,7 +1314,7 @@ addToKB(["substitutes", "vegan", "ground beef", "textured soy protein"])
 addToKB(["substitutes", "vegan", "ground pork", "textured soy protein"])
 addToKB(["substitutes", "vegan", "meat", "veggie deli slice"])
 addToKB(["substitutes", "vegan", "beef", "veggie deli slice"])
-addToKB(["substitutes", "vegan", "steak", "portobello mushrooms"])
+addToKB(["substitutes", "vegan", "steak", "portobello mushroom"])
 addToKB(["substitutes", "vegan", "burger", "veggie burger"])
 addToKB(["substitutes", "vegan", "meatball", "veggie meatball"])
 addToKB(["substitutes", "vegan", "bacon", "veggie bacon"])
@@ -1396,12 +1396,48 @@ addToKB(["substitutes", "vegan", "cracker", "whole wheat cracker"])
 ### from Vegan
 
 # those are for the inverse tranformation.
+addToKB(["substitutes", "from_vegan", "vegetable broth", "beef broth"])
+addToKB(["substitutes", "from_vegan", "textured soy protein", "ground meat"])
+addToKB(["substitutes", "from_vegan", "portobello mushroom", "steak"])
+
+addToKB(["substitutes", "from_vegan", "vegetable oil", "butter"])
+addToKB(["substitutes", "from_vegan", "canola oil", "butter"])
+addToKB(["substitutes", "from_vegan", "olive oil", "butter"])
+addToKB(["substitutes", "from_vegan", "peanut oil", "butter"])
+addToKB(["substitutes", "from_vegan", "coconut oil", "butter"])
+addToKB(["substitutes", "from_vegan", "corn oil", "butter"])
+addToKB(["substitutes", "from_vegan", "sunflower oil", "butter"])
+addToKB(["substitutes", "from_vegan", "safflower oil", "butter"])
+addToKB(["substitutes", "from_vegan", "almond oil,", "butter"])
+
+addToKB(["substitutes", "from_vegan", "almond milk", "milk"])
+addToKB(["substitutes", "from_vegan", "coconut milk", "milk"])
+addToKB(["substitutes", "from_vegan", "soy milk", "milk"])
+addToKB(["substitutes", "from_vegan", "cashew milk", "milk"])
+addToKB(["substitutes", "from_vegan", "rice milk", "milk"])
+addToKB(["substitutes", "from_vegan", "oat milk", "milk"])
+
+addToKB(["substitutes", "from_vegan", "eggplant", "chicken"])
+addToKB(["substitutes", "from_vegan", "soy chicken patties", "chicken"])
+addToKB(["substitutes", "from_vegan", "soy chicken nuggets", "chicken nuggets"])
+addToKB(["substitutes", "from_vegan", "veggie jerky", "jerky"])
+
+addToKB(["substitutes", "from_vegan", "tempeh", "pork"])
+
+addToKB(["substitutes", "from_vegan", "soy ice cream", "ice cream"])
+addToKB(["substitutes", "from_vegan", "rice ice cream", "ice cream"])
+
+addToKB(["substitutes", "from_vegan", "crumbled tofu", "cheese"])
+addToKB(["substitutes", "from_vegan", "soaked raw nuts", "cheese"])
+
+addToKB(["substitutes", "from_vegan", "agar flakes", "gelatin"])
+addToKB(["substitutes", "from_vegan", "liquid sweetener", "honey"])
+addToKB(["substitutes", "from_vegan", "soy yogurt", "yogurt"])
+addToKB(["substitutes", "from_vegan", "coconut yogurt", "yogurt"])
+addToKB(["substitutes", "from_vegan", "almond yogurt", "yogurt"])
+
 addToKB(["substitutes", "from_vegan", "pureed soft tofu", "beaten egg"])
-addToKB(["substitutes", "from_vegan", "flax egg", "egg"])
 addToKB(["substitutes", "from_vegan", "mashed bananas", "beaten egg"])
-addToKB(["substitutes", "from_vegan", "soy flour", "egg"])
-addToKB(["substitutes", "from_vegan", "bread crumbs", "egg"])
-addToKB(["substitutes", "from_vegan", "rolled oats", "egg"])
 
 ####################################################################
 ### Chinese Style substitutes
