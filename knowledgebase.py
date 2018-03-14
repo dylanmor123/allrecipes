@@ -1130,6 +1130,8 @@ addToKB(["cooking-methods", "stew", "wet"])
 addToKB(["cooking-methods", "temper", "wet"])
 addToKB(["cooking-methods", "thermal cook", "wet"])
 addToKB(["cooking-methods", "caramelize", "wet"])
+addToKB(["cooking-methods", "cook", "wet"])
+addToKB(["cooking-methods", "heat", "wet"])
 
 ####################################################################
 
@@ -1146,7 +1148,6 @@ addToKB(["cooking-actions", "empty"])
 addToKB(["cooking-actions", "chill"])
 addToKB(["cooking-actions", "serve"])
 addToKB(["cooking-actions", "unmold"])
-addToKB(["cooking-actions", "cook"])
 addToKB(["cooking-actions", "halve"])
 addToKB(["cooking-actions", "pound"])
 addToKB(["cooking-actions", "smash"])
