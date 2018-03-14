@@ -171,13 +171,10 @@ def get_sentences(directions):
 def parse_recipe(recipe):
 	if type(recipe) == dict:
 		recipe['sentences'] = parse_directions(recipe)
-		print(recipe['sentences'])
 		return recipe
 
-
-def main():
+if __name__ == "__main__":
 	parse_recipe(load_recipes('italian_recipes.txt')[0])
-main()
 
 
 # def parse_recipe(recipe):
