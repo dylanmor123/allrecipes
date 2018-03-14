@@ -149,11 +149,27 @@ def match_from_kb(sentence, kb_items, query):
 			matches_in_sentence.append(item_match[0][1])
 	return matches_in_sentence
 
+def get_match_maybe_plural_noun_in_sentence_regex(word):
+	if word[-3:] == "ies":
+		return "(^| |\"|')(%s.?|%s)($| |,|\.|!|\"|'|;)" % (word[:-3], word)
+	if word[-2:] == "es":
+		return "(^| |\"|')(%s.?|%s)($| |,|\.|!|\"|'|;)" % (word[:-2], word)
+	if word[-1:] == "s":
+		return "(^| |\"|')(%s.?|%s)($| |,|\.|!|\"|'|;)" % (word[:-1], word)
+	# not plural:
+	return get_match_noun_in_sentence_regex(word)
+
+def get_match_noun_in_sentence_regex(word):
+	 return "(^| |\"|')((%s.?(s|es|ies))|(%s.?(s|es|ies))|%s)($| |,|\.|!|\"|'|;)" % (word[:-1], word, word)
+
 def match_noun_in_sentence(word, sentence):
-	return re.findall("(^| |\"|')((%s.?(s|es|ies))|(%s.?(s|es|ies))|%s)($| |,|\.|!|\"|'|;)" % (word[:-1], word, word), sentence, re.IGNORECASE)
+	return re.findall(get_match_noun_in_sentence_regex(word), sentence, re.IGNORECASE)
+
+def get_match_verb_in_sentence_regex(word):
+	 return "(^| |\"|')((%s.?(s|ing|ed|ied|x|en))|(%s.?(s|ing|ed|ied|x|en))|%s)($| |,|\.|!|\"|'|;)" % (word[:-1], word, word)
 
 def match_verb_in_sentence(word, sentence):
-	return re.findall("(^| |\"|')((%s.?(s|ing|ed|ied|x|en))|(%s.?(s|ing|ed|ied|x|en))|%s)($| |,|\.|!|\"|'|;)" % (word[:-1], word, word), sentence, re.IGNORECASE)
+	return re.findall(get_match_verb_in_sentence_regex(word), sentence, re.IGNORECASE)
 
 def get_duration(sentence):
 	time_scale = ['day', 'hour', 'minute', 'second']

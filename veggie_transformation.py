@@ -2,10 +2,14 @@ from knowledgebase import *
 from random import *
 import re
 from collections import defaultdict
+import pprint
+import copy
 
-from recipe_parser import parse_ingredients, quantity_str_to_float
+from recipe_parser import parse_ingredients, quantity_str_to_float, parse_recipe, get_match_maybe_plural_noun_in_sentence_regex
 from allrecipes_scraper import create_recipe_data
 from cooking_method_parser import parse_cooking_methods, get_main_cooking_method
+from pretty_output import generate_html_page
+
 
 def best_substitute_ingredient(recipe, substitute_subtree):
 	substitute_for_cooking_method = getKBSubtree([".*", "if-main-cooking-method", recipe["cooking method"]], kb_subtree=substitute_subtree, regex=True)
@@ -100,7 +104,9 @@ def to_veggie_recipe(recipe, vegan_subtree = getKBSubtree(["substitutes", "vegan
 					# for example, if ingredient is "monterey jack cheese" and non_veg is "cheese", 
 					# will remove "monterey" and "cheese" from sentence.
 					for remove_word in ingredients_remove_words[non_veg]:
-						sentence = re.compile(re.escape(remove_word), re.IGNORECASE).sub("", sentence)	
+						# use regex to dial with plural.
+						sentence = re.compile(get_match_maybe_plural_noun_in_sentence_regex(
+							re.escape(remove_word)), re.IGNORECASE).sub(" ", sentence)
 
 					# use temp_substitute to avoid further substitution in this word. 
 					# otherwise the folowing tranformation could happen: 
@@ -151,8 +157,8 @@ def test_ingredient_substitute():
 def main():
 	# test_ingredient_substitute()
 
-	url = 'https://www.allrecipes.com/recipe/233146/vegan-banana-muffins/?internalSource=hub%20recipe&referringContentType=search%20results&clickId=cardslot%2020'
-	recipe = create_recipe_data(url)
+	url = 'https://www.allrecipes.com/recipe/17205/eggs-benedict/?internalSource=hub%20recipe&referringContentType=search%20results&clickId=cardslot%201'
+	recipe = parse_recipe(create_recipe_data(url))
 
 	subtree = getKBSubtree(['cooking-methods'])
 	cooking_methods = ' '.join(list(subtree.keys()))
@@ -160,16 +166,19 @@ def main():
 	recipe["cooking method"] = get_main_cooking_method(parsed_methods, recipe) 
 	print("cooking method = ", recipe["cooking method"])
 
-
 	print("ingredients = ", recipe["ingredients"])
 	print("directions = ", recipe["directions"])
+	pprint.pprint(recipe["sentences"])
 
 	print("\n=======================")
-	recipe = from_veggie_to_non_veggie_recipe(recipe)
+	old_recipe = copy.deepcopy(recipe)
+	recipe = to_veggie_recipe(recipe)
 	print("=======================\n")
 
 	print("ingredients = ", recipe["ingredients"])
 	print("directions = ", recipe["directions"])
+
+	generate_html_page(recipe, old_recipe)
 
 if __name__ == "__main__":
 	main()
