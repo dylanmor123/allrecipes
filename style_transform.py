@@ -72,10 +72,10 @@ def transform(recipe, style="chinese"):
 		if ingredient["name"].lower() in list(subtree.keys()):
 			print("found", ingredient["name"].lower())
 			ingr_tags = list(getKBSubtree(["ingredients", ingredient["name"].lower()]))
-			if "chinese" in ingr_tags: ingr_tags.remove("chinese")
-			if "italian" in ingr_tags: ingr_tags.remove("italian")
 
 			if style not in ingr_tags:
+				if "chinese" in ingr_tags: ingr_tag = ingr_tags.remove("chinese")
+				if "italian" in ingr_tags: ingr_tag = ingr_tags.remove("italian")
 				intersect_ingr = {k: len(set(ingr_tags) & set(v)) for k, v in transform_ingr.items()}
 				max_value = max(intersect_ingr.values())
 				max_keys = [k for k, v in intersect_ingr.items() if v == max_value]
@@ -93,7 +93,10 @@ def transform(recipe, style="chinese"):
 			print("found", match)
 
 			ingr_tags = list(getKBSubtree(["ingredients", match]))
+
 			if style not in ingr_tags:
+				if "chinese" in ingr_tags: ingr_tag = ingr_tags.remove("chinese")
+				if "italian" in ingr_tags: ingr_tag = ingr_tags.remove("italian")				
 				intersect_ingr = {k: len(set(ingr_tags) & set(v)) for k, v in transform_ingr.items()}
 				max_value = max(intersect_ingr.values())
 				max_keys = [k for k, v in intersect_ingr.items() if v == max_value]

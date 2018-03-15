@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import optparse
 import webbrowser, os
+import copy
 from allrecipes_scraper import create_recipe_data
 from recipe_parser import parse_directions, fully_parse_recipe
 from style_transform import transform
@@ -34,6 +35,7 @@ def main():
 		return
 
 	# Parse directions
+	old_recipe = copy.deepcopy(recipe)
 	recipe = fully_parse_recipe(recipe)
 
 	# Make transformation
@@ -67,7 +69,8 @@ def main():
 	print('\n')
 
 	# Generate HTML page
-	generate_html_page(new_recipe, recipe)
+
+	generate_html_page(new_recipe, old_recipe)
 	webbrowser.open('pretty_output.html')
 
 
