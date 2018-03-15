@@ -85,6 +85,20 @@ def to_veggie_recipe(recipe, vegan_subtree = getKBSubtree(["substitutes", "vegan
 
 				break
 
+	# remove duplucates:
+	new_ingredients = []
+	for old_ingredient in recipe["ingredients"]:
+		repeated = False
+		for new_ingredient in new_ingredients:
+			if old_ingredient["name"] == new_ingredient["name"] and old_ingredient["measurement"] == new_ingredient["measurement"] and old_ingredient["preparation"] == new_ingredient["preparation"]:
+				new_ingredient["quantity"] = str(quantity_str_to_float(old_ingredient["quantity"]) + quantity_str_to_float(new_ingredient["quantity"]))
+				repeated = True
+				break
+		if not repeated:
+			new_ingredients.append(old_ingredient)
+
+	recipe["ingredients"] = new_ingredients
+
 	print("ingredients_remove_words -> ", dict(ingredients_remove_words))
 
 	for idx, direction in enumerate(recipe["directions"]):
@@ -157,7 +171,7 @@ def test_ingredient_substitute():
 def main():
 	# test_ingredient_substitute()
 
-	url = 'https://www.allrecipes.com/recipe/17205/eggs-benedict/?internalSource=hub%20recipe&referringContentType=search%20results&clickId=cardslot%201'
+	url = 'https://www.allrecipes.com/recipe/222399/smoked-salmon-dill-eggs-benedict/?internalSource=hub%20recipe&referringContentType=search%20results&clickId=cardslot%2014'
 	recipe = parse_recipe(create_recipe_data(url))
 
 	subtree = getKBSubtree(['cooking-methods'])
