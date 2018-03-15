@@ -2,7 +2,7 @@ from __future__ import absolute_import
 
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
-from recipe_parser import parse_ingredients
+from recipe_parser import parse_ingredients, parse_recipe
 
 def get_recipe(url):
 	hdr = {'User-Agent': 'Mozilla/5.0'}
@@ -114,10 +114,11 @@ def create_recipe_data(url):
 	
 	return(recipe)
 
-url = 'https://www.allrecipes.com/recipe/50054/portuguese-pork-with-red-peppers/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%208'
-#url = 'https://www.allrecipes.com/recipe/236776/slow-cooker-sweet-and-sour-pot-roast/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2011'
-#url = 'https://www.allrecipes.com/recipe/221987/honeymoon-eggs-benedict/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2014'
+if __name__ == "__main__":
+	url = 'https://www.allrecipes.com/recipe/17205/eggs-benedict/'
+	#url = 'https://www.allrecipes.com/recipe/236776/slow-cooker-sweet-and-sour-pot-roast/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2011'
+	#url = 'https://www.allrecipes.com/recipe/221987/honeymoon-eggs-benedict/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2014'
 
-# recipe = create_recipe_data(url)
-# print(recipe)
+	recipe = parse_recipe(create_recipe_data(url))
+	print(recipe["sentences"])
 

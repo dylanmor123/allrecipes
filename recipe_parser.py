@@ -1,4 +1,8 @@
 import re 
+from knowledgebase import getKBSubtree
+from collections import Counter
+from nltk import word_tokenize, pos_tag
+import nltk
 
 
 def quantity_str_to_float(quantity_str):
@@ -16,11 +20,10 @@ def quantity_str_to_float(quantity_str):
 
 def load_recipes(file):
 	dicts_from_file = []
-	with open(file, encoding="utf8") as inf:
+	with open(file) as inf:
 	    for line in inf:
 	        dicts_from_file.append(eval(line))   
 	return dicts_from_file 
-
 
 
 units = ('cups cans teaspoons tablespoons pinches ounces '
@@ -93,11 +96,122 @@ def parse_ingredients(list_of_ingredients):
 
 	return parsed_ingredients
 
+def parse_directions(recipe):
+	# Get ingredient names from recipe
+	list_of_ingredients = []
+	all_sentences = []
+	for ingredient in recipe['ingredients']:
+		list_of_ingredients.append(ingredient['name'])
+
+	sentences = get_sentences(' '.join(recipe['directions']))
+
+	for sentence in sentences:
+		raw_text = sentence
+		sentence = sentence.replace("-", ".").lower()
+
+		duration = get_duration(sentence)
+
+		action_verbs = match_from_kb(sentence, list(getKBSubtree(["cooking-actions"]).keys()), 'verb')
+
+		cooking_methods = match_from_kb(sentence, list(getKBSubtree(["cooking-methods"]).keys()), 'verb')
+		tools = match_from_kb(sentence, list(getKBSubtree(["tools"]).keys()), 'noun')
+
+		ingredients = []
+		kb_ingredients = match_from_kb(sentence, list(getKBSubtree(["ingredients"]).keys()), 'noun')
+
+		for ingredient in kb_ingredients:
+			match_ingredient_list_indices = []
+			for i in range(0, len(list_of_ingredients)):
+				curr_ingredient = list_of_ingredients[i].replace('(', '').replace(')', '')
+				if match_noun_in_sentence(curr_ingredient, ingredient) or match_noun_in_sentence(ingredient, curr_ingredient):
+					match_ingredient_list_indices.append(i)
+			ingredients.append({'name': ingredient, 'match_ingredient_list_indices': match_ingredient_list_indices})
+		all_sentences.append(
+							{'raw_text': raw_text,
+							'ingredients': ingredients,
+							'cooking_methods': cooking_methods,
+							'tools': tools,
+							'action_verbs': list(set(action_verbs)),
+							'duration': duration
+			})
+	return all_sentences
 
 
-# recipes = load_recipes('chinese_recipes.txt')
-# for recipe in recipes:
-# 	ingredients = parse_ingredients(recipe['ingredients'])
-# 	for ingredient in ingredients:
-# 		print(ingredient)
-# 	print()
+def match_from_kb(sentence, kb_items, query):
+	matches_in_sentence = []
+	for item in kb_items:
+		item_match = []
+		if query == 'noun':
+			item_match = match_noun_in_sentence(item, sentence)
+		if query == 'verb':
+			item_match = match_verb_in_sentence(item, sentence)
+		if item_match:
+			matches_in_sentence.append(item_match[0][1])
+	return matches_in_sentence
+
+def get_match_maybe_plural_noun_in_sentence_regex(word):
+	if word[-3:] == "ies":
+		return "(^| |\"|')(%s.?|%s)($| |,|\.|!|\"|'|;)" % (word[:-3], word)
+	if word[-2:] == "es":
+		return "(^| |\"|')(%s.?|%s)($| |,|\.|!|\"|'|;)" % (word[:-2], word)
+	if word[-1:] == "s":
+		return "(^| |\"|')(%s.?|%s)($| |,|\.|!|\"|'|;)" % (word[:-1], word)
+	# not plural:
+	return get_match_noun_in_sentence_regex(word)
+
+def get_match_noun_in_sentence_regex(word):
+	 return "(^| |\"|')((%s.?(s|es|ies))|(%s.?(s|es|ies))|%s)($| |,|\.|!|\"|'|;)" % (word[:-1], word, word)
+
+def match_noun_in_sentence(word, sentence):
+	return re.findall(get_match_noun_in_sentence_regex(word), sentence, re.IGNORECASE)
+
+def get_match_verb_in_sentence_regex(word):
+	 return "(^| |\"|')((%s.?(s|ing|ed|ied|x|en))|(%s.?(s|ing|ed|ied|x|en))|%s)($| |,|\.|!|\"|'|;)" % (word[:-1], word, word)
+
+def match_verb_in_sentence(word, sentence):
+	return re.findall(get_match_verb_in_sentence_regex(word), sentence, re.IGNORECASE)
+
+def get_duration(sentence):
+	time_scale = ['day', 'hour', 'minute', 'second']
+	duration = ''
+	for unit in time_scale:
+		if unit in sentence:
+			duration += sentence.split(unit)[0].split()[-1] + ' ' + unit + 's '
+	return duration.strip()
+
+def get_sentences(directions):
+	tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
+	return tokenizer.tokenize(directions)
+
+
+def parse_recipe(recipe):
+	if type(recipe) == dict:
+		recipe['sentences'] = parse_directions(recipe)
+		return recipe
+
+if __name__ == "__main__":
+	parse_recipe(load_recipes('italian_recipes.txt')[0])
+
+
+# def parse_recipe(recipe):
+# 	if type(recipe) == str:
+# 		try:
+# 			recipe = create_recipe(recipe)
+# 		except:
+# 			try:
+# 				recipe = load_recipes(recipe)
+# 			except:
+# 				print("There was a problem")
+# 				return "There was a problem"
+
+# 	elif type(recipe) == dict:
+# 		recipe['sentences'] = parse_directions(recipe)
+# 		print(recipe)
+# 		return recipe
+
+
+# def main():
+# 	parse_recipe(load_recipes('italian_recipes.txt')[0])
+# main()
+
+
