@@ -18,7 +18,7 @@ from pretty_output import generate_html_page
 
 def main():
 	parser = optparse.OptionParser()
-	parser.add_option('-u', '--url', action="store", dest="url", help="query string", default="https://www.allrecipes.com/recipe/17205/eggs-benedict/")
+	parser.add_option('-u', '--url', action="store", dest="url", help="query string", default="")
 	parser.add_option('-t', '--transformation', action="store", dest="transformation", help="transformation string", default="")
 
 	options, args = parser.parse_args()
@@ -35,7 +35,7 @@ def main():
 	if recipe == None:
 		print("Sorry, URL invalid")
 		return
-		
+
 	# Parse directions
 	recipe = fully_parse_recipe(recipe)
 
