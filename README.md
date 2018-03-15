@@ -2,7 +2,7 @@
 
 How to run the CLI
 
-Example: python main.py -u 'https://www.allrecipes.com/recipe/85185/authentic-mexican-breakfast-tacos' -t 'chinese'
+python main.py -u 'https://www.allrecipes.com/recipe/85185/authentic-mexican-breakfast-tacos' -t 'chinese'
 
 -u or --url is the URL
 
