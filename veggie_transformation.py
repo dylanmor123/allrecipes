@@ -53,6 +53,8 @@ def to_veggie_recipe(recipe, vegan_subtree = getKBSubtree(["substitutes", "vegan
 		for non_veg, substitute_subtree in vegan_subtree.items():
 
 			substitute_subtree = best_substitute_ingredient(recipe, substitute_subtree)
+			print("substitute_subtree = ", substitute_subtree)
+
 			substitute = list(substitute_subtree.keys())[0]
 			non_veg_re = re.compile(re.escape(non_veg), re.IGNORECASE)
 
@@ -81,7 +83,7 @@ def to_veggie_recipe(recipe, vegan_subtree = getKBSubtree(["substitutes", "vegan
 
 				if "quantity_change" in substitute_subtree[substitute].keys():
 					# has to multiply by the old quantity (e.g. 3 eggs to 3 * 1.4 oz tofu)
-					ingredient["quantity"] = str(quantity_str_to_float(ingredient["quantity"]) * float(list(substitute_subtree[substitute]["quantity_change"].keys())[0]))
+					ingredient["quantity"] = str(int(10 * quantity_str_to_float(ingredient["quantity"]) * float(list(substitute_subtree[substitute]["quantity_change"].keys())[0])) / 10)
 
 				break
 
@@ -171,7 +173,7 @@ def test_ingredient_substitute():
 def main():
 	# test_ingredient_substitute()
 
-	url = 'https://www.allrecipes.com/recipe/222399/smoked-salmon-dill-eggs-benedict/?internalSource=hub%20recipe&referringContentType=search%20results&clickId=cardslot%2014'
+	url = 'https://www.allrecipes.com/recipe/60779/butterhorns/?internalSource=staff%20pick&referringId=156&referringContentType=recipe%20hub'
 	recipe = parse_recipe(create_recipe_data(url))
 
 	subtree = getKBSubtree(['cooking-methods'])
