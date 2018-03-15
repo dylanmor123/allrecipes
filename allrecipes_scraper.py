@@ -117,20 +117,13 @@ def create_recipe_data(url):
 	return(recipe)
 
 
-url = 'https://www.allrecipes.com/recipe/85185/authentic-mexican-breakfast-tacos/?internalSource=hub%20recipe&referringContentType=search%20results&clickId=cardslot%2015'
-test = get_recipe(url)
+if __name__ == "__main__":
+	url = 'https://www.allrecipes.com/recipe/17205/eggs-benedict/'
+	#url = 'https://www.allrecipes.com/recipe/236776/slow-cooker-sweet-and-sour-pot-roast/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2011'
+	#url = 'https://www.allrecipes.com/recipe/221987/honeymoon-eggs-benedict/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2014'
 
-print(get_ingredients(test))
-print(create_recipe_data(url))
-
-
-# if __name__ == "__main__":
-# 	url = 'https://www.allrecipes.com/recipe/17205/eggs-benedict/'
-# 	#url = 'https://www.allrecipes.com/recipe/236776/slow-cooker-sweet-and-sour-pot-roast/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2011'
-# 	#url = 'https://www.allrecipes.com/recipe/221987/honeymoon-eggs-benedict/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2014'
-
-# 	recipe = parse_recipe(create_recipe_data(url))
-# 	print(recipe["sentences"])
+	recipe = parse_recipe(create_recipe_data(url))
+	print(recipe["sentences"])
 
 
 
