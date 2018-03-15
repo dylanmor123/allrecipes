@@ -2,9 +2,6 @@ from __future__ import absolute_import
 from bs4 import BeautifulSoup
 from requests import get
 from recipe_parser import parse_ingredients, parse_recipe
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
 def get_recipe(url):
 	hdr = {'User-Agent': 'Mozilla/5.0'}
@@ -31,7 +28,7 @@ def get_ingredients(html):
 	ingredients_list_2 = ingredients_list_2.findAll('li', {'class': 'checkList__line'})
 	list_of_ingredients = ingredients_list_1 + ingredients_list_2
 	for item in list_of_ingredients:
-		ingredients.append(str(item.contents[1].text).strip())
+		ingredients.append(str(item.contents[1].text.encode('ascii', 'ignore')).strip())
 	return parse_ingredients(ingredients[0:len(ingredients)-1])
 
 def get_directions(html):

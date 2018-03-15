@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
-import json
-import re
-import collections
-import sys
 import optparse
 from allrecipes_scraper import create_recipe_data
 from recipe_parser import parse_directions, fully_parse_recipe
-from chinese_transformation import transform as transform_chinese
+from style_transform import transform
 from veggie_transformation import from_veggie_to_non_veggie_recipe as from_vegan
 from veggie_transformation import from_veggie_to_non_veggie_recipe as from_vegetarian
 from veggie_transformation import to_vegan_recipe as to_vegan
@@ -41,9 +37,9 @@ def main():
 
 	# Make transformation
 	if transformation == 'chinese':
-		new_recipe = transform_chinese(recipe, style='chinese')
-	# elif transformation == 'italian':
-	# 	new_recipe = transform_italian(recipe, style='italian')
+		new_recipe = transform(recipe, style='chinese')
+	elif transformation == 'italian':
+		new_recipe = transform(recipe, style='italian')
 	elif transformation == 'to_vegan':
 		new_recipe = to_vegan(recipe)
 	elif transformation == 'from_vegan':
