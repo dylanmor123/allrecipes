@@ -34,8 +34,13 @@ def from_veggie_to_non_veggie_recipe(recipe):
 	# apply the same transformation as to veggie, but with inverse list of substitutions.
 	return to_veggie_recipe(recipe, getKBSubtree(["substitutes", "from_vegan"]))
 
+def to_vegan_recipe(recipe):
+	return to_veggie_recipe(recipe)
+
+def to_vegeterian_recipe(recipe):
+	return to_veggie_recipe(recipe, vegan_subtree = getKBSubtree(["substitutes", "vegetarian"]))
+
 def to_veggie_recipe(recipe, vegan_subtree = getKBSubtree(["substitutes", "vegan"])):
-	#TODO: get more ingredients that are non-vegan. consider that ingredients are are complex: e.g. croissant
 	#TODO: change the quantity and measurement of the ingredient when necessary. e.g. 4 eggs -> 292g tofu
 	#TODO: sometimes remove the steps that are associated with the ingredient: 
 	# 	   e.g. " Crack an egg into a small bowl and gently slip the egg into the simmering [...] Poach the
@@ -53,6 +58,8 @@ def to_veggie_recipe(recipe, vegan_subtree = getKBSubtree(["substitutes", "vegan
 		for non_veg, substitute_subtree in vegan_subtree.items():
 
 			substitute_subtree = best_substitute_ingredient(recipe, substitute_subtree)
+			print("substitute_subtree = ", substitute_subtree)
+
 			substitute = list(substitute_subtree.keys())[0]
 			non_veg_re = re.compile(re.escape(non_veg), re.IGNORECASE)
 
@@ -81,7 +88,7 @@ def to_veggie_recipe(recipe, vegan_subtree = getKBSubtree(["substitutes", "vegan
 
 				if "quantity_change" in substitute_subtree[substitute].keys():
 					# has to multiply by the old quantity (e.g. 3 eggs to 3 * 1.4 oz tofu)
-					ingredient["quantity"] = str(quantity_str_to_float(ingredient["quantity"]) * float(list(substitute_subtree[substitute]["quantity_change"].keys())[0]))
+					ingredient["quantity"] = str(int(10 * quantity_str_to_float(ingredient["quantity"]) * float(list(substitute_subtree[substitute]["quantity_change"].keys())[0])) / 10)
 
 				break
 
@@ -171,7 +178,7 @@ def test_ingredient_substitute():
 def main():
 	# test_ingredient_substitute()
 
-	url = 'https://www.allrecipes.com/recipe/222399/smoked-salmon-dill-eggs-benedict/?internalSource=hub%20recipe&referringContentType=search%20results&clickId=cardslot%2014'
+	url = 'https://www.allrecipes.com/recipe/60779/butterhorns/?internalSource=staff%20pick&referringId=156&referringContentType=recipe%20hub'
 	recipe = parse_recipe(create_recipe_data(url))
 
 	subtree = getKBSubtree(['cooking-methods'])
@@ -186,7 +193,7 @@ def main():
 
 	print("\n=======================")
 	old_recipe = copy.deepcopy(recipe)
-	recipe = to_veggie_recipe(recipe)
+	recipe = to_vegeterian_recipe(recipe)
 	print("=======================\n")
 
 	print("ingredients = ", recipe["ingredients"])
