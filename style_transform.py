@@ -106,10 +106,7 @@ def transform(recipe, style="chinese"):
 					print("substitutes for", match, " -> ", sub)
 					subs[ingredient["name"].lower()] = sub
 					ingredient["name"] = sub
-				else:
-					print("swapped", ingredient["name"].lower(), " -> ", match)
-					subs[ingredient["name"].lower()] = match
-					ingredient["name"] = match
+
 			else:
 				print("swapped", ingredient["name"].lower(), " -> ", match)
 				subs[ingredient["name"].lower()] = match
