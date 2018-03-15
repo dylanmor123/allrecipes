@@ -72,6 +72,8 @@ def transform(recipe, style="chinese"):
 		if ingredient["name"].lower() in list(subtree.keys()):
 			print("found", ingredient["name"].lower())
 			ingr_tags = list(getKBSubtree(["ingredients", ingredient["name"].lower()]))
+			if "chinese" in ingr_tags: ingr_tags.remove("chinese")
+			if "italian" in ingr_tags: ingr_tags.remove("italian")
 
 			if style not in ingr_tags:
 				intersect_ingr = {k: len(set(ingr_tags) & set(v)) for k, v in transform_ingr.items()}
@@ -87,7 +89,6 @@ def transform(recipe, style="chinese"):
 					print("no substitutes for", ingredient["name"].lower())
 		elif any(filter(lambda x: x in ingredient["name"].lower(), list(subtree.keys()))):
 			substring_keys = [name for name in list(subtree.keys()) if name in ingredient["name"].lower()]
-			#print("subset names", substring_keys)
 			match = max(substring_keys, key=len)
 			print("found", match)
 
@@ -134,7 +135,7 @@ def list_ingredients():
 	CH_subtree = getKBSubtree(["ingredients"])
 	print("# on ingredients:", len(list(CH_subtree.keys())))
 	# pp.pprint(CH_subtree)
-	for key in list(CH_subtree.keys())[:]:
+	for key in list(CH_subtree.keys())[131:]:
 		print(key)
 
 		url = "https://www.google.com.tr/search?q={}".format(key)
@@ -165,10 +166,10 @@ def add_new_ingredients():
 	print(acc)
 
 
-def actions_from_list(actions):
+def things_from_list(things, category):
 	acc = ""
-	for action in actions:
-		acc += "addToKB([\"cooking-actions\", \"{}\"])\n".format(action)
+	for thing in things:
+		acc += "addToKB([\"\", \"{}\"])\n".format(category, thing)
 	print(acc)
 
 
@@ -181,6 +182,7 @@ if __name__ == '__main__':
 	print('###################################################################')
 	# print(test_recipe)
 
+	#pp.pprint(toChinese(test_recipe, "italian"))
 	#pp.pprint(transform(test_recipe, "italian"))
 	list_ingredients()
 	#add_new_ingredients()
