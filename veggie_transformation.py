@@ -58,7 +58,7 @@ def to_veggie_recipe(recipe, vegan_subtree = getKBSubtree(["substitutes", "vegan
 		for non_veg, substitute_subtree in vegan_subtree.items():
 
 			substitute_subtree = best_substitute_ingredient(recipe, substitute_subtree)
-			print("substitute_subtree = ", substitute_subtree)
+			##print("substitute_subtree = ", substitute_subtree)
 
 			substitute = list(substitute_subtree.keys())[0]
 			non_veg_re = re.compile(re.escape(non_veg), re.IGNORECASE)
@@ -73,7 +73,7 @@ def to_veggie_recipe(recipe, vegan_subtree = getKBSubtree(["substitutes", "vegan
 							ingredients_remove_words[non_veg].append(remove_word)
 
 				# TODO: get best substitute based on the role of the ingredient. Not just the first match.			
-				print("substitutes for ", ingredient["name"], " -> ", substitute)
+				##print("substitutes for ", ingredient["name"], " -> ", substitute)
 				ingredient["name"] = substitute
 
 				for field in ["quantity", "measurement", "preparation"]:
@@ -106,7 +106,7 @@ def to_veggie_recipe(recipe, vegan_subtree = getKBSubtree(["substitutes", "vegan
 
 	recipe["ingredients"] = new_ingredients
 
-	print("ingredients_remove_words -> ", dict(ingredients_remove_words))
+#	print("ingredients_remove_words -> ", dict(ingredients_remove_words))
 
 	for idx, direction in enumerate(recipe["directions"]):
 		new_sentences = [] 
@@ -118,8 +118,8 @@ def to_veggie_recipe(recipe, vegan_subtree = getKBSubtree(["substitutes", "vegan
 				non_veg_re = re.compile(re.escape(non_veg), re.IGNORECASE)
 
 				if len(non_veg_re.findall(sentence)):
-					print("direction", idx, ": ", end="")
-					print(non_veg, " -> ", substitute)
+					##print("direction", idx, ": ", end="")
+					##print(non_veg, " -> ", substitute)
 
 					# remove the words found in the ingredients that are too specific.
 					# for example, if ingredient is "monterey jack cheese" and non_veg is "cheese", 
@@ -162,12 +162,11 @@ def test_ingredient_substitute():
 			ingredients.add(x["name"])
 
 	for x in ingredients:
-		print(x, end='')
+		##print(x, end='')
 		for kb_igredient in ingredients_subtree.keys():
 			kb_igredient_re = re.compile(re.escape(kb_igredient), re.IGNORECASE)
 			if kb_igredient_re.search(x) is not None:
-				print(" -> ", kb_igredient, end='')
-		print()
+				print(" -> ", kb_igredient)
 		for non_veg, substitute in vegan_subtree.items():
 			substitute = list(substitute.keys())[0]
 			if non_veg in x:
@@ -185,19 +184,19 @@ def main():
 	cooking_methods = ' '.join(list(subtree.keys()))
 	parsed_methods = parse_cooking_methods(recipe['directions'], recipe['cooktimes'], cooking_methods)
 	recipe["cooking method"] = get_main_cooking_method(parsed_methods, recipe) 
-	print("cooking method = ", recipe["cooking method"])
+#	print("cooking method = ", recipe["cooking method"])
 
-	print("ingredients = ", recipe["ingredients"])
-	print("directions = ", recipe["directions"])
-	pprint.pprint(recipe["sentences"])
+#	print("ingredients = ", recipe["ingredients"])
+#	print("directions = ", recipe["directions"])
+	#pprint.#pprint(recipe["sentences"])
 
-	print("\n=======================")
+#	print("\n=======================")
 	old_recipe = copy.deepcopy(recipe)
 	recipe = to_vegeterian_recipe(recipe)
-	print("=======================\n")
+#	print("=======================\n")
 
-	print("ingredients = ", recipe["ingredients"])
-	print("directions = ", recipe["directions"])
+#	print("ingredients = ", recipe["ingredients"])
+#	print("directions = ", recipe["directions"])
 
 	generate_html_page(recipe, old_recipe)
 

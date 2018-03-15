@@ -41,7 +41,10 @@ def get_main_cooking_method(parsed_recipe):
 	for sentence in parsed_recipe['sentences']:
 		cooking_methods.append(sentence['cooking_methods'])
 	cooking_methods = [item for sublist in cooking_methods for item in sublist]
-	return max(set(cooking_methods), key=cooking_methods.count)
+	try:
+		return max(set(cooking_methods), key=cooking_methods.count)
+	except:
+		return "Unspecified"
 
 	
 if __name__ == "__main__":

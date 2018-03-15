@@ -190,7 +190,7 @@ def parse_recipe(recipe):
 
 def fully_parse_recipe(recipe):
 	recipe['sentences'] = parse_directions(recipe)
-	recipe['cooking_method'] = get_main_cooking_method(recipe)
+	recipe['cooking method'] = get_main_cooking_method(recipe)
 	return recipe
 
 

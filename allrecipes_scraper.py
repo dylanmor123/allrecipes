@@ -1,8 +1,10 @@
 from __future__ import absolute_import	
-
 from bs4 import BeautifulSoup
 from requests import get
 from recipe_parser import parse_ingredients, parse_recipe
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 def get_recipe(url):
 	hdr = {'User-Agent': 'Mozilla/5.0'}
@@ -114,6 +116,7 @@ def create_recipe_data(url):
 	
 	return(recipe)
 
+
 if __name__ == "__main__":
 	url = 'https://www.allrecipes.com/recipe/17205/eggs-benedict/'
 	#url = 'https://www.allrecipes.com/recipe/236776/slow-cooker-sweet-and-sour-pot-roast/?internalSource=previously%20viewed&referringContentType=home%20page&clickId=cardslot%2011'
@@ -121,4 +124,6 @@ if __name__ == "__main__":
 
 	recipe = parse_recipe(create_recipe_data(url))
 	print(recipe["sentences"])
+
+
 
