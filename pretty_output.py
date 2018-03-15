@@ -35,7 +35,6 @@ def get_ingredients_html(ingredients, old_ingredients):
 	ingredients_html = ""
 	for idx, ingredient in enumerate(ingredients):
 		bold = not ingredient["name"] == old_ingredients[idx]["name"]
-		print("bold? ", bold, " new = ",  ingredient["name"] , " old = ", old_ingredients[idx]["name"])
 		ingredients_html += get_ingredient_ul_tag(ingredient, bold = bold)
 	return ingredients_html
 
