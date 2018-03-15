@@ -34,8 +34,13 @@ def from_veggie_to_non_veggie_recipe(recipe):
 	# apply the same transformation as to veggie, but with inverse list of substitutions.
 	return to_veggie_recipe(recipe, getKBSubtree(["substitutes", "from_vegan"]))
 
+def to_vegan_recipe(recipe):
+	return to_veggie_recipe(recipe)
+
+def to_vegeterian_recipe(recipe):
+	return to_veggie_recipe(recipe, vegan_subtree = getKBSubtree(["substitutes", "vegetarian"]))
+
 def to_veggie_recipe(recipe, vegan_subtree = getKBSubtree(["substitutes", "vegan"])):
-	#TODO: get more ingredients that are non-vegan. consider that ingredients are are complex: e.g. croissant
 	#TODO: change the quantity and measurement of the ingredient when necessary. e.g. 4 eggs -> 292g tofu
 	#TODO: sometimes remove the steps that are associated with the ingredient: 
 	# 	   e.g. " Crack an egg into a small bowl and gently slip the egg into the simmering [...] Poach the
@@ -188,7 +193,7 @@ def main():
 
 	print("\n=======================")
 	old_recipe = copy.deepcopy(recipe)
-	recipe = to_veggie_recipe(recipe)
+	recipe = to_vegeterian_recipe(recipe)
 	print("=======================\n")
 
 	print("ingredients = ", recipe["ingredients"])
