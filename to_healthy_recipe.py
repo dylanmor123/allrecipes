@@ -17,9 +17,7 @@ def checkSodiumLevel(amount):
 	else:
 		return False	
 
-def to_healthy_recipe(recipe):
-	print(recipe)
-	
+def to_healthy_recipe(recipe):	
 	healthy_subtree = getKBSubtree(["substitutes", "healthy"])
 	Sodium_nutri = getSodiumfromNutritions(recipe)
 	servings = int(recipe['num_servings'])
@@ -53,7 +51,6 @@ def to_healthy_recipe(recipe):
 				print()
 
 		recipe["directions"][idx] = direction
-	print(recipe)
 	return recipe
 
 # ===================================================================
@@ -70,17 +67,17 @@ def to_unhealthy_recipe(recipe):
 				ingredient["quantity"] = str(amount)
 				print(ingredient['name'] + ': ' + ingredient["quantity"])
 		ingredient_lst = ingredient['name'].split()
-		print("before: ", ingredient['name'])
+		#print("before: ", ingredient['name'])
 		for label in term:
 			if label in ingredient_lst:
 				ingredient_lst.remove(label)
 		ingredient['name'] = ' '.join(ingredient_lst)
-		print("after: ", ingredient['name'])
+		#print("after: ", ingredient['name'])
 		for substitute, healthy in healthy_subtree.items():
 			healthy = list(healthy.keys())[0]
 			#print(healthy)
 			if healthy in ingredient['name']:
-				print("substitutes for ", ingredient["name"], " -> ", substitute)
+				#print("substitutes for ", ingredient["name"], " -> ", substitute)
 				ingredient["name"] = substitute
 				break
 	for idx, direction in enumerate(recipe["directions"]):
