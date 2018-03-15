@@ -1850,6 +1850,7 @@ addToKB(["substitutes", "healthy", "mayonnaise", "greek yogurt"])
 addToKB(["substitutes", "healthy", "mayonnaise", "hummus"])
 addToKB(["substitutes", "healthy", "syrup", "applesauce"])
 addToKB(["substitutes", "healthy", "ketchup", "sun-dried tomato hummus"])
+addToKB(["substitutes", "healthy", "dressing", "reduced-calorie dressing"])
 
 
 addToKB(["substitutes", "healthy", "rice", "brown rice"])
@@ -1862,7 +1863,22 @@ addToKB(["substitutes", "healthy", "bread crumb", "ground flaxseed"])
 addToKB(["substitutes", "healthy", "tortilla", "corn tortilla"])
 addToKB(["substitutes", "healthy", "flour tortilla", "corn tortilla"])
 addToKB(["substitutes", "healthy", "pita", "Boiled large collard leaf"])
-addToKB(["substitutes", "healthy", "penne pasta", "brown rice pasta"])
+
+
+addToKB(["substitutes", "healthy", "penne pasta", "brown rice penne pasta"])
+addToKB(["substitutes", "healthy", "penne", "brown rice penne"])
+addToKB(["substitutes", "healthy", "spaghetti", "whole-wheat spaghetti"])
+addToKB(["substitutes", "healthy", "elbow", "whole-wheat elbow"])
+addToKB(["substitutes", "healthy", "elbows", "whole-wheat elbows"])
+addToKB(["substitutes", "healthy", "tortellini", "whole-wheat tortellini"])
+addToKB(["substitutes", "healthy", "pasta", "brown rice pasta"])
+addToKB(["substitutes", "healthy", "orzo", "whole-wheat orzo"])
+addToKB(["substitutes", "healthy", "rigatoni", "whole-wheat rigatoni"])
+addToKB(["substitutes", "healthy", "ravioli", "whole-wheat ravioli"])
+addToKB(["substitutes", "healthy", "angel hair pasta", "whole-wheat angel hair pasta"])
+addToKB(["substitutes", "healthy", "angel hair", "whole-wheat angel hair"])
+addToKB(["substitutes", "healthy", "rotini pasta", "whole-wheat rotini pasta"])
+addToKB(["substitutes", "healthy", "rotini", "whole-wheat rotini"])
 
 
 addToKB(["substitutes", "healthy", "ground beef", "ground turkey"])
@@ -1892,9 +1908,6 @@ addToKB(["substitutes", "healthy", "granola", "nuts"])
 addToKB(["substitutes", "healthy", "creamer", "organic whole milk"])
 addToKB(["substitutes", "healthy", "bagel", "english muffin"])
 addToKB(["substitutes", "healthy", "bagels", "english muffins"])
-
-
-
 
 
 addToKB(["substitutes", "healthy", "cream cheese", "fat-free cream cheese"])
