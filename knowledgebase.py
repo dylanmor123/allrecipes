@@ -1718,19 +1718,6 @@ addToKB(["substitutes", "toChinese", "penne", "lo mein"])
 addToKB(["substitutes", "toChinese", "mushrooms", "shiitake mushrooms"])
 
 ####################################################################
-### Healthy
-
-# {'flour': 'gluten-free flour', 'couscous': 'quinoa', 'bread crumbs': 
-# 'ground flaxseeds', 'tortilla': 'corn tortilla', 'pita': 'large collard leaf',
-# 'sugar': 'unsweetened applesauce', 'white sugar': 'unsweetened applesauce', 
-# 'peanut butter': 'natural peanut butter',
-# 'butter': 'unsweetened butter', 'milk': 'almond milk', 'cream': 'coconut milk',
-# 'soy sauce': 'low-sodium soy sauce', 'rice': 'brown rice', 'white rice': 'brown rice',
-# 'bread': 'whole-wheat bread', 'white bread': 'whole-wheat bread', 'sour cream': 'greek yogurt', 
-# 'mayonnaise': 'greek yogurt with hint of herbs and lemon juice', 'ground beef': 'ground turkey',
-# 'ground pork': 'ground turkey',
-# 'bacon': 'lean prosciutto', 'cream cheese': 'fat-free cream cheese', 'lettuce': 'arugula',
-# 'penne pasta': 'brown rice pasta', 'syrup': 'applesauce', 'ketchup': 'sun-dried tomato hummus'}
 ### Healthy substitutes
 addToKB(["substitutes", "healthy", "sugar", "unsweetened applesauce"])
 addToKB(["substitutes", "healthy", "white sugar", "unsweetened applesauce"])
@@ -1740,7 +1727,7 @@ addToKB(["substitutes", "healthy", "milk", "almond milk"])
 addToKB(["substitutes", "healthy", "cream", "coconut milk"])
 addToKB(["substitutes", "healthy", "soy sauce", "low-sodium soy sauce"])
 addToKB(["substitutes", "healthy", "sour cream", "greek yogurt"])
-addToKB(["substitutes", "healthy", "mayonnaise", "greek yogurt with hint of herbs and lemon juice"])
+addToKB(["substitutes", "healthy", "mayonnaise", "greek yogurt"])
 addToKB(["substitutes", "healthy", "syrup", "applesauce"])
 addToKB(["substitutes", "healthy", "ketchup", "sun-dried tomato hummus"])
 
@@ -1765,10 +1752,22 @@ addToKB(["substitutes", "healthy", "sausage", "turkey sausage"])
 addToKB(["substitutes", "healthy", "chorizo sausage", "turkey sausage"])
 
 
-addToKB(["substitutes", "healthy", "monterey jack", "reduced-calorie cheese"])
-addToKB(["substitutes", "healthy", "monterey jack", "reduced-calorie cheese"])
-addToKB(["substitutes", "healthy", "monterey jack", "reduced-calorie cheese"])
-addToKB(["substitutes", "healthy", "monterey jack", "reduced-calorie cheese"])
+addToKB(["substitutes", "healthy", "vegetable oil", "coconut oil"])
+addToKB(["substitutes", "healthy", "olive oil", "coconut oil"])
+addToKB(["substitutes", "healthy", "canola oil", "coconut oil"])
+addToKB(["substitutes", "healthy", "croutons", "almonds"])
+addToKB(["substitutes", "healthy", "potato chips", "pop corn"])
+addToKB(["substitutes", "healthy", "flour", "coconut flour"])
+addToKB(["substitutes", "healthy", "white flour", "coconut flour"])
+addToKB(["substitutes", "healthy", "chocolate chips", "cacao nibs"])
+addToKB(["substitutes", "healthy", "lettuce", "romaine"])
+addToKB(["substitutes", "healthy", "iceberg lettuce", "romaine"])
+addToKB(["substitutes", "healthy", "tortilla wraps", "lettuce leaves"])
+addToKB(["substitutes", "healthy", "oatmeal", "quinoa"])
+addToKB(["substitutes", "healthy", "baking fat", "mashed bananas"])
+addToKB(["substitutes", "healthy", "french fries", "sweet potato fries"])
+addToKB(["substitutes", "healthy", "mashed potatoes", "cauliflower mash"])
+addToKB(["substitutes", "healthy", "canned beans", "dry beans"])
 
 
 addToKB(["substitutes", "healthy", "cream cheese", "fat-free cream cheese"])
