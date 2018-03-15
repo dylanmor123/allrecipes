@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import optparse
+import webbrowser, os
 from allrecipes_scraper import create_recipe_data
 from recipe_parser import parse_directions, fully_parse_recipe
 from style_transform import transform
@@ -65,6 +66,7 @@ def main():
 
 	# Generate HTML page
 	generate_html_page(new_recipe, recipe)
+	webbrowser.open('pretty_output.html')
 
 
 if __name__ == "__main__":
