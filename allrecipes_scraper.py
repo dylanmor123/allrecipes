@@ -1,13 +1,13 @@
 from __future__ import absolute_import	
 
 from bs4 import BeautifulSoup
-from urllib.request import Request, urlopen
+from requests import get
 from recipe_parser import parse_ingredients, parse_recipe
 
 def get_recipe(url):
 	hdr = {'User-Agent': 'Mozilla/5.0'}
-	req = Request(url, headers=hdr)
-	page = urlopen(req)
+	req = get(url, headers=hdr)
+	page = req.text
 	soup = BeautifulSoup(page, 'html.parser')
 	return soup
 

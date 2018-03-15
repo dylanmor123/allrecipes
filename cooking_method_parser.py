@@ -4,7 +4,7 @@ from collections import Counter
 
 def load_recipes(file):
 	dicts_from_file = []
-	with open(file, encoding="utf8") as inf:
+	with open(file) as inf:
 	    for line in inf:
 	        dicts_from_file.append(eval(line))   
 	return dicts_from_file 
@@ -35,21 +35,15 @@ def parse_cooking_methods(directions, cooktimes, all_cooking_methods):
 		cooking_methods[step] =  set(methods_in_step)
 	return cooking_methods
 
-def get_main_cooking_method(parsed_cooking_methods, recipe):
-	main_cooking_method = []
-	for i in range(0, len(parsed_cooking_methods)):
-		if len(parsed_cooking_methods[i]) != 0:
-			for method in parsed_cooking_methods[i]:
-				main_cooking_method.append(method)
-	try:
-		most_common,num_most_common = Counter(main_cooking_method).most_common(1)[0]
-		print(most_common)
-		return most_common
-	except:
-		return ''
 
+def get_main_cooking_method(parsed_recipe):
+	cooking_methods = []
+	for sentence in parsed_recipe['sentences']:
+		cooking_methods.append(sentence['cooking_methods'])
+	cooking_methods = [item for sublist in cooking_methods for item in sublist]
+	return max(set(cooking_methods), key=cooking_methods.count)
 
-
+	
 if __name__ == "__main__":
 	subtree = getKBSubtree(['cooking-methods'])
 	cooking_methods = ' '.join(list(subtree.keys()))

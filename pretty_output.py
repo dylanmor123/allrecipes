@@ -45,14 +45,16 @@ def get_directions_html(directions):
 	return directions_html
 
 def generate_html_page(recipe, old_recipe):
-	with open("output.html", mode="r", encoding="utf-8", errors="ignore") as f:
+	with open("output.html", mode="r") as f:
 		htmlpage = "\n".join(f.readlines())
 		htmlpage = htmlpage.replace("NLP_INGREDIENTS_GO_HERE", get_ingredients_html(recipe["ingredients"], old_recipe["ingredients"]))
 		htmlpage = htmlpage.replace("NLP_DIRECTIONS_GO_HERE", get_directions_html(recipe["directions"]))
 
 		# Open a file
 		output_file = open("pretty_output.html", "w")
-		print(htmlpage, file=output_file)
+		
+		# Write to file
+		output_file.write(htmlpage)
 
 		# Close opend file
 		output_file.close()
