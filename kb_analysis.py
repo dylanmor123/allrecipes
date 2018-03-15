@@ -57,7 +57,7 @@ def list_chinese_ingredients_from_kb():
 	for file in ["chinese_recipes.txt"]:
 		print(file)
 		with open(file, mode="r", encoding="utf-8", errors="ignore") as f:
-			content = content + f.readlines()	
+			content = content + f.readlines()
 
 	ingredients = set()
 	for line in content:
@@ -67,7 +67,7 @@ def list_chinese_ingredients_from_kb():
 			continue
 
 		for x in recipe["ingredients"]:
-			ingredient = x[3] if not type(x) == type(dict()) else x["name"] 
+			ingredient = x[3] if not type(x) == type(dict()) else x["name"]
 			ingredient.replace("(optional)", "").strip().lower()
 			ingredients.add(ingredient)
 
@@ -77,7 +77,7 @@ def list_chinese_ingredients_from_kb():
 			x = x.replace("-", " ")
 			if len(re.findall(kb_igredient, x, re.IGNORECASE)) > 0:
 				chinese_ingredients.append(kb_igredient)
-	
+
 	########################################################################################################################
 	########################################################################################################################
 
@@ -85,7 +85,7 @@ def list_chinese_ingredients_from_kb():
 	for file in ["italian_recipes.txt"]:
 		print(file)
 		with open(file, mode="r", encoding="utf-8", errors="ignore") as f:
-			content = content + f.readlines()	
+			content = content + f.readlines()
 
 	ingredients = set()
 	for line in content:
@@ -95,7 +95,7 @@ def list_chinese_ingredients_from_kb():
 			continue
 
 		for x in recipe["ingredients"]:
-			ingredient = x[3] if not type(x) == type(dict()) else x["name"] 
+			ingredient = x[3] if not type(x) == type(dict()) else x["name"]
 			ingredient.replace("(optional)", "").strip().lower()
 			ingredients.add(ingredient)
 
@@ -137,11 +137,9 @@ def list_chinese_ingredients_from_kb():
 	print("chinese len", len(set(chinese_ingredients)))
 	print("italian len", len(set(italian_ingredients)))
 
-	print(list(set(italian_ingredients) - set(chinese_ingredients)))
-
-	print("intersection len", len(list(set(italian_ingredients) & set(chinese_ingredients))))
-
-	print("subtract len", len(list(set(italian_ingredients) - set(chinese_ingredients))))
+	# print(list(set(italian_ingredients) - set(chinese_ingredients)))
+	# print("intersection len", len(list(set(italian_ingredients) & set(chinese_ingredients))))
+	# print("subtract len", len(list(set(italian_ingredients) - set(chinese_ingredients))))
 
 def main():
 	list_chinese_ingredients_from_kb()
