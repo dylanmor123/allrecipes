@@ -3,7 +3,7 @@ from knowledgebase import getKBSubtree
 from collections import Counter
 from nltk import word_tokenize, pos_tag
 import nltk
-
+from cooking_method_parser import get_main_cooking_method
 
 def quantity_str_to_float(quantity_str):
 	total = 0
@@ -185,33 +185,16 @@ def get_sentences(directions):
 
 
 def parse_recipe(recipe):
-	if type(recipe) == dict:
-		recipe['sentences'] = parse_directions(recipe)
-		return recipe
+	recipe['sentences'] = parse_directions(recipe)
+	return recipe
+
+def fully_parse_recipe(recipe):
+	recipe['sentences'] = parse_directions(recipe)
+	recipe['cooking method'] = get_main_cooking_method(recipe)
+	return recipe
+
 
 if __name__ == "__main__":
 	parse_recipe(load_recipes('italian_recipes.txt')[0])
-
-
-# def parse_recipe(recipe):
-# 	if type(recipe) == str:
-# 		try:
-# 			recipe = create_recipe(recipe)
-# 		except:
-# 			try:
-# 				recipe = load_recipes(recipe)
-# 			except:
-# 				print("There was a problem")
-# 				return "There was a problem"
-
-# 	elif type(recipe) == dict:
-# 		recipe['sentences'] = parse_directions(recipe)
-# 		print(recipe)
-# 		return recipe
-
-
-# def main():
-# 	parse_recipe(load_recipes('italian_recipes.txt')[0])
-# main()
 
 

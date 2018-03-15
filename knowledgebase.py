@@ -91,6 +91,7 @@ def prettyPrintKBsubtree(kb_subtree = KNOWLEDGE_BASE):
 
 ## Tagged
 
+"""
 addToKB(["ingredients", "bok choy", "chinese"])
 addToKB(["ingredients", "bok choy", "veggie"])
 addToKB(["ingredients", "snake beans", "chinese"])
@@ -690,7 +691,6 @@ addToKB(["ingredients", "egg", "oval"])
 addToKB(["ingredients", "egg", "embryo"])
 addToKB(["ingredients", "egg", "baking"])
 addToKB(["ingredients", "egg", "perishable"])
-addToKB(["ingredients", "egg", "cooking"])
 addToKB(["ingredients", "egg", "yolk"])
 addToKB(["ingredients", "egg", "protein"])
 addToKB(["ingredients", "egg", "bland"])
@@ -759,21 +759,34 @@ addToKB(["ingredients", "cornstarch", "additive"])
 addToKB(["ingredients", "cornstarch", "powder"])
 addToKB(["ingredients", "cornstarch", "starch"])
 
-## Not Tagged
+addToKB(["ingredients", "filet mignon", "meat"])
+addToKB(["ingredients", "filet mignon", "beef"])
+addToKB(["ingredients", "filet mignon", "tenderloin"])
+addToKB(["ingredients", "filet mignon", "protein"])
+addToKB(["ingredients", "pork sausage", "meat"])
+addToKB(["ingredients", "pork sausage", "pork"])
+addToKB(["ingredients", "pork sausage", "chinese"])
+addToKB(["ingredients", "beef sausage", "meat"])
+addToKB(["ingredients", "beef sausage", "chinese"])
+addToKB(["ingredients", "sausage", "meat"])
+addToKB(["ingredients", "sausage", "chinese"])
+addToKB(["ingredients", "rib-eye", "meat"])
+addToKB(["ingredients", "ribs", "meat"])
+addToKB(["ingredients", "ribs", "chinese"])
+addToKB(["ingredients", "steak", "meat"])
+addToKB(["ingredients", "steak", "chinese"])
+addToKB(["ingredients", "pepperoni", "meat"])
+addToKB(["ingredients", "pepperoni", "italian"])
+addToKB(["ingredients", "salami", "meat"])
+addToKB(["ingredients", "salami", "italian"])
+addToKB(["ingredients", "pastrami", "meat"])
+addToKB(["ingredients", "pastrami", "italian"])
+addToKB(["ingredients", "meatball", "meat"])
+addToKB(["ingredients", "meatball", "italian"])
 
 """
-addToKB(["ingredients", "filet mignon", "category", "meat"])
-addToKB(["ingredients", "pork sausage", "category", "meat"])
-addToKB(["ingredients", "beef sausage", "category", "meat"])
-addToKB(["ingredients", "sausage", "category", "meat"])
-addToKB(["ingredients", "rib-eye", "category", "meat"])
-addToKB(["ingredients", "ribs", "category", "meat"])
-addToKB(["ingredients", "steak", "category", "meat"])
-addToKB(["ingredients", "pepperoni", "category", "meat"])
-addToKB(["ingredients", "salami", "category", "meat"])
-addToKB(["ingredients", "pastrami", "category", "meat"])
-addToKB(["ingredients", "meatball", "category", "meat"])
-addToKB(["ingredients", "meat", "category", "meat"])
+
+## Not Tagged
 
 addToKB(["ingredients", "cheese", "category", "dairy products"]) #this is too generic but better than nothing
 
@@ -1001,8 +1014,6 @@ addToKB(["ingredients", "chicken bouillon", "category", "other ingredients"])
 addToKB(["ingredients", "beef bouillon", "category", "other ingredients"])
 addToKB(["ingredients", "pork bouillon", "category", "other ingredients"])
 addToKB(["ingredients", "vegetable bouillon", "category", "other ingredients"])
-"""
-
 
 ####################################################################
 ### List of Tools
