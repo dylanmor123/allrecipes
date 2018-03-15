@@ -1,6 +1,6 @@
 # allrecipes
 
-How to run the CLI
+How to run the CLI:
 
 python main.py -u 'https://www.allrecipes.com/recipe/85185/authentic-mexican-breakfast-tacos' -t 'chinese'
 
