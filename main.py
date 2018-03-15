@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import optparse
 import webbrowser, os
+import copy
 from allrecipes_scraper import create_recipe_data
 from recipe_parser import parse_directions, fully_parse_recipe
 from style_transform import transform
@@ -23,8 +24,8 @@ def main():
 	url = options.url
 	transformation = options.transformation
 
-	if transformation not in ['chinese', 'italian', 'to_vegan', 'from_vegan', 'to_vegetarian', 'from_vegetarian', 'to_healthy', 'from_healthy', 'to_diy']:
-		print("Sorry, please choose one of the following transformations: 'chinese', 'italian', 'to_vegan', 'from_vegan', 'to_vegetarian', 'from_vegetarian', 'to_healthy', 'from_healthy', 'to_diy'")
+	if transformation not in ['chinese', 'italian', 'indian', 'to_vegan', 'from_vegan', 'to_vegetarian', 'from_vegetarian', 'to_healthy', 'from_healthy', 'to_diy']:
+		print("Sorry, please choose one of the following transformations: 'chinese', 'italian', 'indian', 'to_vegan', 'from_vegan', 'to_vegetarian', 'from_vegetarian', 'to_healthy', 'from_healthy', 'to_diy'")
 		return
 
 	# Scrape Recipe
@@ -34,6 +35,7 @@ def main():
 		return
 
 	# Parse directions
+	old_recipe = copy.deepcopy(recipe)
 	recipe = fully_parse_recipe(recipe)
 
 	# Make transformation
@@ -41,6 +43,8 @@ def main():
 		new_recipe = transform(recipe, style='chinese')
 	elif transformation == 'italian':
 		new_recipe = transform(recipe, style='italian')
+	elif transformation == 'indian':
+		new_recipe = transform(recipe, style='indian')		
 	elif transformation == 'to_vegan':
 		new_recipe = to_vegan(recipe)
 	elif transformation == 'from_vegan':
@@ -56,7 +60,7 @@ def main():
 	elif transformation == 'to_diy':
 		new_recipe = to_diy(recipe)	
 	else:
-		print("Sorry, please choose one of the following transformations: 'chinese', 'italian', 'to_vegan', 'from_vegan', 'to_vegetarian', 'from_vegetarian', 'to_healthy', 'from_healthy', 'to_diy'")
+		print("Sorry, please choose one of the following transformations: 'chinese', 'italian', 'indian', 'to_vegan', 'from_vegan', 'to_vegetarian', 'from_vegetarian', 'to_healthy', 'from_healthy', 'to_diy'")
 		return
 
 
@@ -65,7 +69,8 @@ def main():
 	print('\n')
 
 	# Generate HTML page
-	generate_html_page(new_recipe, recipe)
+
+	generate_html_page(new_recipe, old_recipe)
 	webbrowser.open('pretty_output.html')
 
 

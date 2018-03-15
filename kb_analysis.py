@@ -73,10 +73,10 @@ def list_chinese_ingredients_from_kb():
 
 	chinese_ingredients = []
 	for x in ingredients:
-		for kb_igredient in ingredients_subtree.keys():
-			x = x.replace("-", " ")
-			if len(re.findall(kb_igredient, x, re.IGNORECASE)) > 0:
-				chinese_ingredients.append(kb_igredient)
+		#for kb_igredient in ingredients_subtree.keys():
+		x = x.replace("-", " ")
+		#if len(re.findall(kb_igredient, x, re.IGNORECASE)) > 0:
+		chinese_ingredients.append(x)
 
 	########################################################################################################################
 	########################################################################################################################
@@ -109,40 +109,46 @@ def list_chinese_ingredients_from_kb():
 	########################################################################################################################
 	########################################################################################################################
 
-	# content = []
-	# for file in ["indian_recipes.txt"]:
-	# 	print(file)
-	# 	with open(file, mode="r", encoding="utf-8", errors="ignore") as f:
-	# 		content = content + f.readlines()	
+	content = []
+	for file in ["indian_recipes.txt"]:
+		print(file)
+		with open(file, mode="r", encoding="utf-8", errors="ignore") as f:
+			content = content + f.readlines()	
 
-	# ingredients = set()
-	# for line in content:
-	# 	recipe = eval(line)
+	ingredients = set()
+	for line in content:
+		recipe = eval(line)
 
-	# 	if recipe is None or recipe["ingredients"] is None:
-	# 		continue
+		if recipe is None or recipe["ingredients"] is None:
+			continue
 
-	# 	for x in recipe["ingredients"]:
-	# 		ingredient = x[3] if not type(x) == type(dict()) else x["name"] 
-	# 		ingredient.replace("(optional)", "").strip().lower()
-	# 		ingredients.add(ingredient)
+		for x in recipe["ingredients"]:
+			ingredient = x[3] if not type(x) == type(dict()) else x["name"] 
+			ingredient.replace("(optional)", "").strip().lower()
+			ingredients.add(ingredient)
 
-	# indian_ingredients = []
-	# for x in ingredients:
-	# 	for kb_igredient in ingredients_subtree.keys():
-	# 		x = x.replace("-", " ")
-	# 		if len(re.findall("(^| |\"|'|\()%s.?(s|es|ies)?($| |,|\.|!|\"|'|;|\))" % (kb_igredient[:-1]), x, re.IGNORECASE)) > 0:
-	# 			indian_ingredients.append(kb_igredient)
+	indian_ingredients = []
+	for x in ingredients:
+		for kb_igredient in ingredients_subtree.keys():
+			x = x.replace("-", " ")
+			if len(re.findall("(^| |\"|'|\()%s.?(s|es|ies)?($| |,|\.|!|\"|'|;|\))" % (kb_igredient[:-1]), x, re.IGNORECASE)) > 0:
+				indian_ingredients.append(kb_igredient)
 
 	print("chinese len", len(set(chinese_ingredients)))
-	print("italian len", len(set(italian_ingredients)))
+	print(set(chinese_ingredients))
 
-	# print(list(set(italian_ingredients) - set(chinese_ingredients)))
-	# print("intersection len", len(list(set(italian_ingredients) & set(chinese_ingredients))))
-	# print("subtract len", len(list(set(italian_ingredients) - set(chinese_ingredients))))
+	# print("italian len", len(set(italian_ingredients)))
+	# print(set(italian_ingredients))
 
-def main():
-	list_chinese_ingredients_from_kb()
+	# print("indian len", len(set(indian_ingredients)))
+	# print(set(indian_ingredients))
+
+	# print("chinese - italian")
+	# print(list(set(chinese_ingredients) & set(italian_ingredients)))
+
+	# print("chinese - italian")
+	# print(list(set(chinese_ingredients) - set(italian_ingredients)))
+
 
 if __name__ == "__main__":
-	main()
+	list_chinese_ingredients_from_kb()
