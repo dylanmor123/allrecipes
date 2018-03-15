@@ -3,28 +3,8 @@ from knowledgebase import *
 import re
 from fractions import Fraction 
 
-# 1 teaspoon of salt = 2325.5mg 
-# 1 pinch of salt = 400mg
-# 1 cup(1 block, 2 sticks, 0.5 pound) of butter = .75 cup of olive oil 
-# 1 cup of butter = 1725 mg
-# unsalted butter instead of normal butter
-
-r3 = {'name': 'Fall 5-Spice Soup', 'description': 'I am a soup fanatic, and found that Chinese 5-spice, made up of anise, fennel, cloves, cinnamon, and white or Szechwan pepper was a great way to jazz-up common fall vegetables.', 'ingredients': [{'name': 'quinoa', 'quantity': '6', 'measurement': 'cups', 'preparation': ''}, {'name': 'reduced-calorie vegetable oil', 'quantity': '1', 'measurement': 'tablespoon', 'preparation': ''}, {'name': 'butter', 'quantity': '1/2', 'measurement': '', 'preparation': 'chopped'}, {'name': 'salt', 'quantity': '2', 'measurement': 'teaspoons', 'preparation': 'chopped'}, {'name': 'low-calorie chinese 5-spice powder', 'quantity': '1 1/2', 'measurement': 'teaspoons', 'preparation': ''}, {'name': 'butter', 'quantity': '4', 'measurement': 'sticks', 'preparation': 'chopped'}, {'name': 'ground turkey', 'quantity': '2', 'measurement': '', 'preparation': 'peeled'}, {'name': 'salt', 'quantity': '1 1/2', 'measurement': 'teaspoons', 'preparation': ''}], 'directions': ['Pour vegetable broth into a pot and bring to a boil.', 'Heat oil in a skillet over medium heat; cook and stir onion and celery in hot oil until tender, 5 to 10 minutes. Add Chinese 5-spice powder to onion mixture, stir to coat, and cook until fragrant, about 1 minute.', 'Mix sweet potatoes, apples, quinoa, salt, and onion mixture into broth; cook until sweet potatoes are tender, 20 to 25 minutes. Cool soup for at least 5 minutes.', 'Pour soup into a blender no more than half full. Cover and hold lid down; pulse a few times before leaving on to blend. Puree in batches until smooth.'], 'nutrition_facts': 'Nutrition Facts\nPer Serving:\n324 calories;\n4.6 g fat;\n66.7 g carbohydrates;\n5.7 g protein;\n0 mg cholesterol;\n1705 mg sodium.\nPowered by the ESHA Research Database © 2018, ESHA Research, Inc. All Rights Reserved\n', 'num_servings': '4', 'num_calories': '324', 'cooktimes': [('Prep', '20m'), ('Cook', '25m'), ('Ready In', '50m')]}
-
 term = ['low-fat', 'low-sodium', 'low-calorie', 'reduced-calorie', 'reduced-sodium', 'reduced-fat', 'fat-free']
 salt_sodium = {'teaspoon': 2325, 'teaspoons': 2325, 'pinch': 400, 'pinches': 400, 'tablespoon': 1000, 'tablespoons': 1000, 'stick': 862.5, 'sticks': 862.5, 'cup': 1725, 'cups': 1725, 'pound': 3450, 'pounds': 3450, 'tablespoon': 101, 'tablespoons': 101}
-
-# replacement = {'flour': 'gluten-free flour', 'couscous': 'quinoa', 'bread crumbs': 
-# 'ground flaxseeds', 'tortilla': 'corn tortilla', 'pita': 'large collard leaf',
-# 'sugar': 'unsweetened applesauce', 'white sugar': 'unsweetened applesauce', 
-# 'peanut butter': 'natural peanut butter',
-# 'butter': 'unsweetened butter', 'milk': 'almond milk', 'cream': 'coconut milk',
-# 'soy sauce': 'low-sodium soy sauce', 'rice': 'brown rice', 'white rice': 'brown rice',
-# 'bread': 'whole-wheat bread', 'white bread': 'whole-wheat bread', 'sour cream': 'greek yogurt', 
-# 'mayonnaise': 'greek yogurt with hint of herbs and lemon juice', 'ground beef': 'ground turkey',
-# 'ground pork': 'ground turkey',
-# 'bacon': 'lean prosciutto', 'cream cheese': 'fat-free cream cheese', 'lettuce': 'arugula',
-# 'penne pasta': 'brown rice pasta', 'syrup': 'applesauce', 'ketchup': 'sun-dried tomato hummus'}
 
 def getSodiumfromNutritions(recipe):
 	wordList = re.sub("[^\w]", " ",  recipe["nutrition_facts"]).split()
@@ -75,8 +55,6 @@ def to_healthy_recipe(recipe):
 		recipe["directions"][idx] = direction
 	print(recipe)
 	return recipe
-
-to_healthy_recipe(r3)
 
 # ===================================================================
 
