@@ -1,0 +1,6 @@
+Main contributions made by Danilo Neves Ribeiro:
+
+1 - Design and code the knowledge base (create tree structure)
+2 - Write to vegan, to vegetarian, and from vegan transformations
+3 - Help with populating Knowledge Base with ingredients (and their tags), tools and cooking methods.
+3 - Write code to format output into a nice HTML design.
