@@ -1,0 +1,6 @@
+Main contributions made by Michael Smith:
+
+1 - Collected recipes w/ Yunil (chinese, italian, etc.)
+2 - Came up with tagging scheme for KB
+3 - Designed and implemented style transforms algorithm
+4 - Helped populate KB tags, and improve transformation quality
