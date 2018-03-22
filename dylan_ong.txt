@@ -1,0 +1,6 @@
+Main contributions made by Dylan Ong:
+
+1 - Scrape allrecipes.com
+2 - Parse all data from scraped allrecipes data
+3 - Added cooking-actions, ingredients, etc... to knowledgebase
+4 - Created commandline program and main function

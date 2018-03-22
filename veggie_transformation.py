@@ -19,7 +19,7 @@ def best_substitute_ingredient(recipe, substitute_subtree):
 
 def from_veggie_to_non_veggie_recipe(recipe):
 	# TODO: remove 
-	remove_list = ["non-dairy ", "vegan ", "dairy-free ", "dairy free ", "whole wheat "]
+	remove_list = ["non-dairy ", "vegan ", "dairy-free ", "dairy free ", "whole wheat ", "vegetarian "]
 	for remove_word in remove_list:
 		for ingredient in recipe["ingredients"]:
 			if remove_word in ingredient["name"]:

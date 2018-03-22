@@ -28,7 +28,7 @@ def get_ingredients(html):
 	ingredients_list_2 = ingredients_list_2.findAll('li', {'class': 'checkList__line'})
 	list_of_ingredients = ingredients_list_1 + ingredients_list_2
 	for item in list_of_ingredients:
-		ingredients.append(str(item.contents[1].text.encode('ascii', 'ignore')).strip())
+		ingredients.append(str(item.contents[1].text).strip())
 	return parse_ingredients(ingredients[0:len(ingredients)-1])
 
 def get_directions(html):
